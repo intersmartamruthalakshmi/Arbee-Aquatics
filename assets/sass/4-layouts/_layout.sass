@@ -1,0 +1,470 @@
+@use '../0-abstracts/' as *
+
+// LAYOUT
+:root
+    --header-y: 95px
+    --aq-common-white: #f5f2ec !important
+    @media only screen and (min-width: 992px)
+        --header-y: 95px
+    @media only screen and (min-width: 1551px)
+        --header-y: 120px
+    @media only screen and (min-width: 1771px)
+        --header-y: 140px
+
+#pageWrapper
+    overflow: hidden
+
+// SCROLL REVEAL    
+.reveal-up,
+.reveal-down,
+.reveal-left,
+.reveal-right
+    will-change: transform, opacity
+
+// BUTTON_STYLE                                         
+.hoveranim
+    transition: all 0.3s ease
+    position: relative
+    overflow: hidden
+    @include center
+    &::before
+        content: ''
+        position: absolute
+        z-index: 0
+        top: 0
+        left: 0
+        bottom: 0
+        width: 100%
+        background: $white
+        -webkit-transform: scaleX(0)
+        -ms-transform: scaleX(0)
+        transform: scaleX(0)
+        -webkit-transition: -webkit-transform 0.3s ease
+        transition: -webkit-transform 0.3s ease
+        transition: transform 0.3s ease
+        transition: transform 0.3s ease, -webkit-transform 0.3s ease
+        -webkit-transform-origin: right
+        -ms-transform-origin: right
+        transform-origin: right
+    span
+        position: relative
+        z-index: 1
+    &:hover
+        background-color: $white
+        color: $basecolor2
+        &::before
+            -webkit-transform-origin: left
+            -ms-transform-origin: left
+            transform-origin: left
+            -webkit-transform: scaleX(1)
+            -ms-transform: scaleX(1)
+            transform: scaleX(1)
+            background: transparent
+    &:hover
+        color: $white
+        animation: gradientSwap 2.5s ease-in-out infinite alternate
+
+// TITLE
+.tleWrap
+    width: 100%
+    height: auto
+    margin-bottom: 15px
+    @media only screen and (min-width: 576px)
+        margin-bottom: 20px
+    @media only screen and (min-width: 1551px)
+        margin-bottom: 40px
+    &.center
+        text-align: center
+        .sTle
+            margin-inline: auto
+    &.right
+        text-align: right
+    .title
+        font-size: 34px
+        line-height: 1.2
+        font-weight: 600
+        color: $black
+        margin-bottom: 0
+        display: inline-block
+        @media (min-width: 576px)
+            font-size: 40px
+        @media (min-width: 768px)
+            font-size: 48px
+        @media (min-width: 992px)
+            font-size: 32px
+        @media (min-width: 1200px)
+            font-size: 38px
+        @media (min-width: 1551px)
+            font-size: 48px
+        @media (min-width: 1771px)
+            font-size: 60px
+    .txt
+        font-size: 12px
+        line-height: 1.5
+        font-weight: 400
+        color: $black
+        margin-bottom: 0
+        @media only screen and (min-width: 576px)
+            font-size: 13px
+        @media only screen and (min-width: 1551px)
+            font-size: 16px
+        @media only screen and (min-width: 1771px)
+            font-size: 20px
+.baseBtn
+    @extend %baseBtn
+    position: relative
+    width: fit-content
+    width: -moz-fit-content
+    width: -webkit-fit-content
+    height: auto
+    padding: 12px 20px
+    background: rgba(26, 26, 26, 0.2)
+    border: 1px solid
+    border-image: linear-gradient(to right, $basecolor 17%, $basecolor2 50%, $basecolor 100%) 1
+    box-shadow: 0 0 0px 0px rgba($basecolor2, 0), 0 0 0px 0px rgba($basecolor, 0), inset 0 0px 15px 0px rgba($basecolor2, 0.1)
+    transition: all .4s
+    @include center
+    @media (min-width: 576px)
+        padding: 15px 20px
+    @media (min-width: 1771px)
+        padding: 15px 25px
+    &:hover
+        box-shadow: 0 0 20px 1px rgba($basecolor2, 0.24), 0 0 50px 10px rgba($basecolor, 0.14), inset 0 0 30px 2px rgba($basecolor2, 0.25)
+        // border-image: linear-gradient(to right, $basecolor2 17%, $basecolor2 50%, $basecolor2 100%) 20
+        &::before
+            opacity: 1
+            width: 100%
+            height: 100%
+            margin: auto
+            filter: blur(25px)
+        .particleCanvas
+            opacity: 1
+        span
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.98), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 42px rgba($basecolor2, 0.88)
+            color: $white
+    &.white
+        color: $black !important
+        background: transparent
+    &::before
+        content: ''
+        width: 80%
+        height: 10px
+        margin-inline: auto
+        background: radial-gradient(ellipse at center, rgba($basecolor2, 0.92) 0%, rgba($basecolor, 0.52) 40%, transparent 72%)
+        filter: blur(5px)
+        border-radius: 50%
+        opacity: 0.9
+        pointer-events: none
+        transform: translateY(5px)
+        transition: all .4s
+        position: absolute
+        z-index: 1
+        inset: auto 0 0 0
+    span
+        transition: text-shadow 0.4s ease
+        position: relative
+        z-index: 2
+    .particleCanvas
+        width: 100%
+        height: 100%
+        opacity: 0
+        transition: opacity .3s ease
+        position: absolute
+        z-index: 2
+        inset: 0
+
+// CK_EDITOR_TEXT
+.ckCntWrap
+    &::after
+        display: block
+        clear: both
+        content: ""
+    h1, h2, h3, h4, h5, h6
+        font-weight: 600
+        line-height: 1.1
+        color: $black
+        margin-bottom: 10px
+        @media only screen and (min-width: 1024px)
+            margin-bottom: 14px
+        @media only screen and (min-width: 1240px)
+            margin-bottom: 16px
+        @media only screen and (min-width: 1540px)
+            margin-bottom: 18px
+    h1
+        font-size: 18px
+        font-weight: 600
+        @media only screen and (min-width: 576px)
+            font-size: 20px
+        @media only screen and (min-width: 1024px)
+            font-size: 32px
+        @media only screen and (min-width: 1240px)
+            font-size: 37px
+        @media only screen and (min-width: 1540px)
+            font-size: 46px
+    h2
+        font-size: 15px
+        font-weight: 500
+        @media only screen and (min-width: 576px)
+            font-size: 17px
+        @media only screen and (min-width: 1024px)
+            font-size: 22px
+        @media only screen and (min-width: 1240px)
+            font-size: 24px
+        @media only screen and (min-width: 1540px)
+            font-size: 30px
+    h3
+        font-size: 13px
+        font-weight: 500
+        @media only screen and (min-width: 576px)
+            font-size: 15px
+        @media only screen and (min-width: 1024px)
+            font-size: 19px
+        @media only screen and (min-width: 1240px)
+            font-size: 22px
+        @media only screen and (min-width: 1540px)
+            font-size: 28px
+    h4
+        font-size: 16px
+        font-weight: 500
+        @media only screen and (min-width: 1240px)
+            font-size: 20px
+    h5
+        font-size: 25px
+    h6
+        font-size: 0.75rem
+
+    %ckCntWrapTxt
+        font-size: 11px
+        line-height: 1.5
+        font-weight: 400
+        font-family: $fontstack
+        color: $text
+        @media only screen and (min-width: 1024px)
+            font-size: 12px
+        @media only screen and (min-width: 1240px)
+            font-size: 14px
+        @media only screen and (min-width: 1540px)
+            font-size: 16.6px
+        &:last-child
+            margin-bottom: 5px
+    img
+        max-width: 100%
+        max-height: 100%
+        will-change: transform
+        margin-bottom: 10px
+        @include imgFit
+        @media only screen and ( min-width: 576px )
+            margin-bottom: 15px
+        @media only screen and ( min-width: 992px )
+            margin-bottom: 20px
+        @media only screen and ( min-width: 1551px )
+            margin-bottom: 40px
+    a
+        color: $basecolor2
+    ul, ol
+        padding-left: 0
+        margin: 0
+        margin-bottom: 10px
+        @media only screen and (min-width: 1551px)
+            margin-bottom: 16px
+        li
+            @extend %ckCntWrapTxt
+            margin-bottom: 6px
+            @media only screen and (min-width: 1240px)
+                margin-bottom: 10px
+            @media only screen and (min-width: 1540px)
+                margin-bottom: 12px
+            strong
+                font-weight: 500
+    ul
+        display: table
+        li
+            position: relative
+            padding-left: 14px
+            @media only screen and (min-width: 1240px)
+                padding-left: 16px
+            @media only screen and (min-width: 1540px)
+                padding-left: 20px
+            &:last-of-type
+                margin: 0
+            &::before
+                position: absolute
+                content: ''
+                width: 8px
+                height: 10px
+                top: 5px
+                left: 0
+                background: url(../images/arrow-red.svg) left center no-repeat
+                background-size: contain
+                @media only screen and (min-width: 1240px)
+                    width: 9px
+                    height: 12px
+                    top: 6px
+                @media only screen and (min-width: 1540px)
+                    width: 12px
+                    height: 15px
+                    top: 8px
+    p
+        @extend %ckCntWrapTxt
+        margin-bottom: 8px
+        @media only screen and (min-width: 1240px)
+            margin-bottom: 12px
+        @media only screen and (min-width: 1540px)
+            margin-bottom: 16px
+        &:last-of-type
+            margin-bottom: 5px
+        strong
+            font-weight: 500
+        a
+            font-size: 12px
+            line-height: 1
+            font-weight: 400
+            color: $black
+            @media only screen and (min-width: 1024px)
+                font-size: 14px
+            @media only screen and (min-width: 1240px)
+                font-size: 15px
+            @media only screen and (min-width: 1540px)
+                font-size: 20px
+
+    table
+        display: table
+        max-width: 100%
+        margin: 5px 0
+        border-collapse: collapse
+        border-top: 1px solid rgba($white, 0.2)
+        border-left: 1px solid rgba($white, 0.2)
+        background: rgb(17,17,17)
+        background: linear-gradient(0deg, rgba(17,17,17,1) 0%, rgba(64,64,64,1) 100%)
+        @media only screen and (min-width: 576px)
+            margin: 10px 0
+        @media only screen and (min-width: 992px)
+            margin: 15px 0
+        th, td
+            @extend %ckCntWrapTxt
+            padding: 8px 15px
+            border-right: 1px solid rgba($white, 0.2)
+            border-bottom: 1px solid rgba($white, 0.2)
+            @media only screen and (min-width: 576px)
+                padding: 10px 25px
+            @media only screen and (min-width: 992px)
+                padding: 15px 35px
+            @media only screen and (min-width: 1551px)
+                padding: 20px 45px
+        th
+            color: $white
+            background-color: $white
+            border-color: rgba($white, 0.2)
+        b
+            font-weight: 600
+        tbody
+            tr
+                transition: background 0.4s
+                &:hover
+                    background-color: rgba($white, 0.1)
+
+// iti
+.iti
+    border-radius: 0
+    border: 1px solid rgba(0, 0, 0, 0.3)
+    display: flex
+    margin-top: 0
+    font-size: 11px
+    font-weight: 300
+    color: $text1
+    height: 28px
+    @media only screen and (min-width: 1200px)
+        height: 30px
+        padding: 4px 8px
+    @media only screen and (min-width: 1551px)
+        font-size: 13px
+        height: 43px
+        padding: 10px 12px
+    @media only screen and (min-width: 1771px)
+        font-size: 16px
+        height: 53px
+    .form-control
+        border: none
+        height: 100%
+    .iti__arrow
+        display: block
+        border-left: 4px solid #f5f2ec
+        border-right: 4px solid #f5f2ec
+        border-top: 7px solid $black
+        @media only screen and (min-width: 1551px)
+            border-left: 6px solid #f5f2ec
+            border-right: 6px solid #f5f2ec
+            border-top: 9px solid $black
+    .iti__arrow--up
+        border-top: none !important
+        border-bottom: 11px solid #24BAA2
+
+    .iti__selected-flag
+        border-radius: 50%
+        padding-left: 6.25px
+        padding-right: 6.25px
+        position: relative
+        background: transparent !important
+        @media only screen and (min-width: 1551px)
+            padding-left: 10px
+            padding-right: 10px
+        &::after
+            content: ""
+            position: absolute
+            right: 0
+            top: 0
+            bottom: 0
+            margin: auto
+            height: 22px
+            width: 1px
+            background: rgba(0, 0, 0, 0.10)
+            @media only screen and (min-width: 1551px)
+                height: 30px
+        .iti__flag
+            // border-radius: 50%
+            width: 14px
+            height: 14px
+            background-size: cover !important
+            background-position: 0px 4px !important
+            @media only screen and (min-width: 1551px)
+                width: 22px
+                height: 22px
+
+.expmorebth
+    font-size: 12px
+    line-height: 1.2
+    font-weight: 400
+    letter-spacing: 16%
+    text-transform: uppercase
+    color: $white
+    width: fit-content
+    height: auto
+    padding: 10px 15px
+    background: $basecolor
+    @media only screen and (min-width: 1551px)
+        font-size: 14px
+        padding: 12px 20px
+    @media only screen and (min-width: 1771px)
+        font-size: 16px
+        padding: 15px 25px
+
+section
+    padding-inline: 0 !important
+
+.arbeepopup
+    .popformcontbox
+        position: relative
+        z-index: 0
+        .overlayImg
+            width: 100%
+            height: 100%
+            opacity: 0.2
+            pointer-events: none
+            display: block
+            position: absolute
+            z-index: -1
+            inset: 0
+            img
+                @include imgFit
+    .formbook
+        width: 100%

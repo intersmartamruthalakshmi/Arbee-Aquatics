@@ -1,0 +1,1142 @@
+@use '../0-abstracts/' as *
+
+#Trusted
+    width: 100%
+    height: auto
+    padding-block: 50px
+    padding-inline: 0
+    display: block
+    @media (min-width: 576px)
+        padding-block: 80px 70px
+    @media (min-width: 992px)
+        padding-block: 110px 90px
+    @media (min-width: 1551px)
+        padding-block: 150px 110px
+    @media (min-width: 1771px)
+        padding-block: 180px 140px
+    .dFlx
+        --gap: 10px
+        --grid-height: 280px
+        width: 100%
+        height: auto
+        align-items: center
+        @include display
+        @media (min-width: 576px)
+            --grid-height: 320px
+        @media (min-width: 992px)
+            --grid-height: 380px
+        @media (min-width: 1551px)
+            --gap: 15px
+            --grid-height: 490px
+        @media (min-width: 1771px)
+            --grid-height: 610px
+        &>*
+            width: 100%
+            @media (min-width: 768px)
+                width: 50%
+    .tapbox
+        @media (max-width: 768px)
+            margin-bottom: 30px
+    .trustedVideo
+        height: var(--grid-height)
+        @media (min-width: 768px)
+            padding-right: var(--gap)
+    .grtcover
+        gap: var(--gap)
+        display: flex
+        @media (min-width: 700px)
+            height: var(--grid-height)
+            flex-direction: column
+        &>*
+            height: 50%
+            margin-bottom: 0
+            overflow: hidden
+            display: block
+        img
+            @include imgFit
+    .crapbox
+        padding: 0
+        position: relative
+        z-index: 0
+        @media (min-width: 768px)
+            padding: 0 0 0 40px
+        @media (min-width: 1200px)
+            padding: 0 0 0 70px
+        @media (min-width: 1551px)
+            padding: 0 0 0 100px
+        @media (min-width: 1771px)
+            padding: 0 0 0 120px
+        h3
+            font-size: 24px
+            line-height: 1.2
+            margin-bottom: 10px
+            @media (min-width: 576px)
+                font-size: 30px
+                margin-bottom: 15px
+            @media (min-width: 992px)
+                font-size: 38px
+            @media (min-width: 1551px)
+                font-size: 48px
+            @media (min-width: 1771px)
+                font-size: 60px
+                margin-bottom: 20px
+        h4
+            font-size: 15px
+            margin-bottom: 15px
+            @media (min-width: 576px)
+                font-size: 18px
+                margin-bottom: 20px
+            @media (min-width: 1551px)
+                font-size: 20px
+                margin-bottom: 30px
+            @media (min-width: 1771px)
+                font-size: 24px
+                margin-bottom: 40px
+        p
+            font-size: 14px
+            margin-bottom: 20px
+            @media (min-width: 576px)
+                margin-bottom: 30px
+            @media (min-width: 992px)
+                margin-bottom: 40px
+            @media (min-width: 1551px)
+                font-size: 16px
+                margin-bottom: 50px
+            @media (min-width: 1771px)
+                font-size: 20px
+                margin-bottom: 65px
+    .qualitySlider
+        width: 100%
+        height: auto
+        margin-top: 30px
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent)
+        @media (min-width: 576px)
+            margin-top: 20px
+        @media (min-width: 1551px)
+            margin-top: 30px
+        .swiper-slide
+            height: auto !important
+            // transform: scaleX(1.02)
+            border-right: 1px solid rgba($black,0.05)
+    .qualityBx
+        width: 100%
+        height: 100%
+        padding-inline: 15px
+        text-align: center
+        display: block
+        @media (min-width: 992px)
+            padding-inline: 10px
+        @media (min-width: 1551px)
+            padding-inline: 20px
+        &>.icon
+            width: 35px
+            height: auto
+            aspect-ratio: 1/1
+            margin: auto
+            margin-bottom: 10px
+            display: block
+            @media (min-width: 576px)
+                width: 40px
+            @media (min-width: 1551px)
+                width: 55px
+                margin-bottom: 15px
+            @media (min-width: 1771px)
+                width: 70px
+                margin-bottom: 20px
+            img
+                @include imgFit
+                object-fit: contain
+        &>.txt
+            font-size: 13px
+            line-height: 1.2
+            font-weight: 400
+            color: $black
+            @media (min-width: 1551px)
+                font-size: 14px
+            @media (min-width: 1771px)
+                font-size: 16px
+    .expmorebth
+        margin: 0
+
+#Snippet
+    width: 100%
+    height: auto
+    padding-block: 40px
+    background: linear-gradient(90deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+    display: block
+    @media (min-width: 1551px)
+        padding-block: 50px 30px
+    @media (min-width: 1771px)
+        padding-block: 70px 30px
+    .tleWrap
+        width: 100%
+        height: auto
+        gap: 15px
+        margin-bottom: 20px
+        align-items: center
+        @include display
+        @media (min-width: 992px)
+            gap: 0
+            margin-bottom: 30px
+        @media (min-width: 1551px)
+            margin-bottom: 40px
+        @media (min-width: 1771px)
+            margin-bottom: 50px
+        &>*
+            width: 100%
+            @media (min-width: 992px)
+                width: 50%
+        .txt
+            color: #4B4B4B
+            @media (min-width: 992px)
+                padding-left: 75px
+            @media (min-width: 1551px)
+                padding-left: 120px
+    .snippetSlider
+        .swiper-pagination
+            margin-block: 10px 0
+            position: unset
+    .snipbx
+        width: 100%
+        height: 100%
+        overflow: hidden
+        display: block
+        position: relative
+        z-index: 0
+        &::before
+            content: ""
+            width: 100%
+            height: 100%
+            background-color: rgba($black, 0.3)
+            position: absolute
+            z-index: 1
+            inset: 0
+        &:hover
+            .bxCnt
+                &>.title
+                    opacity: 0
+                    visibility: hidden
+            .hideBx
+                position: static
+                transform: translateY(0)
+        &>.bxImg
+            width: 100%
+            height: auto
+            aspect-ratio: 850/550
+            border-radius: 2px
+            overflow: hidden
+            display: block
+            img
+                @include imgFit
+        &>.bxCnt
+            width: 100%
+            height: auto
+            margin: 15px
+            display: block
+            position: absolute
+            z-index: 1
+            inset: auto auto 0 0
+            @media (min-width: 576px)
+                margin: 20px
+            @media (min-width: 1551px)
+                margin: 30px
+            @media (min-width: 1771px)
+                margin: 40px
+        .title
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 600
+            color: $white
+            @media (min-width: 576px)
+                font-size: 18px
+            @media (min-width: 1551px)
+                font-size: 25px
+            @media (min-width: 1771px)
+                font-size: 30px
+        .hideBx
+            width: 100%
+            max-width: 90%
+            height: auto
+            transform: translateY(150%)
+            transition: all 0.5s ease
+            position: absolute
+            z-index: 1
+            inset: auto auto 0 0
+            @media (min-width: 576px)
+                max-width: 70%
+            &>.title
+                margin-bottom: 10px
+                @media (min-width: 1551px)
+                    margin-bottom: 15px
+        .txt
+            font-size: 13px
+            line-height: 1.5
+            font-weight: 400
+            color: $white
+            margin-bottom: 10px
+            display: -webkit-box
+            -webkit-box-orient: vertical
+            -webkit-line-clamp: 5
+            overflow: hidden
+            @media (min-width: 576px)
+                font-size: 14px
+                margin-bottom: 15px
+            @media (min-width: 1551px)
+                font-size: 16px
+            @media (min-width: 1771px)
+                font-size: 20px
+                margin-bottom: 25px
+        .expfishbtn
+            margin: 0
+
+#WhyArbee
+    width: 100%
+    height: auto
+    padding-block: 40px
+    display: block
+    @media (min-width: 576px)
+        padding-block: 60px 50px
+    @media (min-width: 992px)
+        padding-block: 80px 70px
+    @media (min-width: 1551px)
+        padding-block: 110px 100px
+    @media (min-width: 1771px)
+        padding-block: 140px 120px
+    .dFlx
+        width: 100%
+        height: auto
+        align-items: center
+        @include display
+        &>.lSide,&>.rgSide
+            width: 100%
+            @media (min-width: 992px)
+                width: 50%
+        &>.rgSide
+            margin-top: 30px
+            @media (min-width: 576px)
+                margin-top: 40px
+            @media (min-width: 992px)
+                margin-top: 0
+                padding-left: 50px
+            @media (min-width: 1200px)
+                padding-left: 70px
+            @media (min-width: 1551px)
+                padding-left: 80px
+            @media (min-width: 1771px)
+                padding-left: 110px
+    .tleWrap
+        width: 100%
+        height: auto
+        &>.title
+            margin-bottom: 15px
+            @media (min-width: 576px)
+                margin-bottom: 20px
+            @media (min-width: 1551px)
+                margin-bottom: 30px
+        &>.txt
+            line-height: 1.8
+            color: #4B4B4B
+    .arbeeWrapper
+        width: 100%
+        height: auto
+        gap: 10px
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        @media (min-width: 576px)
+            gap: 10px 15px
+        @media (min-width: 992px)
+            gap: 15px 20px
+        @media (min-width: 1551px)
+            gap: 20px 30px
+    .arbeeBx
+        width: 100%
+        height: 100%
+        padding: 15px
+        background: linear-gradient( 90deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        transition: all 0.5s ease
+        position: relative
+        z-index: 0
+        @media (min-width: 576px)
+            padding: 20px
+        @media (min-width: 1551px)
+            padding: 30px
+        &:hover
+            background: linear-gradient( 90deg,rgba(0, 137, 207, 1) 0%,rgba(166, 206, 57, 1) 100%)
+            &::before
+                inset: 0 0 0 auto
+                background: url('data:image/svg+xml,<svg width="151" height="154" viewBox="0 0 151 154" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.2"><path d="M64.367 78.928C52.2619 70.7883 43.6126 54.1559 26.9583 53.2537C-8.9861 51.2923 -8.9861 106.544 26.9583 104.563C43.6126 103.681 52.34 87.0874 64.3084 78.928" fill="white"/><path d="M86.6818 78.928C98.7478 70.7491 107.417 54.1559 124.071 53.2537C159.976 51.2923 159.976 106.544 124.071 104.563C107.417 103.681 98.6893 87.0874 86.6818 78.928Z" fill="white"/><path d="M76.7055 89.3042C84.8081 101.406 101.326 110.114 102.224 126.845C104.176 162.973 49.1957 162.973 51.1286 126.845C52.0462 110.114 68.5443 101.347 76.7055 89.3042Z" fill="white"/><path d="M76.7055 64.6077C84.8081 52.506 101.326 43.7975 102.224 27.067C104.176 -9.02232 49.1957 -9.02232 51.1286 27.067C52.0462 43.7975 68.5443 52.5648 76.7055 64.6077Z" fill="white"/></g></svg>') no-repeat center center / contain
+            &>.icon
+                img
+                    filter: brightness(0) saturate(100%) invert(94%) sepia(0%) saturate(22%) hue-rotate(31deg) brightness(105%) contrast(105%)
+            .title,.txt
+                color: $white
+        &::before
+            content: ""
+            width: 80px
+            height: auto
+            margin: 10px
+            aspect-ratio: 170/170
+            background: url('data:image/svg+xml,<svg width="168" height="175" viewBox="0 0 168 175" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.55"><path d="M72.1208 88.8268C58.5575 79.7945 48.8663 61.3381 30.2058 60.3369C-10.0685 58.1604 -10.0685 119.471 30.2058 117.273C48.8663 116.294 58.645 97.8809 72.0552 88.8268" fill="black" fill-opacity="0.04"/><path d="M95.8023 88.8268C109.332 79.751 119.053 61.3381 137.727 60.3369C177.988 58.1604 177.988 119.471 137.727 117.273C119.053 116.294 109.266 97.8809 95.8023 88.8268Z" fill="black" fill-opacity="0.04"/><path d="M85.6084 99.0315C94.6376 113.139 113.044 123.291 114.045 142.794C116.221 184.911 54.9525 184.911 57.1064 142.794C58.129 123.291 76.5139 113.07 85.6084 99.0315Z" fill="black" fill-opacity="0.04"/><path d="M85.6084 72.1207C94.6376 58.6118 113.044 48.8906 114.045 30.2145C116.221 -10.0715 54.9525 -10.0715 57.1064 30.2145C58.129 48.8906 76.5139 58.6774 85.6084 72.1207Z" fill="black" fill-opacity="0.04"/></g></svg>') no-repeat center
+            background-size: contain
+            transition: all 0.4s ease
+            position: absolute
+            z-index: 1
+            inset: auto 0 0 auto
+            @media (min-width: 576px)
+                width: 90px
+                margin: 15px
+            @media (min-width: 992px)
+                width: 110px
+            @media (min-width: 1551px)
+                width: 140px
+            @media (min-width: 1771px)
+                width: 170px
+        &>.icon
+            width: 30px
+            height: auto
+            aspect-ratio: 60/60
+            margin-bottom: 20px
+            overflow: hidden
+            display: block
+            @media (min-width: 576px)
+                width: 40px
+                margin-bottom: 30px
+            @media (min-width: 1551px)
+                width: 50px
+                margin-bottom: 50px
+            @media (min-width: 1771px)
+                width: 60px
+            img
+                @include imgFit
+                object-fit: contain
+        .title
+            font-size: 18px
+            line-height: 1.4
+            font-weight: 400
+            color: $black
+            margin-bottom: 5px
+            transition: all 0.4s ease
+            @media (min-width: 576px)
+                font-size: 20px
+            @media (min-width: 1551px)
+                font-size: 24px
+            @media (min-width: 1771px)
+                font-size: 24px
+                margin-bottom: 10px
+        .txt
+            font-size: 13px
+            line-height: 1.5
+            font-weight: 400
+            color: $black
+            transition: all 0.4s ease
+            @media (min-width: 1551px)
+                font-size: 14px
+            @media (min-width: 1771px)
+                font-size: 16px
+
+#MemberShip
+    width: 100%
+    height: auto
+    padding-block: 40px
+    background: linear-gradient(90deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+    display: block
+    @media (min-width: 576px)
+        padding-block: 70px
+    @media (min-width: 992px)
+        padding-block: 100px
+    @media (min-width: 1551px)
+        padding-block: 130px
+    @media (min-width: 1771px)
+        padding-block: 160px
+    .dFlx
+        --width: 100%
+        width: 100%
+        height: auto
+        @include display
+        @media (min-width: 992px)
+            --width: 360px
+        @media (min-width: 1551px)
+            --width: 470px
+        @media (min-width: 1771px)
+            --width: 580px
+        &>.lSide
+            width: var(--width)
+            flex-direction: column
+            display: flex
+            @media (max-width: 576px)
+                margin-bottom: 20px
+            @media (max-width: 992px)
+                margin-bottom: 30px
+        &>.rgSide
+            width: var(--width)
+            @media (min-width: 992px)
+                width: calc(100% - var(--width))
+                padding-left: 40px
+            @media (min-width: 1200px)
+                padding-left: 60px
+            @media (min-width: 1551px)
+                padding-left: 80px
+            @media (min-width: 1771px)
+                padding-left: 100px
+    .tleWrap
+        margin-bottom: 20px
+        @media (min-width: 576px)
+            margin-bottom: 25px
+        @media (min-width: 992px)
+            margin-bottom: 35px
+        @media (min-width: 1551px)
+            margin-bottom: 50px
+        @media (min-width: 1771px)
+            margin-bottom: 60px
+        &>.title
+            margin-bottom: 10px
+            @media (min-width: 576px)
+                margin-bottom: 15px
+            @media (min-width: 1551px)
+                margin-bottom: 20px
+            @media (min-width: 1771px)
+                margin-bottom: 30px
+    .videoBx
+        width: 100%
+        height: 100%
+        overflow: hidden
+        display: block
+        @media (max-width: 992px)
+            aspect-ratio: 580/450
+            max-height: 380px
+        video
+            @include imgFit
+    .membershipWrapper
+        --gap: 10px
+        width: 100%
+        height: auto
+        gap: var(--gap)
+        display: grid
+        grid-template-columns: 1fr
+        @media (min-width: 576px)
+            --gap: 15px
+            grid-template-columns: 6fr 4fr
+        @media (min-width: 1551px)
+            --gap: 20px
+        &>.gridCol
+            gap: var(--gap)
+            flex-direction: column
+            @include display
+            &:nth-child(2)
+                .memberBx
+                    @media (min-width: 576px)
+                        flex-direction: column
+                        align-items: flex-start
+                    &>.icon
+                        margin-bottom: var(--gap)
+                    &>.bxCnt
+                        @media (min-width: 576px)
+                            width: 100%
+                            padding-left: 0
+            &>.item
+                flex: 1
+    .memberBx
+        --icon-size: 60px
+        width: 100%
+        height: 100%
+        padding: 15px 10px 15px 15px
+        background-color: $white
+        outline: 1px solid transparent
+        transition: all 0.4s ease
+        align-items: center
+        @include display
+        @media (min-width: 576px)
+            --icon-size: 70px
+            padding: 20px 10px 20px 20px
+        @media (min-width: 992px)
+            --icon-size: 80px
+            padding: 30px 10px 30px 30px
+        @media (min-width: 1551px)
+            --icon-size: 100px
+            padding: 40px 15px 40px 35px
+        @media (min-width: 1771px)
+            --icon-size: 120px
+            padding: 50px 20px 50px 40px
+        &:hover
+            outline: 1px solid $basecolor
+            background-color: rgba($basecolor,0.1)
+        &>.icon
+            width: var(--icon-size)
+            height: auto
+            aspect-ratio: 1/1
+            overflow: hidden
+            display: block
+            img
+                @include imgFit
+                object-fit: contain
+        &>.bxCnt
+            width: calc(100% - var(--icon-size))
+            padding-left: 15px
+            @media (min-width: 576px)
+                padding-left: 20px
+            @media (min-width: 992px)
+                padding-left: 30px
+            @media (min-width: 1551px)
+                padding-left: 40px
+            @media (min-width: 1771px)
+                padding-left: 50px
+        .title
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 500
+            color: $black
+            margin-bottom: 5px
+            @media (min-width: 576px)
+                font-size: 18px
+            @media (min-width: 1551px)
+                font-size: 24px
+                margin-bottom: 10px
+            @media (min-width: 1771px)
+                font-size: 30px
+        .txt
+            font-size: 12px
+            line-height: 1.4
+            font-weight: 400
+            color: $black
+            @media (min-width: 576px)
+                font-size: 13px
+            @media (min-width: 1551px)
+                font-size: 16px
+            @media (min-width: 1771px)
+                font-size: 18px
+
+#Globe
+    width: 100%
+    height: auto
+    padding-inline: 0
+    padding-block: 40px
+    display: block
+    @media (min-width: 576px)
+        padding-block: 60px
+    @media (min-width: 992px)
+        padding-block: 70px
+    @media (min-width: 1551px)
+        padding-block: 90px
+    @media (min-width: 1771px)
+        padding-block: 110px
+    .dFlx
+        width: 100%
+        height: auto
+        @include display
+        @media (min-width: 992px)
+            gap: 20px
+            display: grid
+            grid-template-columns: 1.8fr 2.4fr 1.1fr
+        @media (min-width: 1551px)
+            gap: 30px
+        @media (min-width: 1771px)
+            gap: 40px
+        @media (max-width: 992px)
+            align-items: center
+        &>.lSide
+            @media (max-width: 992px)
+                width: 100%
+                margin-bottom: 20px
+        &>.center
+            @media (max-width: 992px)
+                margin-bottom: 20px
+        &>.center,&>.rgSide
+            @media (max-width: 992px)
+                width: 50%
+                padding-inline: 5px
+            @media (max-width: 576px)
+                width: 100%
+    .cntBx
+        width: 100%
+        height: 100%
+        position: relative
+        z-index: 0
+        &>.overlayImg
+            width: 40px
+            height: auto
+            aspect-ratio: 150/150
+            overflow: hidden
+            display: block
+            position: absolute
+            z-index: 1
+            inset: 0 0 auto auto
+            @media (min-width: 576px)
+                width: 70px
+            @media (min-width: 992px)
+                width: 90px
+                inset: auto auto 0 0
+            @media (min-width: 1551px)
+                width: 120px
+            @media (min-width: 1771px)
+                width: 150px
+            img
+                @include imgFit
+                object-fit: contain
+    .tleWrap
+        width: 100%
+        height: auto
+        margin-bottom: 0
+        &>.title
+            margin-bottom: 10px
+            @media (min-width: 576px)
+                margin-bottom: 15px
+            @media (min-width: 992px)
+                margin-bottom: 20px
+            @media (min-width: 1551px)
+                margin-bottom: 25px
+        &>.txt
+            line-height: 1.8
+            margin-bottom: 15px
+            @media (min-width: 992px)
+                margin-bottom: 20px
+            @media (min-width: 1551px)
+                margin-bottom: 30px
+        .expmorebth
+            margin-top: 0
+    .bxMap
+        width: 180px
+        height: auto
+        aspect-ratio: 580/580
+        margin-inline: auto
+        overflow: hidden
+        display: block
+        @media (min-width: 576px)
+            width: 220px
+        @media (min-width: 768px)
+            width: 280px
+        @media (min-width: 992px)
+            width: 85%
+        img
+            @include imgFit
+            object-fit: contain
+    .accordglobe
+        width: 100%
+        padding-left: 0
+        .accordion-button
+            &::after
+                width: 15px
+                background-size: contain
+        .accordion-body
+            padding-top: 0
+    .globalAccoHead
+        --width: 40px
+        width: 100%
+        height: auto
+        align-items: center
+        @include display
+        @media (min-width: 1771px)
+            --width: 50px
+        &>.icon
+            width: var(--width)
+            height: auto
+            aspect-ratio: 50/50
+            border-radius: 50%
+            will-change: transform
+            overflow: hidden
+            display: block
+            img
+                @include imgFit
+        &>.bxCnt
+            width: calc( 100% - var(--width))
+            padding-left: 10px
+            @media (min-width: 1551px)
+                padding-left: 15px
+        .title
+            font-size: 14px
+            line-height: 1.2
+            font-weight: 400
+            font-family: "Poppins", sans-serif
+            color: $black
+            margin-bottom: 5px
+            @media (min-width: 1551px)
+                font-size: 16px
+            @media (min-width: 1771px)
+                font-size: 20px
+        .txt
+            font-size: 12px
+            line-height: 1.4
+            font-weight: 400
+            font-family: "Poppins", sans-serif
+            color: $black
+            @media (min-width: 1551px)
+                font-size: 13px
+            @media (min-width: 1771px)
+                font-size: 14px
+    .expmorebth
+        @media (min-width: 992px) and (max-width: 1551px)
+            font-size: 14px
+            padding: 10px 20px
+        @media (min-width: 0px) and (max-width: 992px)
+            font-size: 12px
+            padding: 10px 20px
+
+#Manufacturing
+    width: 100%
+    height: auto
+    padding-block: 40px
+    background: linear-gradient(90deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+    display: block
+    position: relative
+    z-index: 0
+    @media (min-width: 576px)
+        padding-block: 50px
+    @media (min-width: 992px)
+        padding-block: 50px 70px
+    @media (min-width: 1551px)
+        padding-block: 60px 80px
+    @media (min-width: 1771px)
+        padding-block: 80px 100px
+    &>.overlayImg
+        width: 100%
+        height: 100%
+        overflow: hidden
+        display: block
+        pointer-events: none
+        position: absolute
+        z-index: -1
+        inset: 0 auto 0 0
+        @media (min-width: 576px)
+            width: 40%
+        img
+            @include imgFit
+    .tleWrap
+        width: 100%
+        height: auto
+        gap: 15px
+        margin-bottom: 25px
+        align-items: center
+        @include display
+        @media (min-width: 992px)
+            gap: 0
+            margin-bottom: 40px
+        @media (min-width: 1551px)
+            margin-bottom: 50px
+        @media (min-width: 1771px)
+            margin-bottom: 60px
+        &>*
+            width: 100%
+            @media (min-width: 992px)
+                width: 50%
+        .txt
+            color: $black
+            @media (min-width: 992px)
+                padding-left: 75px
+            @media (min-width: 1551px)
+                padding-left: 120px
+    .manufactureSlider
+        .swiper-slide
+            height: auto !important
+            transition: all 0.4s ease
+            padding-bottom: 4%
+            &.swiper-slide-next,&:hover
+                @media (min-width: 576px)
+                    transform: translateY(4%)
+            &:hover
+                .manufactureBx
+                    border: 1px solid $black
+    .manufactureBx
+        --gap: 15px
+        width: 100%
+        height: 100%
+        gap: 40px
+        padding: var(--gap)
+        background-color: $white
+        border: 1px solid transparent
+        transition: all 0.4s ease
+        position: relative
+        z-index: 0
+        justify-content: space-between
+        flex-direction: column
+        @include display
+        @media (min-width: 992px)
+            gap: 50px
+        @media (min-width: 1551px)
+            --gap: 20px
+            gap: 60px
+        @media (min-width: 1771px)
+            gap: 80px
+        &>.icon
+            width: 40px
+            height: auto
+            aspect-ratio: 70/70
+            padding: 7px
+            background: linear-gradient(180deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+            border-radius: 50%
+            will-change: transform
+            overflow: hidden
+            display: block
+            @media (min-width: 992px)
+                width: 50px
+                padding: 10px
+            @media (min-width: 1551px)
+                width: 70px
+                padding: 15px
+            img
+                @include imgFit
+                object-fit: contain
+        &>.index
+            font-size: 13px
+            line-height: 1.2
+            font-weight: 400
+            color: $black
+            margin: var(--gap)
+            position: absolute
+            z-index: 1
+            inset: 0 0 auto auto
+            @media (min-width: 1551px)
+                font-size: 16px
+            @media (min-width: 1771px)
+                font-size: 20px
+        .title
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 400
+            color: $black
+            margin-bottom: 10px
+            @media (min-width: 1551px)
+                font-size: 20px
+                margin-bottom: 15px
+            @media (min-width: 1771px)
+                font-size: 25px
+        .txt
+            font-size: 13px
+            line-height: 1.5
+            font-weight: 400
+            color: $black
+            @media (min-width: 1551px)
+                font-size: 15px
+            @media (min-width: 1771px)
+                font-size: 18px
+
+#PlanetOcean
+    width: 100%
+    height: auto
+    display: block
+    position: relative
+    z-index: 0
+    @media (max-width: 992px)
+        padding-block: 50px
+    &>.overlayImg
+        width: 100%
+        height: 100%
+        display: block
+        pointer-events: none
+        position: absolute
+        z-index: -1
+        inset: 0
+        img
+            @include imgFit
+    .dFlx
+        width: 100%
+        height: auto
+        align-items: center
+        @include display
+        &>.lSide,&>.rgSide
+            width: 100%
+            @media (min-width: 992px)
+                width: 50%
+        &>.lSide
+            @media (min-width: 992px)
+                padding-left: 50px
+            @media (min-width: 1200px)
+                padding-left: 80px
+            @media (min-width: 1551px)
+                padding-left: 110px
+            @media (min-width: 1771px)
+                padding-left: 140px
+            @media (max-width: 992px)
+                margin-bottom: 20px
+    .tleWrap
+        width: 100%
+        height: auto
+        &>.title
+            color: $white
+            max-width: 530px
+            margin-bottom: 15px
+            @media (min-width: 576px)
+                margin-bottom: 20px
+            @media (min-width: 992px)
+                max-width: 330px
+                margin-bottom: 25px
+            @media (min-width: 1551px)
+                max-width: 430px
+                margin-bottom: 30px
+            @media (min-width: 1771px)
+                max-width: 530px
+                margin-bottom: 40px
+            span
+                color: #9BFA88
+        &>.txt
+            color: $white
+            margin-bottom: 20px
+            @media (min-width: 992px)
+                margin-bottom: 30px
+            @media (min-width: 1551px)
+                margin-bottom: 35px
+            @media (min-width: 1771px)
+                margin-bottom: 45px
+        &>.expmorebth
+            margin-top: 0
+    .oceanWrapper
+        width: 100%
+        height: auto
+        margin-inline: -3px
+        @include display
+        @media (min-width: 992px)
+            display: grid
+            margin-inline: unset
+            grid-template-columns: repeat(3, 1fr)
+            grid-template-rows: repeat(3, 1fr)
+        &>.item
+            flex-grow: 1
+            padding: 3px
+            width: calc( 100% / 2 )
+            @media (min-width: 576px)
+                width: calc( 100% / 3 )
+            @media (min-width: 992px)
+                width: 100%
+                padding: unset
+                &:first-child
+                    grid-column: 1
+                    grid-row: 3
+                &:nth-child(2)
+                    grid-column: 2
+                    grid-row: 2
+                &:last-child
+                    grid-column: 3
+                    grid-row: 1
+    .oceanBx
+        width: 100%
+        height: 100%
+        padding: 20px 10px
+        background: rgba(217, 217, 217,0.2)
+        border: 1px solid rgba(217, 217, 217,0.5)
+        backdrop-filter: blur(5px)
+        transition: all 0.4s ease
+        flex-direction: column
+        @include center
+        @media (min-width: 576px)
+            padding: 30px 20px
+        @media (min-width: 1551px)
+            padding: 40px 30px
+        @media (min-width: 1771px)
+            padding: 50px 40px
+        &:hover
+            background: rgba($black,0.4)
+            border: 1px solid $basecolor
+            &>.icon
+                img
+                    transform: scale(0.9)
+        &>.icon
+            width: 40px
+            height: auto
+            aspect-ratio: 80/80
+            margin-bottom: 10px
+            margin-inline: auto
+            overflow: hidden
+            display: block
+            @media (min-width: 576px)
+                width: 50px
+            @media (min-width: 1551px)
+                width: 60px
+            @media (min-width: 1771px)
+                width: 80px
+            img
+                transition: all 0.4s ease
+                @include imgFit
+                object-fit: contain
+        &>.txt
+            font-size: 11px
+            line-height: 1.2
+            font-weight: 400
+            text-align: center
+            color: $white
+            @media (min-width: 1551px)
+                font-size: 13px
+            @media (min-width: 1771px)
+                font-size: 14px
+
+#GetInTouch
+    width: 100%
+    height: auto
+    padding-block: 40px
+    display: block
+    @media (min-width: 576px)
+        padding-block: 60px
+    @media (min-width: 992px)
+        padding-block: 70px 50px
+    @media (min-width: 1551px)
+        padding-block: 90px 70px
+    @media (min-width: 1771px)
+        padding-block: 120px 80px
+    .getInTouchBx
+        width: 100%
+        height: 100%
+        padding: 20px
+        background: linear-gradient(90deg,rgba(0, 137, 207, 0.1) 0%,rgba(166, 206, 57, 0.1) 100%)
+        border-radius: 2px
+        overflow: hidden
+        display: block
+        @media (min-width: 576px)
+            padding: 30px
+        @media (min-width: 992px)
+            padding: 50px 0 30px 50px
+        @media (min-width: 1551px)
+            padding: 60px 0 40px 60px
+        @media (min-width: 1771px)
+            padding: 75px 0 40px 75px
+        &:hover
+            .imgBx
+                img
+                    transform: scale(0.9)
+        .dFlx
+            --width: 100%
+            width: 100%
+            height: auto
+            align-items: center
+            @include display
+            @media (min-width: 992px)
+                --width: 410px
+            @media (min-width: 1551px)
+                --width: 520px
+            @media (min-width: 1771px)
+                --width: 650px
+            &>.lSide
+                width: var(--width)
+                margin-bottom: 30px
+                @media (min-width: 992px)
+                    width: calc( 100% - var(--width))
+                    padding-right: 20px
+                    margin-bottom: 0
+                @media (min-width: 1551px)
+                    padding-right: 30px
+                @media (min-width: 1771px)
+                    padding-right: 40px
+            &>.rgSide
+                width: var(--width)
+        .tleWrap
+            margin-bottom: 0
+            &>.title,&>.txt
+                margin-bottom: 15px
+                @media (min-width: 1551px)
+                    margin-bottom: 25px
+            &>.expmorebth
+                margin-top: 0
+        .imgBx
+            width: 280px
+            height: auto
+            aspect-ratio: 650/450
+            margin-inline: auto
+            overflow: hidden
+            display: block
+            @media (min-width: 576px)
+                width: 450px
+            @media (min-width: 992px)
+                width: 100%
+            img
+                transition: all 0.4s ease
+                @include imgFit
+                object-fit: contain

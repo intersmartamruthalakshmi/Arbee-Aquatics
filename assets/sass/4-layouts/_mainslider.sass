@@ -1,0 +1,231 @@
+@use '../0-abstracts/' as *
+
+#MainBanner
+    width: 100%
+    height: 100vh
+    display: block
+    overflow: hidden
+    position: relative
+    z-index: 0
+    @media (min-width: 576px)
+        height: 100vh
+        // height: var(--app-height)
+    &::before
+        content: ""
+        width: 100%
+        height: 100%
+        background-color: rgba($black, 0.2)
+        position: absolute
+        z-index: 1
+        inset: 0
+    .bannerWrapper
+        width: 100%
+        height: auto
+        position: relative
+        z-index: 2
+    .bannerSlider
+        width: 100%
+        height: 100%
+        .swiper-slide
+            &::before
+                content: ""
+                width: 100%
+                height: 100%
+                background-color: rgba($black, 0.2)
+                pointer-events: none
+                position: absolute
+                z-index: 1
+                inset: 0
+            &::after
+                content: ""
+                width: 100%
+                height: 100%
+                background: linear-gradient(0deg, #000 14%, rgba(0, 0, 0, 0) 49%, #000 100%)
+                opacity: 0.5
+                pointer-events: none
+                position: absolute
+                z-index: 1
+                inset: 0
+            &.swiper-slide-active
+                .dFlx
+                    opacity: 1
+                    visibility: visible
+                    transform: translateY(0)
+    .bannerSlide
+        width: 100%
+        height: 100%
+        display: block
+        &>.bgImgWrap
+            width: 100%
+            height: 100%
+            video,img,source
+                display: block
+                @include imgFit
+    .dFlx
+        width: 100%
+        height: auto
+        padding-bottom: 40px
+        overflow: hidden
+        transform: translateY(150%)
+        opacity: 0
+        visibility: hidden
+        transition: all 1.8s
+        position: absolute
+        z-index: 1
+        inset: auto 0 0 0
+        align-items: flex-end
+        @include display
+        @media (min-width: 576px)
+            padding-bottom: 50px
+        @media (min-width: 992px)
+            padding-block: 80px
+        @media (min-width: 1551px)
+            padding-block: 100px
+        @media (min-width: 1771px)
+            padding-block: 120px
+        @media (max-width: 768px)
+            flex-direction: column-reverse
+        &>.lSide,&>.rgSide
+            width: 100%
+            @media (min-width: 768px)
+                width: 50%
+        &>.rgSide
+            @media (min-width: 768px)
+                justify-content: flex-end
+                @include display
+    .bannerBx
+        width: 100%
+        max-width: 760px
+        height: auto
+        display: block
+        @media (min-width: 992px)
+            max-width: 490px
+        @media (min-width: 1551px)
+            max-width: 610px
+        @media (min-width: 1771px)
+            max-width: 760px
+        &>.title
+            font-size: 24px
+            line-height: 1.2
+            font-weight: 600
+            font-family: "Poppins", sans-serif
+            color: $white
+            margin-bottom: 10px
+            @media (min-width: 576px)
+                font-size: 30px
+                margin-bottom: 15px
+            @media (min-width: 992px)
+                font-size: 40px
+            @media (min-width: 1551px)
+                font-size: 50px
+                margin-bottom: 20px
+            @media (min-width: 1771px)
+                font-size: 62px
+                margin-bottom: 30px
+        &>.txt
+            font-size: 13px
+            line-height: 1.8
+            font-weight: 300
+            font-family: "Poppins", sans-serif
+            color: $white
+            margin-bottom: 10px
+            @media (min-width: 576px)
+                font-size: 14px
+            @media (min-width: 992px)
+                margin-bottom: 20px
+            @media (min-width: 1551px)
+                font-size: 16px
+                margin-bottom: 30px
+            @media (min-width: 1771px)
+                font-size: 20px
+                margin-bottom: 40px
+        .btnWrap
+            width: 100%
+            height: auto
+            margin-inline: -5px
+            @include display
+            &>.item
+                padding: 5px
+            a
+                margin: 0
+    .productWrapper
+        width: auto
+        height: auto
+        margin-inline: -5px
+        margin-bottom: 15px
+        flex-wrap: wrap
+        display: inline-flex
+        @media (min-width: 768px)
+            margin-bottom: 0
+            display: inline-block
+        &>.item
+            padding: 5px
+            @media (max-width: 468px)
+                width: 100%
+    .prodBx
+        --bx-img: 50px
+        width: 100%
+        height: auto
+        padding: 10px
+        background-color: rgba($white, 0.1)
+        border: 1px solid rgba($white, 0.5)
+        backdrop-filter: blur(20px)
+        transition: all 0.4s ease
+        @include display
+        @media (min-width: 992px)
+            --bx-img: 60px
+        @media (min-width: 1551px)
+            --bx-img: 70px
+            padding: 15px
+        @media (min-width: 1771px)
+            --bx-img: 85px
+        &:hover
+            border-color: #0089cf
+            background-color: rgba(#0089cf, 0.4)
+            &>.bxImg
+                img
+                    transform: scale(1.1)
+        &>.bxImg
+            width: var(--bx-img)
+            height: auto
+            border-radius: 2px
+            overflow: hidden
+            display: block
+            img
+                transition: transform 0.4s
+                @include imgFit
+        &>.bxCnt
+            width: calc(100% - var(--bx-img))
+            padding-left: 10px
+            @media (min-width: 576px)
+                padding-left: 15px
+            @media (min-width: 1551px)
+                padding-left: 25px
+        .index
+            font-size: 14px
+            line-height: 1.4
+            font-weight: 400
+            color: $white
+            @media (min-width: 1551px)
+                font-size: 15px
+            @media (min-width: 1771px)
+                font-size: 18px
+        .title
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 400
+            color: $white
+            margin-bottom: 10px
+            @media (min-width: 1551px)
+                font-size: 17px
+            @media (min-width: 1771px)
+                font-size: 20px
+        .txt
+            font-size: 12px
+            line-height: 1
+            font-weight: 400
+            color: $white
+            @media (min-width: 1551px)
+                font-size: 13px
+            @media (min-width: 1771px)
+                font-size: 14px

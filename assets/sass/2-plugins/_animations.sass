@@ -1,0 +1,79 @@
+@use '../0-abstracts/' as *
+
+// Gradient Animation    
+@property --background-gradient-1
+    syntax: '<color>'
+    initial-value: #143558
+    inherits: false
+
+@property --background-gradient-2
+    syntax: '<color>'
+    initial-value: #2B72BE
+    inherits: false
+
+@property --background-gradient-angle
+    syntax: '<angle>'
+    initial-value: 90deg
+    inherits: false
+
+//ANIMATIONS
+@keyframes fadeInDown
+    0%
+        opacity: 0
+        transform: translate3d(0, -100%, 0)
+    100%
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+
+@keyframes gradientSwap
+    0%
+        --background-gradient-1: #143558
+        --background-gradient-2: #2B72BE
+        --background-gradient-angle: 80deg
+    100%
+        --background-gradient-1: #2B72BE
+        --background-gradient-2: #143558
+        --background-gradient-angle: 100deg
+
+@keyframes wave
+    0%
+        transform: scale(1, 1)
+
+    50%
+        opacity: 1
+
+    75%
+        transform: scale(1.22)
+        opacity: 0.6
+    100%
+        transform: scale(1, 1)
+        opacity: 0.6
+
+@keyframes wave1
+    0%
+        transform: scale(1, 1)
+
+    50%
+        opacity: 1
+
+    75%
+        transform: scale(1.4)
+        opacity: 0.6
+    100%
+        transform: scale(1, 1)
+        opacity: 0.6
+
+@keyframes blink
+    0%
+        box-shadow: 0 0 0 0 $basecolor
+
+    50%
+        box-shadow: 0 0 0 20px rgba(255,255,255,0)
+
+    100%
+        box-shadow: 0 0 0 rgba(255,255,255,0)
+@keyframes glowPulse
+    0%,100%
+        box-shadow: 0 0 15px rgba($basecolor,.3), 0 0 30px rgba($basecolor2,.2)
+    50%
+        box-shadow: 0 0 30px rgba($basecolor,.7), 0 0 60px rgba($basecolor2,.5), 0 0 90px rgba($basecolor,.3)

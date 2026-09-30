@@ -1,0 +1,184 @@
+@use '../0-abstracts/' as *
+
+.aboutPage
+    #Trusted
+        padding-block: 40px
+        @media (min-width: 992px)
+            padding-block: 50px 60px
+        @media (min-width: 1551px)
+            padding-block: 70px 80px
+        @media (min-width: 1771px)
+            padding-block: 90px 100px
+        .dFlx
+            align-items: unset
+
+    .factorysecbc
+        @media (max-width: 576px)
+            padding-block: 40px
+        .freshfactright
+            height: 320px
+            @media (min-width: 576px)
+                height: 380px !important
+            @media (min-width: 992px)
+                height: 480px !important
+            @media (min-width: 1771px)
+                height: 590px !important
+            img
+                @include imgFit
+    .agecytabbc
+        .agentsliderfop
+            .item
+                img
+                    @media (min-width: 576px)
+                        height: 380px !important
+                    @media (min-width: 1551px)
+                        height: 500px !important
+                    @media (min-width: 1771px)
+                        height: 620px !important
+    .vissonecgsecbg
+        @media (max-width: 576px)
+            padding-block: 40px
+    .advantagesecbg
+        @media (max-width: 576px)
+            padding-block: 40px
+        .advantgightsec
+            height: 320px !important
+            @media (min-width: 576px)
+                height: 480px !important
+            @media (min-width: 1200px)
+                height: 715px !important
+            @media (min-width: 1551px)
+                height: 770px !important
+            @media (min-width: 1771px)
+                height: 1000px !important
+        .advantboxbok li
+            height: 100%
+            min-height: auto !important
+            padding: 15px 15px 0 !important
+            flex-direction: column
+            justify-content: center
+            @include display
+            @media (min-width: 992px)
+                min-height: 140px !important
+                padding: 20px 20px 0 !important
+            @media (min-width: 1551px)
+                min-height: 185px !important
+                padding: 40px 40px 0 !important
+            @media (min-width: 1771px)
+                min-height: 235px !important
+    .decadbg
+        padding-block: 40px
+        @media (min-width: 576px)
+            padding-block: 50px
+        @media (min-width: 1551px)
+            padding-block: 70px
+        @media (min-width: 1771px)
+            padding-block: 90px
+        .decacertif
+            @media (max-width: 1551px)
+                padding-top: 30px
+            ul
+                @media (max-width: 1551px)
+                    gap: 15px
+                @media (max-width: 576px)
+                    gap: 10px
+            li
+                padding: 30px 15px !important
+                min-height: auto !important
+                @media (min-width: 992px)
+                    padding: 40px 20px !important
+                @media (min-width: 1551px)
+                    padding: 60px 30px !important
+                @media (min-width: 1771px)
+                    padding: 70px 40px !important
+                h5
+                    font-size: 16px
+                    line-height: 1
+                    font-weight: 500
+                    color: $black
+                    margin-bottom: 15px
+                    @media (min-width: 1551px)
+                        font-size: 20px
+                    @media (min-width: 1771px)
+                        font-size: 25px
+                .paraarbeespec
+                    font-size: 13px
+                    line-height: 1.5
+                    font-weight: 400
+                    color: $black
+                    margin-bottom: 0
+                    @media (min-width: 992px)
+                        font-size: 14px
+                    @media (min-width: 1551px)
+                        font-size: 16px
+                    @media (min-width: 1771px)
+                        font-size: 20px
+    .advantagesecbg
+        .exportlistgh
+            li
+                font-size: 15px
+                padding-left: 27px
+                @media (min-width: 576px)
+                    font-size: 16px
+                    padding-left: 30px
+                @media (min-width: 1551px)
+                    font-size: 20px
+                    padding-left: 40px
+                @media (min-width: 1771px)
+                    font-size: 25px
+                    padding-left: 45px
+                span
+                    width: 17px
+                    @media (min-width: 576px)
+                        width: 20px
+                    @media (min-width: 1551px)
+                        width: 25px
+                    @media (min-width: 1771px)
+                        width: 30px
+        .ceryfboxdh
+            .certiconspg
+                flex-wrap: wrap
+                @include center
+                li
+                    width: calc(100%/3)
+                    @media (min-width: 576px)
+                        width: calc(100%/5)
+                    @media (max-width: 576px)
+                        padding: 5px
+                    a
+                        width: 70px
+                        height: auto
+                        aspect-ratio: 150/150
+                        margin-inline: auto
+                        overflow: hidden
+                        @include center
+                        @media (min-width: 992px)
+                            width: 90px
+                        @media (min-width: 1551px)
+                            width: 120px
+                        @media (min-width: 1771px)
+                            width: 150px
+                        img
+                            margin: 0
+                            @include imgFit
+                            object-fit: contain
+    .certiconspg
+        .certificationBx
+            width: 60px
+            height: auto
+            aspect-ratio: 120/120
+            margin-inline: auto
+            overflow: hidden
+            display: block
+            @media (min-width: 576px)
+                width: 70px
+            @media (min-width: 992px)
+                width: 80px
+            @media (min-width: 1551px)
+                width: 100px
+            @media (min-width: 1771px)
+                width: 120px
+            img
+                @include imgFit
+                object-fit: contain
+  

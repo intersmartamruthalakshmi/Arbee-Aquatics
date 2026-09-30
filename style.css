@@ -1,0 +1,14 @@
+/*
+Theme Name:        Arbee Aquatic
+Theme URI:         https://www.arbeeaquatic.com
+Author:            Intersmart
+Author URI:        https://www.intersmart.in
+Description:       Custom theme for Arbee Aquatic Proteins Pvt Ltd, converted from the approved PHP frontend. Content is managed with ACF Pro (Theme Settings + per-page fields). Requires Advanced Custom Fields PRO.
+Version:           1.0.0
+Requires at least: 6.2
+Requires PHP:      7.4
+Text Domain:       arbee
+License:           Proprietary
+*/
+
+/* Front-end styles live in assets/css and are enqueued from inc/enqueue.php. */

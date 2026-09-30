@@ -1,0 +1,198 @@
+@use '../0-abstracts/' as *
+
+.fishmealPage
+    .advantagesecbg
+        @media (max-width: 992px)
+            padding-block: 40px
+        .headstylecom,h2
+            @media (max-width: 992px)
+                margin-bottom: 15px
+        .countrySlider
+            width: 85%
+            margin-inline: auto
+            margin-block: 15px 30px
+            @media (min-width: 992px)
+                margin-block: 20px 40px
+            @media (min-width: 1551px)
+                margin-block: 20px 50px
+            .swiper-slide
+                height: auto
+                &::after
+                    content: ""
+                    width: 1px
+                    height: 85%
+                    background: rgba($black,0.1)
+                    position: absolute
+                    z-index: 1
+                    inset: auto 0 0 auto
+        .countryBx
+            width: 100%
+            height: 100%
+            padding-inline: 15px
+            display: block
+            @media (min-width: 1551px)
+                padding-inline: 20px
+            @media (min-width: 1771px)
+                padding-inline: 30px
+            &>.icon
+                width: 50px
+                height: auto
+                aspect-ratio: 90/60
+                margin-bottom: 15px
+                overflow: hidden
+                display: block
+                @media (min-width: 1551px)
+                    width: 75px
+                    margin-bottom: 20px
+                @media (min-width: 1771px)
+                    width: 90px
+                    margin-bottom: 25px
+                img
+                    @include imgFit
+                    object-fit: contain
+            &>.txt
+                font-size: 16px
+                line-height: 1
+                font-weight: 400
+                text-align: left
+                color: $black
+                @media (min-width: 992px)
+                    font-size: 18px
+                @media (min-width: 1551px)
+                    font-size: 20px
+                @media (min-width: 1771px)
+                    font-size: 25px
+    .chainbox
+        width: 100%
+        height: auto
+        min-height: auto
+        background: linear-gradient(90deg, rgba(0, 137, 207, 1) 0%, rgba(166, 206, 57, 1) 100%)
+        padding-block: 30px
+        margin-block: 30px
+        float: left
+        position: relative
+        @media (min-width: 576px)
+            padding-block: 40px
+            margin-block: 50px
+        @media (min-width: 992px)
+            padding-block: 50px
+            margin-block: 60px
+        @media (min-width: 1551px)
+            padding-block: 70px
+            margin-block: 80px 70px
+        @media (min-width: 1771px)
+            padding-block: 90px
+            margin-block: 110px 90px
+    .oilprocessbx
+        @media (max-width: 576px)
+            padding-top: 30px
+            margin-top: 20px
+
+    .ProcessingMethod
+        .methodlab
+            li
+                a
+                    h4
+                        height: 0
+                        overflow: hidden
+                    &:hover
+                        background-color: $basecolor !important
+                        span
+                            img
+                                filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)
+                        h3,h4
+                            color: $white
+                        h4
+                            height: auto
+    .wideboxfg
+        .anglebodf
+            padding-inline: 0
+    .angleSlider
+        mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent)
+        .swiper-slide
+            height: auto !important
+    .angleBx
+        width: 100%
+        height: 100%
+        padding-inline: 20px
+        display: block
+        @media (min-width: 576px)
+            padding-inline: 30px
+            border-right: 1px solid rgba($black,0.2)
+        @media (min-width: 1551px)
+            padding-inline: 50px
+        @media (min-width: 1771px)
+            padding-inline: 60px
+        &>.title
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 600
+            color: $black
+            margin-bottom: 5px
+            @media (min-width: 1551px)
+                font-size: 20px
+            @media (min-width: 1771px)
+                font-size: 25px
+                margin-bottom: 10px
+        &>.txt
+            font-size: 13px
+            line-height: 1.2
+            font-weight: 400
+            color: $black
+            @media (min-width: 576px)
+                font-size: 14px
+            @media (min-width: 1551px)
+                font-size: 16px
+            @media (min-width: 1771px)
+                font-size: 20px
+    .appSlider
+        .swiper-slide
+            height: auto !important
+    .appBx
+        width: 100%
+        height: 100%
+        padding: 30px 10px
+        border: 1px solid #C8C8C8
+        transition: all 0.4s ease
+        align-items: center
+        flex-direction: column
+        justify-content: space-between
+        @include display
+        @media (min-width: 992px)
+            padding: 40px 15px
+        @media (min-width: 1551px)
+            padding: 40px 20px
+        @media (min-width: 1771px)
+            padding: 40px 30px
+        &:hover
+            background-color: rgba($basecolor,0.1)
+            border: 1px solid $basecolor
+        &>.icon
+            width: 40px
+            height: auto
+            aspect-ratio: 90/90
+            margin-bottom: 10px
+            overflow: hidden
+            display: block
+            @media (min-width: 992px)
+                width: 50px
+            @media (min-width: 1551px)
+                width: 70px
+                margin-bottom: 20px
+            @media (min-width: 1771px)
+                width: 90px
+            img
+                @include imgFit
+                object-fit: contain
+        &>.txt
+            font-size: 16px
+            line-height: 1.2
+            font-weight: 500
+            text-align: center
+            color: $black
+            @media (min-width: 992px)
+                font-size: 18px
+            @media (min-width: 1551px)
+                font-size: 20px
+            @media (min-width: 1771px)
+                font-size: 25px

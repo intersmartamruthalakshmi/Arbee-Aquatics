@@ -1,0 +1,67 @@
+@use '../0-abstracts/' as *
+
+// ERROR PAGE
+.errorPage 
+    #Error
+        width: 100%
+        height: auto
+        display: block
+        padding: 47px 0 60px
+        @media only screen and ( min-width: 1540px )
+            padding: 58px 0 76px
+        .content
+            text-align: center
+            flex-direction: column;
+            @include center
+            margin: auto
+            max-width: 80%
+            @media only screen and ( min-width: 576px )
+                max-width: 65%
+            @media only screen and ( min-width: 768px )
+                max-width: 55%
+            @media only screen and ( min-width: 992px )
+                max-width: 48%
+        .imgBx
+            width: 55px
+            height: auto
+            display: block
+            overflow: hidden
+            margin-bottom: 10px
+            @media only screen and ( min-width: 1024px )
+                width: 85px
+            @media only screen and ( min-width: 1240px )
+                width: 100px
+                margin-bottom: 15px
+            @media only screen and ( min-width: 1540px )
+                width: 125px
+                margin-bottom: 22px
+            img
+                @include imgFit
+                object-fit: contain
+        .txtWrapper
+            .title
+                font-size: 20px
+                line-height: 1.2
+                font-weight: 500
+                font-style: normal
+                text-align: center
+                text-transform: capitalize
+                color: $white
+                margin-bottom: 10px
+                font-weight: 500
+                font-size: 18px
+                @media only screen and (min-width:1240px)
+                    font-size: 22px
+                @media only screen and (min-width:1540px)
+                    font-size: 28px
+            .subT
+                font-size: 13px
+                line-height: 1.3
+                font-weight: 400
+                color: $white
+                margin-bottom: 25px 
+                @media only screen and ( min-width: 1240px )
+                    font-size: 12px
+                @media only screen and ( min-width: 1540px )
+                    font-size: 14px
+           

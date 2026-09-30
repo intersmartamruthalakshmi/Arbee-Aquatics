@@ -1,0 +1,60 @@
+@use '../0-abstracts/' as *
+#Content
+    padding-block: 20px 25px
+    @media only screen and (min-width: 1024px)
+        padding-block: 32px 38px
+    @media only screen and (min-width: 1240px)
+        padding-block: 36px 44px
+    @media only screen and (min-width: 1540px)
+        padding-block: 46px 60px
+// LEGAL_PAGES
+.ckCntWrap
+    h1
+        margin-bottom: 12px
+        @media only screen and (min-width: 576px)
+            margin-bottom: 15px
+        @media only screen and (min-width: 1024px)
+            margin-bottom: 21px
+        @media only screen and (min-width: 1240px)
+            margin-bottom: 24px
+        @media only screen and (min-width: 1540px)
+            margin-bottom: 34px
+    h2
+        margin-top: 16px
+        margin-bottom: 12px
+        @media only screen and (min-width: 1240px)
+            margin-top: 20px
+            margin-bottom: 14px
+        @media only screen and (min-width: 1540px)
+            margin-top: 27px
+            margin-bottom: 20px
+    h3
+        margin-top: 16px
+        @media only screen and (min-width: 1240px)
+            margin-top: 28px
+        @media only screen and (min-width: 1540px)
+            margin-top: 32px
+    .date
+        position: relative
+        padding-left: 14px
+        @media only screen and (min-width: 1240px)
+            padding-left: 16px
+        @media only screen and (min-width: 1540px)
+            padding-left: 20px
+        &::before
+            position: absolute
+            content: ''
+            width: 11px
+            height: 11px
+            top: 2px
+            left: 0
+            background: url(../images/date.svg) left center no-repeat
+            background-size: contain
+            @media only screen and (min-width: 1240px)
+                width: 13px
+                height: 13px
+                top: 4px
+            @media only screen and (min-width: 1540px)
+                width: 15px
+                height: 15px
+                top: 5px
