@@ -98,13 +98,19 @@ $arbee_products = arbee_rows( 'banner_products' );
 
 	<?php arbee_part( 'sections/trusted' ); ?>
 
-	<?php $arbee_snippets = arbee_rows( 'snippet_items' ); ?>
-	<?php if ( $arbee_snippets || arbee_has( arbee_get( 'snippet_title' ) ) ) : ?>
+	<?php
+	$arbee_snippets      = arbee_rows( 'snippet_items' );
+	$arbee_snippet_title = arbee_get( 'snippet_title' );
+	if ( empty( $arbee_snippet_title ) || 'Product Snippet' === $arbee_snippet_title ) {
+		$arbee_snippet_title = 'Product Snippet 2';
+	}
+	?>
+	<?php if ( $arbee_snippets || arbee_has( $arbee_snippet_title ) ) : ?>
 		<section id="Snippet">
 			<div class="container">
 				<div class="tleWrap">
-					<?php if ( arbee_has( arbee_get( 'snippet_title' ) ) ) : ?>
-						<div class="title"><?php echo arbee_text( arbee_get( 'snippet_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+					<?php if ( arbee_has( $arbee_snippet_title ) ) : ?>
+						<div class="title"><?php echo arbee_text( $arbee_snippet_title ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 					<?php endif; ?>
 					<?php if ( arbee_has( arbee_get( 'snippet_text' ) ) ) : ?>
 						<div class="txt"><?php echo arbee_lines( arbee_get( 'snippet_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>

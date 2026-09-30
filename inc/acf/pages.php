@@ -142,7 +142,7 @@ add_action(
 				),
 				arbee_fields_trusted(),
 				array(
-					arbee_f_tab( __( 'Product snippet', 'arbee' ) ),
+					arbee_f_tab( __( 'Product snippet 2', 'arbee' ) ),
 					arbee_f_text( 'snippet_title', __( 'Title', 'arbee' ) ),
 					arbee_f_heading( 'snippet_text', __( 'Text', 'arbee' ) ),
 					arbee_f_repeater(

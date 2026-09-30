@@ -183,7 +183,7 @@ return array(
 				'trusted_text'       => 'Arbee Aquatic Proteins Pvt Ltd is a Kochi-based manufacturer and exporter of high-protein fish meal and sardine crude fish oil, backed by 40+ years of marine industry expertise and serving markets across Asia, Europe, and the Middle East.',
 				'trusted_button'     => $link( 'Explore More', 'page:about-us' ),
 
-				'snippet_title'      => 'Product Snippet',
+				'snippet_title'      => 'Product Snippet 2',
 				'snippet_text'       => "Renowned globally for producing\nhigh-quality omega-3-rich fish oils, nutrient-dense fish meal Renowned globally for producing",
 				'snippet_items'      => array(
 					array(
