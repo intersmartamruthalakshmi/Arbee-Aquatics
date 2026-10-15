@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function arbee_email_template( $heading, $inner_html ) {
 	$site     = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
-	$logo_id  = arbee_opt( 'header_logo' );
+	$logo_id  = arbee_opt( 'footer_logo' );
 	$logo_url = $logo_id ? wp_get_attachment_image_url( $logo_id, 'medium' ) : '';
 	$year     = gmdate( 'Y' );
 
@@ -34,11 +34,11 @@ function arbee_email_template( $heading, $inner_html ) {
 			<td align="center">
 				<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background:#ffffff; border-radius:6px; overflow:hidden;">
 					<tr>
-						<td style="background:#0089cf; padding:24px; text-align:center;">
+						<td style="padding:24px; text-align:center;">
 							<?php if ( $logo_url ) : ?>
 								<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site ); ?>" style="max-height:48px; max-width:220px;">
 							<?php else : ?>
-								<span style="color:#ffffff; font-size:20px; font-weight:bold;"><?php echo esc_html( $site ); ?></span>
+								<span style="color:#102b5a; font-size:20px; font-weight:bold;"><?php echo esc_html( $site ); ?></span>
 							<?php endif; ?>
 						</td>
 					</tr>
