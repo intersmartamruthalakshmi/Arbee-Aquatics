@@ -22,7 +22,7 @@ $arbee_shield  = arbee_asset( 'images/shields5.png' );
 
 	<?php arbee_part( 'sections/page-banner' ); ?>
 
-	<?php if ( arbee_has( arbee_get( 'fm_title' ) ) || $arbee_rows ) : ?>
+	<?php if ( arbee_section_enabled( 'fm_enabled' ) && ( arbee_has( arbee_get( 'fm_title' ) ) || $arbee_rows ) ) : ?>
 		<section class="advantagesecbg globalsevfg">
 			<div class="container">
 				<div class="mealleftbg">
@@ -60,7 +60,7 @@ $arbee_shield  = arbee_asset( 'images/shields5.png' );
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'oil_title' ) ) || $arbee_regions || $arbee_apps ) : ?>
+	<?php if ( arbee_section_enabled( 'oil_enabled' ) && ( arbee_has( arbee_get( 'oil_title' ) ) || $arbee_regions || $arbee_apps ) ) : ?>
 		<section class="advantagesecbg marketbgsop">
 			<div class="container">
 				<div class="markeshop">
@@ -114,10 +114,10 @@ $arbee_shield  = arbee_asset( 'images/shields5.png' );
 
 	<section class="advantagesecbg">
 		<div class="container">
-			<?php if ( arbee_get( 'log_image' ) ) : ?>
+			<?php if ( arbee_section_enabled( 'log_enabled' ) && arbee_get( 'log_image' ) ) : ?>
 				<div class="logistboxbg"><?php echo arbee_image( arbee_get( 'log_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 			<?php endif; ?>
-			<?php if ( arbee_has( arbee_get( 'log_title' ) ) || $arbee_docs ) : ?>
+			<?php if ( arbee_section_enabled( 'log_enabled' ) && ( arbee_has( arbee_get( 'log_title' ) ) || $arbee_docs ) ) : ?>
 				<div class="logistcont">
 					<?php if ( arbee_has( arbee_get( 'log_title' ) ) ) : ?>
 						<h1 class="headstylecom"><?php echo arbee_lines( arbee_get( 'log_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
@@ -135,7 +135,7 @@ $arbee_shield  = arbee_asset( 'images/shields5.png' );
 				</div>
 			<?php endif; ?>
 			<div style="clear: both;"></div>
-			<?php if ( arbee_has( arbee_get( 'cta_title' ) ) ) : ?>
+			<?php if ( arbee_section_enabled( 'cta_enabled' ) && arbee_has( arbee_get( 'cta_title' ) ) ) : ?>
 				<div class="chainbox exportfork">
 					<div class="chaisw1"><img src="<?php echo esc_url( $arbee_shield ); ?>" alt=""></div>
 					<div class="chaisw2"><img src="<?php echo esc_url( $arbee_shield ); ?>" alt=""></div>

@@ -22,6 +22,16 @@ function arbee_opt( $name ) {
 }
 
 /**
+ * Whether a toggleable section is enabled. Defaults to true (shown) when the
+ * field has never been saved yet, so an existing page doesn't lose a section
+ * the moment this feature ships.
+ */
+function arbee_section_enabled( $name, $post_id = false ) {
+	$value = arbee_get( $name, $post_id );
+	return null === $value ? true : (bool) $value;
+}
+
+/**
  * Repeater rows as an array (never null).
  */
 function arbee_rows( $name, $post_id = false ) {
@@ -105,7 +115,37 @@ function arbee_asset( $path ) {
 }
 
 /**
- * <img> for a Media Library attachment.
+ * A generic gray placeholder shown in place of a photo/logo field that has
+ * no image uploaded yet, so the layout never has an empty gap where a
+ * primary image belongs.
+ */
+function arbee_placeholder_image( $attr = array() ) {
+	$atts = array(
+		'src'   => arbee_asset( 'images/placeholder.svg' ),
+		'class' => 'arbee-placeholder-img',
+	);
+	foreach ( array( 'width', 'height', 'loading' ) as $key ) {
+		if ( isset( $attr[ $key ] ) ) {
+			$atts[ $key ] = $attr[ $key ];
+		}
+	}
+	if ( ! empty( $attr['class'] ) ) {
+		$atts['class'] .= ' ' . $attr['class'];
+	}
+	$atts['alt'] = arbee_v( $attr, 'alt', '' );
+
+	$html = '<img';
+	foreach ( $atts as $name => $value ) {
+		if ( null === $value || false === $value ) {
+			continue;
+		}
+		$html .= ' ' . $name . '="' . ( 'src' === $name ? esc_url( $value ) : esc_attr( $value ) ) . '"';
+	}
+	return $html . '>';
+}
+
+/**
+ * <img> for a Media Library attachment, or a placeholder when none is set.
  *
  * $attr can override width/height to match the original markup's layout hints.
  * The attachment's own alt text wins; $attr['alt'] is only a fallback.
@@ -113,11 +153,11 @@ function arbee_asset( $path ) {
 function arbee_image( $image, $attr = array() ) {
 	$id = is_array( $image ) ? (int) arbee_v( $image, 'ID', arbee_v( $image, 'id', 0 ) ) : (int) $image;
 	if ( ! $id ) {
-		return '';
+		return arbee_placeholder_image( $attr );
 	}
 	$src = wp_get_attachment_image_src( $id, 'full' );
 	if ( ! $src ) {
-		return '';
+		return arbee_placeholder_image( $attr );
 	}
 
 	$media_alt = trim( (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) );
@@ -205,4 +245,84 @@ function arbee_index( $i ) {
  */
 function arbee_part( $slug, $args = array() ) {
 	get_template_part( 'template-parts/' . $slug, null, $args );
+}
+
+/**
+ * Breadcrumb trail, computed entirely from WordPress itself — no per-page
+ * ACF fields. Each item is array( 'label' => …, 'url' => … or '' ).
+ *
+ * Ancestors come from two sources, combined: a real WP parent-page chain
+ * (get_post_ancestors), and — because this site's "Products" isn't a real
+ * page, just a menu grouping — the current page/post's parent item in the
+ * primary nav menu, if any. "Home" is always first; the current item is
+ * always last and always uses the live post title (never overridable).
+ */
+function arbee_breadcrumbs() {
+	$crumbs = array(
+		array( 'label' => __( 'Home', 'arbee' ), 'url' => home_url( '/' ) ),
+	);
+
+	if ( is_front_page() ) {
+		return $crumbs;
+	}
+
+	$current_id = get_queried_object_id();
+
+	// Parent chain from the primary nav menu (e.g. "Products" above "Fish Meal").
+	$menu_locations = get_nav_menu_locations();
+	if ( ! empty( $menu_locations['primary'] ) ) {
+		$menu_items = wp_get_nav_menu_items( $menu_locations['primary'] );
+		if ( $menu_items ) {
+			$current_item = null;
+			foreach ( $menu_items as $item ) {
+				if ( in_array( $item->object, array( 'page', 'post', 'arbee_product' ), true ) && (int) $item->object_id === (int) $current_id ) {
+					$current_item = $item;
+					break;
+				}
+			}
+			if ( $current_item && (int) $current_item->menu_item_parent ) {
+				$chain     = array();
+				$parent_id = (int) $current_item->menu_item_parent;
+				while ( $parent_id ) {
+					$parent_item = null;
+					foreach ( $menu_items as $item ) {
+						if ( (int) $item->ID === $parent_id ) {
+							$parent_item = $item;
+							break;
+						}
+					}
+					if ( ! $parent_item ) {
+						break;
+					}
+					$chain[]   = $parent_item;
+					$parent_id = (int) $parent_item->menu_item_parent;
+				}
+				foreach ( array_reverse( $chain ) as $anc ) {
+					$url      = trim( (string) $anc->url );
+					$crumbs[] = array(
+						'label' => $anc->title,
+						'url'   => ( '' !== $url && '#' !== $url ) ? $url : '',
+					);
+				}
+			}
+		}
+	}
+
+	// Real WP page-parent chain, if an editor has set one.
+	if ( is_page() ) {
+		foreach ( array_reverse( get_post_ancestors( $current_id ) ) as $ancestor_id ) {
+			$crumbs[] = array(
+				'label' => get_the_title( $ancestor_id ),
+				'url'   => get_permalink( $ancestor_id ),
+			);
+		}
+	}
+
+	$crumbs[] = array(
+		'label'   => get_the_title( $current_id ),
+		'url'     => get_permalink( $current_id ),
+		'current' => true,
+	);
+
+	return $crumbs;
 }

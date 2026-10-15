@@ -5,12 +5,17 @@
 
   if (typeof arbeeForms === "undefined") return;
 
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const PHONE_RE = /^[0-9+()\-\s]{5,20}$/;
+  const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z]\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
+  const NAME_RE = /^[a-zA-Z\s]+$/;
+  const TEXTAREA_RE = /^[a-zA-Z0-9\s.,!?'"()-]+$/;
+  const SCRIPT_TAG_RE = /<[a-z][\s\S]*>/i;
+  // The phone number itself is digits only — the separate country-code
+  // picker (.mobile_code / intlTelInput) already supplies the "+" dial code.
+  const PHONE_DIGITS_RE = /^[0-9]+$/;
 
   function fieldError(field, message) {
     const $field = $(field);
-    const $group = $field.closest(".form-group, .contrbook, .covercontact, .covercontact2, .covertextarea");
+    const $group = $field.closest(".form-group, .contrbook, .covercontact, .covercontact1, .covercontact2, .covertextarea");
     const $help = $group.find(".help-block").first();
     $field.attr("aria-invalid", message ? "true" : "false");
     if ($help.length) {
@@ -18,20 +23,60 @@
     }
   }
 
+  // Validates a single field and immediately shows/clears its message —
+  // used both while the visitor is still filling the form (on blur) and
+  // as the final check right before submit.
+  function validateField(el) {
+    const $el = $(el);
+    const rules = String($el.data("validate") || "").split(" ");
+    const value = String($el.val() || "").trim();
+    let message = "";
+
+    if (rules.includes("required") && !value) {
+      message = $el.data("msgRequired") || "This field is required.";
+    } else if (value && rules.includes("name")) {
+      if (value.length < 3) {
+        message = "Minimum 3 characters required.";
+      } else if (SCRIPT_TAG_RE.test(value)) {
+        message = "Invalid input. Script tags are not allowed.";
+      } else if (!NAME_RE.test(value)) {
+        message = "Only alphabets and spaces are allowed.";
+      }
+    } else if (value && rules.includes("email")) {
+      if (value.length > 50) {
+        message = "Maximum 50 characters allowed.";
+      } else if (!EMAIL_RE.test(value)) {
+        message = "Please enter a valid email address.";
+      }
+    } else if (value && rules.includes("phone")) {
+      const digits = value.replace(/\s+/g, "");
+      if (digits.length < 7) {
+        message = "Phone number must be at least 7 digits.";
+      } else if (digits.length > 15) {
+        message = "Phone number cannot exceed 15 digits.";
+      } else if (!PHONE_DIGITS_RE.test(digits)) {
+        message = "Only numbers are allowed.";
+      }
+    } else if (value && rules.includes("textarea")) {
+      if (value.length < 3) {
+        message = "Minimum 3 characters required.";
+      } else if (value.length > 500) {
+        message = "Maximum 500 characters allowed.";
+      } else if (SCRIPT_TAG_RE.test(value)) {
+        message = "Invalid input. Script tags are not allowed.";
+      } else if (!TEXTAREA_RE.test(value)) {
+        message = "Only letters, numbers, spaces, and common punctuation are allowed.";
+      }
+    }
+
+    fieldError(el, message);
+    return message;
+  }
+
   function validate(form) {
     let firstInvalid = null;
     $(form).find("[data-validate]").each(function () {
-      const rules = String($(this).data("validate")).split(" ");
-      const value = String($(this).val() || "").trim();
-      let message = "";
-      if (rules.includes("required") && !value) {
-        message = $(this).data("msgRequired") || "This field is required.";
-      } else if (value && rules.includes("email") && !EMAIL_RE.test(value)) {
-        message = "Please enter a valid email address.";
-      } else if (value && rules.includes("phone") && !PHONE_RE.test(value)) {
-        message = "Please enter a valid phone number.";
-      }
-      fieldError(this, message);
+      const message = validateField(this);
       if (message && !firstInvalid) firstInvalid = this;
     });
     return firstInvalid;
@@ -98,8 +143,23 @@
       .finally(() => $btn.prop("disabled", false).text(label));
   });
 
-  // Clear a field's error as soon as it is edited.
+  // Clear a field's error as soon as it is edited; the full check runs again on blur.
   $(document).on("input change", "form.arbee-enquiry-form [data-validate]", function () {
     if ($(this).attr("aria-invalid") === "true") fieldError(this, "");
+  });
+
+  // Live validation: as soon as the visitor leaves a field (clicks/tabs anywhere
+  // else), check just that field and show its message underneath immediately —
+  // no need to wait for the whole form to be submitted.
+  $(document).on("blur", "form.arbee-enquiry-form [data-validate]", function () {
+    const rules = String($(this).data("validate") || "").split(" ");
+    if (rules.includes("name")) {
+      // Trim ends and collapse repeated inner spaces ("John   Doe" -> "John Doe").
+      $(this).val($.trim($(this).val()).replace(/\s+/g, " "));
+    } else if (rules.includes("textarea")) {
+      // Same collapsing, but keep intentional line breaks in a multi-line message.
+      $(this).val($.trim($(this).val()).replace(/[ \t]+/g, " "));
+    }
+    validateField(this);
   });
 })(jQuery);

@@ -17,6 +17,7 @@ get_header();
 
 	<section class="advantagesecbg privacparm">
 		<div class="container">
+			<?php if ( arbee_section_enabled( 'legal_enabled' ) ) : ?>
 			<div class="privaccon">
 				<?php if ( arbee_has( arbee_get( 'legal_title' ) ) ) : ?>
 					<h2><?php echo arbee_text( arbee_get( 'legal_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
@@ -26,6 +27,7 @@ get_header();
 				<?php endif; ?>
 				<?php echo wp_kses_post( (string) arbee_get( 'legal_body' ) ); ?>
 			</div>
+			<?php endif; ?>
 			<div style="clear: both;"></div>
 		</div>
 	</section>

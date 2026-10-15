@@ -18,7 +18,7 @@ $arbee_commits = arbee_rows( 'commitments' );
 
 	<?php arbee_part( 'sections/page-banner' ); ?>
 
-	<?php if ( arbee_has( arbee_get( 'intro_title' ) ) || arbee_get( 'intro_image' ) ) : ?>
+	<?php if ( arbee_section_enabled( 'intro_enabled' ) && ( arbee_has( arbee_get( 'intro_title' ) ) || arbee_get( 'intro_image' ) ) ) : ?>
 		<section class="advantagesecbg">
 			<div class="container">
 				<div class="sustainleft">
@@ -30,15 +30,13 @@ $arbee_commits = arbee_rows( 'commitments' );
 					<?php endif; ?>
 					<?php echo arbee_paras( arbee_get( 'intro_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</div>
-				<?php if ( arbee_get( 'intro_image' ) ) : ?>
-					<div class="sustainright"><?php echo arbee_image( arbee_get( 'intro_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="sustainright"><?php echo arbee_image( arbee_get( 'intro_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div style="clear: both;"></div>
 			</div>
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'clean_title' ) ) || $arbee_clean ) : ?>
+	<?php if ( arbee_section_enabled( 'clean_enabled' ) && ( arbee_has( arbee_get( 'clean_title' ) ) || $arbee_clean ) ) : ?>
 		<section class="advantagesecbg sustbokap">
 			<div class="container">
 				<div class="supleftgt">
@@ -66,7 +64,7 @@ $arbee_commits = arbee_rows( 'commitments' );
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'commit_title' ) ) || $arbee_commits ) : ?>
+	<?php if ( arbee_section_enabled( 'commit_enabled' ) && ( arbee_has( arbee_get( 'commit_title' ) ) || $arbee_commits ) ) : ?>
 		<section class="advantagesecbg">
 			<div class="container">
 				<?php if ( arbee_has( arbee_get( 'commit_title' ) ) ) : ?>

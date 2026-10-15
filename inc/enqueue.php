@@ -16,9 +16,9 @@ function arbee_uses_swiper() {
 			array(
 				'page-templates/template-about.php',
 				'page-templates/template-why-arbee.php',
-				'page-templates/template-fish-meal.php',
 			)
-		);
+		)
+		|| is_singular( 'arbee_product' );
 }
 
 add_action(

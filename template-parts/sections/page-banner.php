@@ -12,10 +12,7 @@ $arbee_title    = arbee_get( 'banner_title' );
 $arbee_subtitle = arbee_get( 'banner_subtitle' );
 $arbee_image_id = arbee_get( 'banner_image' );
 $arbee_slim     = ! arbee_has( $arbee_title ) && ! arbee_has( $arbee_subtitle );
-$arbee_crumbs   = arbee_rows( 'breadcrumb_parents' );
-$arbee_home     = arbee_get( 'breadcrumb_home' );
-$arbee_current  = arbee_get( 'breadcrumb_label' );
-$arbee_current  = arbee_has( $arbee_current ) ? $arbee_current : get_the_title();
+$arbee_crumbs   = arbee_breadcrumbs();
 ?>
 <?php if ( $arbee_image_id || ! $arbee_slim ) : ?>
 	<section class="innerpagebgbanner<?php echo $arbee_slim ? ' privacybg' : ''; ?>">
@@ -40,13 +37,15 @@ $arbee_current  = arbee_has( $arbee_current ) ? $arbee_current : get_the_title()
 <section class="pagebarsec">
 	<div class="container">
 		<ul>
-			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo arbee_text( arbee_has( $arbee_home ) ? $arbee_home : __( 'Home', 'arbee' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
 			<?php foreach ( $arbee_crumbs as $arbee_crumb ) : ?>
-				<?php if ( arbee_has( arbee_v( $arbee_crumb, 'label' ) ) ) : ?>
-					<li><a<?php echo arbee_has( arbee_v( $arbee_crumb, 'url' ) ) ? ' href="' . esc_url( arbee_v( $arbee_crumb, 'url' ) ) . '"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
+				<?php $arbee_crumb_url = arbee_v( $arbee_crumb, 'url' ); ?>
+				<?php if ( arbee_has( $arbee_crumb_url ) ) : ?>
+					<li><a href="<?php echo esc_url( $arbee_crumb_url ); ?>"<?php echo ! empty( $arbee_crumb['current'] ) ? ' aria-current="page"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
+				<?php else : ?>
+					<?php // A crumb with nowhere to link (e.g. "Products", a menu grouping with no archive page) — a bare <a> with no href picks up an unstyled/invisible colour in this theme's CSS, so this stays plain text. ?>
+					<li><span<?php echo ! empty( $arbee_crumb['current'] ) ? ' aria-current="page"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></li>
 				<?php endif; ?>
 			<?php endforeach; ?>
-			<li><a href="<?php echo esc_url( get_permalink() ); ?>" aria-current="page"><?php echo arbee_text( $arbee_current ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
 		</ul>
 		<div style="clear: both;"></div>
 	</div>

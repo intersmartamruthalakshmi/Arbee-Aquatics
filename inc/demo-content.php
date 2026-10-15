@@ -449,7 +449,6 @@ return array(
 				'source_subtitle'  => 'Indian Sardine (Sardinella Longiceps)',
 				'source_text'      => "Our products are manufactured using carefully selected marine fish species, primarily sardines, along with other nutrient-rich pelagic fish sourced from trusted fishing harbours along the Kerala coast. These species are naturally rich in high-quality protein, essential amino acids, and healthy marine oils, making them ideal for premium fish meal and fish oil production.\n\nEvery batch of raw material is inspected for freshness and quality before processing. By sourcing fish from nearby landing centres, we minimize transportation time, helping preserve nutritional integrity while ensuring low TVBN, controlled histamine levels, and consistent product performance.",
 
-				'pack_icon'        => 'img:packdf1.png',
 				'pack_title'       => 'Packaging',
 				'pack_subtitle'    => 'We have a variety of package sizes available:',
 				'pack_sizes'       => array(
@@ -464,7 +463,6 @@ return array(
 					)
 				),
 
-				'cert_icon'        => 'img:packdf1.png',
 				'cert_title'       => 'Certifications',
 				'cert_subtitle'    => 'Certified for Quality and Trust',
 				'cert_logos'       => array(
@@ -705,7 +703,6 @@ return array(
 				'form_ph_name'        => 'Enter your full name',
 				'form_label_phone'    => 'Phone *',
 				'form_ph_phone'       => 'Enter your phone number',
-				'form_codes'          => "+91\n+92\n+93\n+94",
 				'form_label_email'    => 'Email*',
 				'form_ph_email'       => 'Enter your email address',
 				'form_label_topic'    => 'What do you want to know about? *',
@@ -765,44 +762,21 @@ return array(
 		'footer_about'            => 'At Arbee, quality drives everything we do—from advanced R&D to world-class manufacturing—delivering refined Omega-3 fish oil and nutrient-rich fish meals that meet global standards.',
 		'footer_company_title'    => 'Company',
 		'footer_products_title'   => 'Our Products',
-		'footer_map'              => array(
-			'icon'  => 'img:map.png',
-			'label' => 'GOOGLE MAP',
-			'url'   => 'https://www.google.com/maps/search/?api=1&query=Arbee+Aquatic+Proteins+Pvt+Ltd+Thalayolaparambu+Kottayam+Kerala',
-		),
+		'footer_map_url'          => 'https://www.google.com/maps/search/?api=1&query=Arbee+Aquatic+Proteins+Pvt+Ltd+Thalayolaparambu+Kottayam+Kerala',
 		'hq_title'                => 'headquarters',
 		'hq_address'              => "Arbee Aquatic Proteins Pvt Ltd\n405/IX, Karippadom P.O,\nThalayolaparambu,\nKottayam, Kerala\nIndia — 686605",
-		'hq_phone'                => array(
-			'icon'   => 'img:phonebg.png',
-			'label'  => '+91 482 9237430',
-			'number' => '+914829237430',
-		),
-		'hq_email'                => array(
-			'icon'    => 'img:emailbg.png',
-			'address' => 'digital@arbeeglobal.com',
-		),
+		'hq_phone_number'         => '+91 482 9237430',
+		'hq_email_address'       => 'digital@arbeeglobal.com',
 		'footer_certifications'   => array(
 			array( 'logo' => 'img:Goals1.png|Arbee Group', 'url' => '' ),
 			array( 'logo' => 'img:Goals2.png|Arbee Group', 'url' => '' ),
 			array( 'logo' => 'img:Goals3.png|Arbee Group', 'url' => '' ),
 			array( 'logo' => 'img:Goals4.png|Sustainable Development Goals', 'url' => '' ),
 		),
-		'footer_social'           => array(
-			array( 'icon' => 'img:Social1.png', 'label' => 'Facebook', 'url' => '' ),
-			array( 'icon' => 'img:Social2.png', 'label' => 'Instagram', 'url' => '' ),
-			array( 'icon' => 'img:Social3.png', 'label' => 'LinkedIn', 'url' => '' ),
-			array( 'icon' => 'img:Social4.png', 'label' => 'YouTube', 'url' => '' ),
-		),
 		'copyright'               => array(
 			'company' => 'Arbee aquatic',
 			'url'     => 'home:',
 			'suffix'  => 'All rights reserved.',
-		),
-		'credit'                  => array(
-			'prefix' => 'Designed & Developed By:',
-			'logo'   => 'img:inter.png|Intersmart',
-			'name'   => 'intersmart',
-			'url'    => 'https://www.intersmart.in',
 		),
 
 		'floating_quote_label'    => 'REQUEST A QUOTE',
@@ -825,7 +799,6 @@ return array(
 		'quote_ph_comments'       => 'Message',
 		'quote_submit'            => 'SUBMIT',
 
-		'enquiry_recipients'      => '',
 		'enquiry_success_message' => 'Thank you! Your enquiry has been sent. Our team will get back to you shortly.',
 
 		'seo_default_description' => 'Arbee Aquatic Proteins Pvt Ltd is a Kerala-based manufacturer and exporter of high-protein fish meal and crude fish oil, supplying global markets with GMP Plus, ISO 22000, and Friend of the Sea certifications.',
@@ -849,7 +822,7 @@ return array(
 				array( 'title' => 'ABOUT US', 'page' => 'about-us' ),
 				array( 'title' => 'WHY ARBEE', 'page' => 'why-arbee' ),
 				array(
-					'title'    => 'PRODUCTS',
+					'title'    => 'Products',
 					'url'      => '#',
 					'children' => array(
 						array( 'title' => 'Fish Meal', 'page' => 'fish-meal', 'icon' => 'img:navimg1.png' ),

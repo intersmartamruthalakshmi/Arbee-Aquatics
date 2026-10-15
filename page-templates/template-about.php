@@ -19,7 +19,7 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 
 	<?php arbee_part( 'sections/trusted' ); ?>
 
-	<?php if ( arbee_has( arbee_get( 'factory_title' ) ) || arbee_get( 'factory_image' ) ) : ?>
+	<?php if ( arbee_section_enabled( 'factory_enabled' ) && ( arbee_has( arbee_get( 'factory_title' ) ) || arbee_get( 'factory_image' ) ) ) : ?>
 		<section class="factorysecbc">
 			<div class="fcactoybgtop"><img src="<?php echo esc_url( $arbee_overlay ); ?>" alt=""></div>
 			<div class="container">
@@ -32,16 +32,14 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 					<?php endif; ?>
 					<?php echo arbee_paras( arbee_get( 'factory_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</div>
-				<?php if ( arbee_get( 'factory_image' ) ) : ?>
-					<div class="freshfactright"><?php echo arbee_image( arbee_get( 'factory_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="freshfactright"><?php echo arbee_image( arbee_get( 'factory_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div style="clear: both;"></div>
 			</div>
 		</section>
 	<?php endif; ?>
 
 	<?php $arbee_companies = arbee_rows( 'group_companies' ); ?>
-	<?php if ( arbee_has( arbee_get( 'group_title' ) ) || $arbee_companies ) : ?>
+	<?php if ( arbee_section_enabled( 'group_enabled' ) && ( arbee_has( arbee_get( 'group_title' ) ) || $arbee_companies ) ) : ?>
 		<section class="agecytabbc">
 			<div class="fcactoybgtop"><img src="<?php echo esc_url( $arbee_overlay ); ?>" alt=""></div>
 			<div class="container">
@@ -54,9 +52,7 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 							<p class="paraarbeespec"><?php echo arbee_lines( arbee_get( 'group_intro' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 						<?php endif; ?>
 					</div>
-					<?php if ( arbee_get( 'group_logo' ) ) : ?>
-						<div class="hawbox"><?php echo arbee_image( arbee_get( 'group_logo' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-					<?php endif; ?>
+					<div class="hawbox"><img src="<?php echo esc_url( arbee_asset( 'images/shields6.png' ) ); ?>" width="151" height="154" alt="Arbee Group"></div>
 				</div>
 				<div class="sliderpropwarp">
 					<div class="leftprotihop">
@@ -88,13 +84,11 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'vm_title' ) ) || arbee_has( arbee_get( 'vision_text' ) ) || arbee_has( arbee_get( 'mission_text' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'vm_enabled' ) && ( arbee_has( arbee_get( 'vm_title' ) ) || arbee_has( arbee_get( 'vision_text' ) ) || arbee_has( arbee_get( 'mission_text' ) ) ) ) : ?>
 		<section class="vissonecgsecbg">
 			<div class="vissoniagehop"><img src="<?php echo esc_url( arbee_asset( 'images/objectgtright.png' ) ); ?>" alt=""></div>
 			<div class="container">
-				<?php if ( arbee_get( 'vm_image' ) ) : ?>
-					<div class="rightvissonimg"><?php echo arbee_image( arbee_get( 'vm_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="rightvissonimg"><?php echo arbee_image( arbee_get( 'vm_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div class="vissonfctrgt">
 					<div class="gopvisson">
 						<?php if ( arbee_has( arbee_get( 'vm_title' ) ) ) : ?>
@@ -121,7 +115,7 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'nature_title' ) ) || arbee_get( 'nature_image' ) ) : ?>
+	<?php if ( arbee_section_enabled( 'nature_enabled' ) && ( arbee_has( arbee_get( 'nature_title' ) ) || arbee_get( 'nature_image' ) ) ) : ?>
 		<section class="factorysecbc whitfactbg">
 			<div class="fcactoybgtop"><img src="<?php echo esc_url( $arbee_overlay ); ?>" alt=""></div>
 			<div class="container">
@@ -131,21 +125,17 @@ $arbee_overlay = arbee_asset( 'images/objectgt.png' );
 					<?php endif; ?>
 					<?php echo arbee_paras( arbee_get( 'nature_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</div>
-				<?php if ( arbee_get( 'nature_image' ) ) : ?>
-					<div class="freshfactright"><?php echo arbee_image( arbee_get( 'nature_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="freshfactright"><?php echo arbee_image( arbee_get( 'nature_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div style="clear: both;"></div>
 			</div>
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'perf_title' ) ) || arbee_get( 'perf_image' ) ) : ?>
+	<?php if ( arbee_section_enabled( 'perf_enabled' ) && ( arbee_has( arbee_get( 'perf_title' ) ) || arbee_get( 'perf_image' ) ) ) : ?>
 		<section class="factorysecbc perfbgtog">
 			<div class="fcactoybgtop"><img src="<?php echo esc_url( $arbee_overlay ); ?>" alt=""></div>
 			<div class="container">
-				<?php if ( arbee_get( 'perf_image' ) ) : ?>
-					<div class="freshfactright"><?php echo arbee_image( arbee_get( 'perf_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="freshfactright"><?php echo arbee_image( arbee_get( 'perf_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div class="freshfactleft">
 					<?php if ( arbee_has( arbee_get( 'perf_title' ) ) ) : ?>
 						<h1 class="headstylecom"><?php echo arbee_lines( arbee_get( 'perf_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>

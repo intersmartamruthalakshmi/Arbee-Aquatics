@@ -44,7 +44,7 @@ $arbee_ph     = arbee_opt( 'quote_topic_placeholder' );
 									<div class="form-group">
 										<label for="quote_full_name"><?php echo arbee_text( arbee_opt( 'quote_label_name' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></label>
 										<input type="text" id="quote_full_name" name="full_name" placeholder="<?php echo esc_attr( arbee_opt( 'quote_ph_name' ) ); ?>" class="form-control"
-											required data-validate="required" autocomplete="name" maxlength="120">
+											required data-validate="required name" autocomplete="name" maxlength="120">
 										<div class="help-block danger d-none">Invalid Input</div>
 									</div>
 								</div>
@@ -67,7 +67,7 @@ $arbee_ph     = arbee_opt( 'quote_topic_placeholder' );
 									<div class="form-group">
 										<label for="quote_email"><?php echo arbee_text( arbee_opt( 'quote_label_email' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></label>
 										<input type="email" id="quote_email" name="email" placeholder="<?php echo esc_attr( arbee_opt( 'quote_ph_email' ) ); ?>" class="form-control"
-											required data-validate="required email" autocomplete="email">
+											required data-validate="required email" autocomplete="email" maxlength="50">
 										<div class="help-block danger d-none">Invalid Input</div>
 									</div>
 								</div>
@@ -89,7 +89,8 @@ $arbee_ph     = arbee_opt( 'quote_topic_placeholder' );
 								<div class="col-12">
 									<div class="form-group">
 										<label for="quote_comments"><?php echo arbee_text( arbee_opt( 'quote_label_comments' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></label>
-										<textarea name="comments" placeholder="<?php echo esc_attr( arbee_opt( 'quote_ph_comments' ) ); ?>" class="form-control" id="quote_comments" maxlength="5000"></textarea>
+										<textarea name="comments" placeholder="<?php echo esc_attr( arbee_opt( 'quote_ph_comments' ) ); ?>" class="form-control" id="quote_comments" data-validate="textarea" maxlength="500"></textarea>
+										<div class="help-block danger d-none">Invalid Input</div>
 									</div>
 								</div>
 							</div>

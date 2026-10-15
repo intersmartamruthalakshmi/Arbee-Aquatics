@@ -129,3 +129,50 @@ button.enqurfobtn:disabled,
 .admin-bar #Header {
     top: var(--wp-admin--admin-bar--height, 32px);
 }
+
+/* Contact form's country-code field now uses the intl-tel-input flag/dial-code
+   picker (same widget as the Request a Quote modal) in place of the old
+   admin-curated <select>. It gets its own full-width row (same treatment as
+   the Name/Email fields) rather than squeezed into the old select-sized
+   split column, which wasn't wide enough for a flag + dial code + input. */
+.contsoap .iti {
+    display: block;
+    width: 100%;
+}
+
+.contsoap input.mobile_code {
+    width: 100%;
+    border: 0;
+    background: transparent;
+}
+
+/* style.css declares .contactcap twice — the first copy sets text-align:
+   center for the intro copy above the form, the second (meant to undo it for
+   the form itself) doesn't re-declare text-align, so CSS keeps the center
+   value and it leaks into every field inside .contsoap, including the
+   intl-tel-input flag/dial-code widget (which expects to be left-anchored).
+   Put form content back to normal left alignment. */
+.contsoap input,
+.contsoap select,
+.contsoap textarea,
+.contsoap .help-block {
+    text-align: left;
+}
+
+/* Field validation messages: left aligned with visible breathing room above,
+   on both the Contact form and the Request a Quote modal. */
+.arbee-enquiry-form .help-block {
+    text-align: left;
+    margin-top: 8px;
+}
+
+/* A breadcrumb item with nowhere to link (e.g. "Products", a menu grouping
+   with no archive page of its own) is plain text, not a link — give it the
+   same look as the linked crumbs around it. */
+.pagebarsec li span {
+    font-family: "Poppins-Light";
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: 0%;
+    color: #000000;
+}

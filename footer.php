@@ -9,21 +9,26 @@
 defined( 'ABSPATH' ) || exit;
 
 $arbee_certs     = arbee_opt( 'footer_certifications' );
-$arbee_social    = arbee_opt( 'footer_social' );
-$arbee_map       = arbee_opt( 'footer_map' );
-$arbee_phone     = arbee_opt( 'hq_phone' );
-$arbee_email     = arbee_opt( 'hq_email' );
 $arbee_copyright = arbee_opt( 'copyright' );
-$arbee_credit    = arbee_opt( 'credit' );
 $arbee_certs     = is_array( $arbee_certs ) ? $arbee_certs : array();
-$arbee_social    = is_array( $arbee_social ) ? $arbee_social : array();
+
+// Fixed per-platform icon + label; only the URL is editable.
+$arbee_social = array_filter(
+	array(
+		array( 'icon' => 'Social1.png', 'label' => 'Facebook', 'url' => arbee_opt( 'social_facebook_url' ) ),
+		array( 'icon' => 'Social2.png', 'label' => 'Instagram', 'url' => arbee_opt( 'social_instagram_url' ) ),
+		array( 'icon' => 'Social3.png', 'label' => 'LinkedIn', 'url' => arbee_opt( 'social_linkedin_url' ) ),
+		array( 'icon' => 'Social4.png', 'label' => 'YouTube', 'url' => arbee_opt( 'social_youtube_url' ) ),
+	),
+	function ( $s ) {
+		return arbee_has( $s['url'] );
+	}
+);
 ?>
 <footer>
 	<div class="respcontainer">
 		<div class="footerlogosec">
-			<?php if ( arbee_opt( 'footer_logo' ) ) : ?>
-				<div class="logofoterhg"><?php echo arbee_image( arbee_opt( 'footer_logo' ), array( 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-			<?php endif; ?>
+			<div class="logofoterhg"><?php echo arbee_image( arbee_opt( 'footer_logo' ), array( 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 			<?php if ( arbee_has( arbee_opt( 'footer_about' ) ) ) : ?>
 				<p><?php echo arbee_lines( arbee_opt( 'footer_about' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 			<?php endif; ?>
@@ -39,12 +44,10 @@ $arbee_social    = is_array( $arbee_social ) ? $arbee_social : array();
 				<h2><?php echo arbee_text( arbee_opt( 'footer_products_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
 			<?php endif; ?>
 			<?php arbee_footer_menu( 'footer_products', 'foterdragmenu' ); ?>
-			<?php if ( arbee_has( arbee_v( $arbee_map, 'label' ) ) && arbee_has( arbee_v( $arbee_map, 'url' ) ) ) : ?>
-				<a href="<?php echo esc_url( arbee_v( $arbee_map, 'url' ) ); ?>" class="foterrehtbtn" target="_blank" rel="noopener">
-					<?php if ( arbee_v( $arbee_map, 'icon' ) ) : ?>
-						<span><?php echo arbee_image( arbee_v( $arbee_map, 'icon' ), array( 'alt' => 'map' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<?php endif; ?>
-					<?php echo arbee_text( arbee_v( $arbee_map, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php if ( arbee_has( arbee_opt( 'footer_map_url' ) ) ) : ?>
+				<a href="<?php echo esc_url( arbee_opt( 'footer_map_url' ) ); ?>" class="foterrehtbtn" target="_blank" rel="noopener">
+					<span><img src="<?php echo esc_url( arbee_asset( 'images/map.png' ) ); ?>" alt=""></span>
+					<?php esc_html_e( 'GOOGLE MAP', 'arbee' ); ?>
 				</a>
 			<?php endif; ?>
 		</div>
@@ -56,20 +59,16 @@ $arbee_social    = is_array( $arbee_social ) ? $arbee_social : array();
 				<?php if ( arbee_has( arbee_opt( 'hq_address' ) ) ) : ?>
 					<p><?php echo arbee_lines( arbee_opt( 'hq_address' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 				<?php endif; ?>
-				<?php if ( arbee_has( arbee_v( $arbee_phone, 'label' ) ) ) : ?>
-					<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', (string) arbee_v( $arbee_phone, 'number', arbee_v( $arbee_phone, 'label' ) ) ) ); ?>" class="mailbprot">
-						<?php if ( arbee_v( $arbee_phone, 'icon' ) ) : ?>
-							<span><?php echo arbee_image( arbee_v( $arbee_phone, 'icon' ), array( 'alt' => 'icon' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-						<?php endif; ?>
-						<?php echo arbee_text( arbee_v( $arbee_phone, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php if ( arbee_has( arbee_opt( 'hq_phone_number' ) ) ) : ?>
+					<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', (string) arbee_opt( 'hq_phone_number' ) ) ); ?>" class="mailbprot">
+						<span><img src="<?php echo esc_url( arbee_asset( 'images/phonebg.png' ) ); ?>" alt=""></span>
+						<?php echo arbee_text( arbee_opt( 'hq_phone_number' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</a> <br>
 				<?php endif; ?>
-				<?php if ( is_email( arbee_v( $arbee_email, 'address' ) ) ) : ?>
-					<a href="<?php echo esc_url( 'mailto:' . antispambot( arbee_v( $arbee_email, 'address' ) ) ); ?>" class="mailbprot">
-						<?php if ( arbee_v( $arbee_email, 'icon' ) ) : ?>
-							<span><?php echo arbee_image( arbee_v( $arbee_email, 'icon' ), array( 'alt' => 'icon' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-						<?php endif; ?>
-						<?php echo esc_html( antispambot( arbee_v( $arbee_email, 'address' ) ) ); ?>
+				<?php if ( is_email( arbee_opt( 'hq_email_address' ) ) ) : ?>
+					<a href="<?php echo esc_url( 'mailto:' . antispambot( arbee_opt( 'hq_email_address' ) ) ); ?>" class="mailbprot">
+						<span><img src="<?php echo esc_url( arbee_asset( 'images/emailbg.png' ) ); ?>" alt=""></span>
+						<?php echo esc_html( antispambot( arbee_opt( 'hq_email_address' ) ) ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
@@ -88,14 +87,8 @@ $arbee_social    = is_array( $arbee_social ) ? $arbee_social : array();
 				<?php endforeach; ?>
 				<?php if ( $arbee_social ) : ?>
 					<ul class="socialcapork">
-						<?php
-						foreach ( $arbee_social as $arbee_s ) :
-							if ( ! arbee_v( $arbee_s, 'icon' ) ) {
-								continue;
-							}
-							$arbee_url = arbee_v( $arbee_s, 'url' );
-							?>
-							<li><a<?php echo $arbee_url ? ' href="' . esc_url( $arbee_url ) . '" target="_blank" rel="noopener"' : ''; ?><?php echo arbee_has( arbee_v( $arbee_s, 'label' ) ) ? ' aria-label="' . esc_attr( arbee_v( $arbee_s, 'label' ) ) . '"' : ''; ?>><?php echo arbee_image( arbee_v( $arbee_s, 'icon' ), array( 'alt' => arbee_v( $arbee_s, 'label', 'social-icon' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
+						<?php foreach ( $arbee_social as $arbee_s ) : ?>
+							<li><a href="<?php echo esc_url( $arbee_s['url'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $arbee_s['label'] ); ?>"><img src="<?php echo esc_url( arbee_asset( 'images/' . $arbee_s['icon'] ) ); ?>" alt=""></a></li>
 						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
@@ -113,11 +106,9 @@ $arbee_social    = is_array( $arbee_social ) ? $arbee_social : array();
 				<?php arbee_footer_menu( 'footer_legal' ); ?>
 			</div>
 		<?php endif; ?>
-		<?php if ( arbee_has( arbee_v( $arbee_credit, 'name' ) ) ) : ?>
-			<div class="intersop"><?php echo arbee_text( arbee_v( $arbee_credit, 'prefix' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-				<?php echo arbee_image( arbee_v( $arbee_credit, 'logo' ), array( 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-				<a<?php echo arbee_v( $arbee_credit, 'url' ) ? ' href="' . esc_url( arbee_v( $arbee_credit, 'url' ) ) . '" target="_blank" rel="noopener"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_credit, 'name' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a> </div>
-		<?php endif; ?>
+		<div class="intersop"><?php esc_html_e( 'Designed & Developed By:', 'arbee' ); ?>
+			<img src="<?php echo esc_url( arbee_asset( 'images/inter.png' ) ); ?>" alt="Intersmart">
+			<a href="https://www.intersmart.in" target="_blank" rel="noopener"><?php esc_html_e( 'intersmart', 'arbee' ); ?></a> </div>
 		<div style="clear: both;"></div>
 	</div>
 </footer>

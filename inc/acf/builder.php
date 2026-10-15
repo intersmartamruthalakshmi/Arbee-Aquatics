@@ -77,7 +77,8 @@ function arbee_f_video( $name, $label, $extra = array() ) {
 			array(
 				'return_format' => 'id',
 				'library'       => 'all',
-				'mime_types'    => 'mp4,webm',
+				'mime_types'    => 'mp4',
+				'instructions'  => __( 'MP4 format only.', 'arbee' ),
 			),
 			$extra
 		)
@@ -137,6 +138,80 @@ function arbee_f_tab( $label ) {
 		'label'     => $label,
 		'placement' => 'top',
 	);
+}
+
+/**
+ * A tab + an "Enable this section" toggle + the section's own fields, each
+ * fitted with conditional logic so they only show in admin while the toggle
+ * is on. The matching frontend check is arbee_section_enabled( $toggle_name ).
+ *
+ * Every section gets this except the hero/page banner, which always shows.
+ */
+function arbee_f_toggle( $name, $extra = array() ) {
+	return arbee_f(
+		'true_false',
+		$name,
+		__( 'Show this section', 'arbee' ),
+		array_merge(
+			array(
+				'ui'            => 1,
+				'default_value' => 1,
+				'instructions'  => __( 'Turn off to hide this section on the live site.', 'arbee' ),
+			),
+			$extra
+		)
+	);
+}
+
+function arbee_section( $tab_label, $toggle_name, $fields ) {
+	foreach ( $fields as $i => $field ) {
+		if ( 'tab' === $field['type'] ) {
+			continue;
+		}
+		if ( empty( $field['conditional_logic'] ) ) {
+			$fields[ $i ]['conditional_logic'] = array(
+				array(
+					array(
+						'field'    => $toggle_name,
+						'operator' => '==',
+						'value'    => '1',
+					),
+				),
+			);
+		}
+	}
+	return array_merge(
+		array( arbee_f_tab( $tab_label ), arbee_f_toggle( $toggle_name ) ),
+		$fields
+	);
+}
+
+/**
+ * Gate a list of fields on TWO toggles at once (both must be on) — used when
+ * a sub-part of a merged section needs its own show/hide on top of the
+ * section's overall one. Fields that already carry conditional_logic are
+ * left alone, matching arbee_section()'s own rule.
+ */
+function arbee_cond_on( $master_toggle, $sub_toggle, $fields ) {
+	foreach ( $fields as $i => $field ) {
+		if ( empty( $field['conditional_logic'] ) ) {
+			$fields[ $i ]['conditional_logic'] = array(
+				array(
+					array(
+						'field'    => $master_toggle,
+						'operator' => '==',
+						'value'    => '1',
+					),
+					array(
+						'field'    => $sub_toggle,
+						'operator' => '==',
+						'value'    => '1',
+					),
+				),
+			);
+		}
+	}
+	return $fields;
 }
 
 /**
@@ -212,6 +287,21 @@ function arbee_loc_front_page() {
 				'param'    => 'page_type',
 				'operator' => '==',
 				'value'    => 'front_page',
+			),
+		),
+	);
+}
+
+/**
+ * Location rule: post type (e.g. a custom post type's edit screen).
+ */
+function arbee_loc_post_type( $post_type ) {
+	return array(
+		array(
+			array(
+				'param'    => 'post_type',
+				'operator' => '==',
+				'value'    => $post_type,
 			),
 		),
 	);

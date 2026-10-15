@@ -40,62 +40,39 @@ add_action(
 			array(
 				// ---- Header ----
 				arbee_f_tab( __( 'Header', 'arbee' ) ),
-				arbee_f_image( 'header_logo', __( 'Logo', 'arbee' ), array( 'instructions' => __( 'Used in the header, mobile menu and page preloader.', 'arbee' ) ) ),
+				arbee_f_image( 'header_logo', __( 'Logo', 'arbee' ), array( 'instructions' => __( 'Used in the header, mobile menu and page preloader. Shown at 240×50px in the header and 150×150px in the mobile menu/preloader.', 'arbee' ) ) ),
 				arbee_f_text( 'header_quote_label', __( 'Header button text', 'arbee' ), array( 'instructions' => __( 'Opens the Request a Quote popup. Leave empty to hide the button.', 'arbee' ) ) ),
 
 				// ---- Footer ----
 				arbee_f_tab( __( 'Footer', 'arbee' ) ),
-				arbee_f_image( 'footer_logo', __( 'Footer logo', 'arbee' ) ),
+				arbee_f_image( 'footer_logo', __( 'Footer logo', 'arbee' ), array( 'instructions' => __( 'Landscape, recommended 170×60px (width-constrained, height scales automatically).', 'arbee' ) ) ),
 				arbee_f_textarea( 'footer_about', __( 'About text', 'arbee' ), 3 ),
 				arbee_f_text( 'footer_company_title', __( 'First menu column title', 'arbee' ), array( 'instructions' => __( 'Links are managed in Appearance → Menus (location “Footer: Company”).', 'arbee' ) ) ),
 				arbee_f_text( 'footer_products_title', __( 'Second menu column title', 'arbee' ), array( 'instructions' => __( 'Links are managed in Appearance → Menus (location “Footer: Our Products”).', 'arbee' ) ) ),
-				arbee_f_group(
-					'footer_map',
-					__( 'Map button', 'arbee' ),
-					array(
-						arbee_f_image( 'icon', __( 'Icon', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ) ) ),
-						arbee_f_text( 'label', __( 'Text', 'arbee' ), array( 'wrapper' => array( 'width' => 35 ) ) ),
-						arbee_f( 'url', 'url', __( 'Google Maps URL', 'arbee' ), array( 'wrapper' => array( 'width' => 40 ) ) ),
-					)
-				),
+				arbee_f( 'url', 'footer_map_url', __( 'Map button: Google Maps URL', 'arbee' ), array( 'instructions' => __( 'The icon and button text are fixed; the button only shows once this URL is set.', 'arbee' ) ) ),
 				arbee_f_text( 'hq_title', __( 'Address title', 'arbee' ) ),
 				arbee_f_textarea( 'hq_address', __( 'Address', 'arbee' ), 5, array( 'instructions' => __( 'Press Enter for a line break.', 'arbee' ) ) ),
-				arbee_f_group(
-					'hq_phone',
-					__( 'Phone', 'arbee' ),
-					array(
-						arbee_f_image( 'icon', __( 'Icon', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ) ) ),
-						arbee_f_text( 'label', __( 'Displayed number', 'arbee' ), array( 'wrapper' => array( 'width' => 35 ) ) ),
-						arbee_f_text( 'number', __( 'Number to dial', 'arbee' ), array( 'wrapper' => array( 'width' => 40 ), 'instructions' => __( 'e.g. +914829237430', 'arbee' ) ) ),
-					)
-				),
-				arbee_f_group(
-					'hq_email',
-					__( 'Email', 'arbee' ),
-					array(
-						arbee_f_image( 'icon', __( 'Icon', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ) ) ),
-						arbee_f( 'email', 'address', __( 'Email address', 'arbee' ), array( 'wrapper' => array( 'width' => 75 ) ) ),
-					)
-				),
+				arbee_f_text( 'hq_phone_number', __( 'Displayed number', 'arbee' ), array( 'instructions' => __( 'Shown as-is and also used to build the tel: link (non-digits are stripped automatically). The icon is fixed; this line only shows once a number is set.', 'arbee' ) ) ),
+				arbee_f( 'email', 'hq_email_address', __( 'Email address', 'arbee' ), array( 'instructions' => __( 'The icon is fixed; this line only shows once an address is set.', 'arbee' ) ) ),
 				arbee_f_repeater(
 					'footer_certifications',
 					__( 'Certification logos', 'arbee' ),
 					array(
-						arbee_f_image( 'logo', __( 'Logo', 'arbee' ), array( 'wrapper' => array( 'width' => 40 ) ) ),
+						arbee_f_image( 'logo', __( 'Logo', 'arbee' ), array( 'wrapper' => array( 'width' => 40 ), 'instructions' => __( 'Landscape, recommended 120×60px.', 'arbee' ) ) ),
 						arbee_f( 'url', 'url', __( 'Link (optional)', 'arbee' ), array( 'wrapper' => array( 'width' => 60 ) ) ),
 					),
 					array( 'layout' => 'table', 'button_label' => __( 'Add logo', 'arbee' ) )
 				),
-				arbee_f_repeater(
-					'footer_social',
+				arbee_f(
+					'message',
+					'footer_social_note',
 					__( 'Social links', 'arbee' ),
-					array(
-						arbee_f_image( 'icon', __( 'Icon', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ) ) ),
-						arbee_f_text( 'label', __( 'Network name', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ), 'instructions' => __( 'For screen readers, e.g. LinkedIn', 'arbee' ) ) ),
-						arbee_f( 'url', 'url', __( 'Profile URL', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
-					),
-					array( 'layout' => 'table', 'button_label' => __( 'Add social link', 'arbee' ) )
+					array( 'message' => __( 'Each icon is fixed to its platform; a link only appears once its URL below is filled in.', 'arbee' ) ),
 				),
+				arbee_f( 'url', 'social_facebook_url', __( 'Facebook URL', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
+				arbee_f( 'url', 'social_instagram_url', __( 'Instagram URL', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
+				arbee_f( 'url', 'social_linkedin_url', __( 'LinkedIn URL', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
+				arbee_f( 'url', 'social_youtube_url', __( 'YouTube URL', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
 				arbee_f_group(
 					'copyright',
 					__( 'Copyright line', 'arbee' ),
@@ -105,16 +82,7 @@ add_action(
 						arbee_f_text( 'suffix', __( 'Text after', 'arbee' ), array( 'wrapper' => array( 'width' => 35 ) ) ),
 					)
 				),
-				arbee_f_group(
-					'credit',
-					__( 'Designer credit', 'arbee' ),
-					array(
-						arbee_f_text( 'prefix', __( 'Text', 'arbee' ), array( 'wrapper' => array( 'width' => 30 ) ) ),
-						arbee_f_image( 'logo', __( 'Logo', 'arbee' ), array( 'wrapper' => array( 'width' => 20 ) ) ),
-						arbee_f_text( 'name', __( 'Name', 'arbee' ), array( 'wrapper' => array( 'width' => 20 ) ) ),
-						arbee_f( 'url', 'url', __( 'Link', 'arbee' ), array( 'wrapper' => array( 'width' => 30 ) ) ),
-					)
-				),
+				arbee_f( 'message', 'credit_note', __( 'Designer credit', 'arbee' ), array( 'message' => __( 'This line is fixed and always shown in the footer — there is nothing to configure here.', 'arbee' ) ) ),
 
 				// ---- Floating buttons ----
 				arbee_f_tab( __( 'Floating buttons', 'arbee' ) ),
@@ -125,7 +93,7 @@ add_action(
 				// ---- Request a Quote popup ----
 				arbee_f_tab( __( 'Quote popup', 'arbee' ) ),
 				arbee_f_text( 'quote_title', __( 'Title', 'arbee' ) ),
-				arbee_f_image( 'quote_image', __( 'Image', 'arbee' ) ),
+				arbee_f_image( 'quote_image', __( 'Image', 'arbee' ), array( 'instructions' => __( 'Portrait, recommended 470×630px.', 'arbee' ) ) ),
 				arbee_f_text( 'quote_label_name', __( 'Name label', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
 				arbee_f_text( 'quote_ph_name', __( 'Name placeholder', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
 				arbee_f_text( 'quote_label_code', __( 'Country code label', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
@@ -142,19 +110,60 @@ add_action(
 
 				// ---- Form delivery ----
 				arbee_f_tab( __( 'Form delivery', 'arbee' ) ),
-				arbee_f_text( 'enquiry_recipients', __( 'Send enquiries to', 'arbee' ), array( 'instructions' => __( 'One or more email addresses, comma separated. Falls back to the site admin email. Every enquiry is also saved under Dashboard → Enquiries.', 'arbee' ) ) ),
-				arbee_f_textarea( 'enquiry_success_message', __( 'Thank-you message', 'arbee' ), 2 ),
+				arbee_f_text( 'mail_from_name', __( 'Default From name', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Used site-wide (password resets, etc.) and as the fallback below. Falls back to the site title.', 'arbee' ) ) ),
+				arbee_f( 'email', 'mail_from_email', __( 'Default From email', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Falls back to the site admin email. With Brevo SMTP below, this address must be a verified sender in your Brevo account.', 'arbee' ) ) ),
+				arbee_f(
+					'message',
+					'form_delivery_note',
+					__( 'Note', 'arbee' ),
+					array( 'message' => __( 'Each form below can send from its own name/address and to its own recipients; leave a field empty to fall back to the defaults above (From) or the site admin email (To).', 'arbee' ) ),
+				),
+				arbee_f_text( 'contact_from_name', __( 'Contact form: From name', 'arbee' ), array( 'wrapper' => array( 'width' => 33 ) ) ),
+				arbee_f( 'email', 'contact_from_email', __( 'Contact form: From email', 'arbee' ), array( 'wrapper' => array( 'width' => 33 ) ) ),
+				arbee_f_text( 'contact_recipients', __( 'Contact form: Send to (To)', 'arbee' ), array( 'wrapper' => array( 'width' => 34 ), 'instructions' => __( 'One or more addresses, comma separated.', 'arbee' ) ) ),
+				arbee_f_text( 'quote_from_name', __( 'Request a Quote: From name', 'arbee' ), array( 'wrapper' => array( 'width' => 33 ) ) ),
+				arbee_f( 'email', 'quote_from_email', __( 'Request a Quote: From email', 'arbee' ), array( 'wrapper' => array( 'width' => 33 ) ) ),
+				arbee_f_text( 'quote_recipients', __( 'Request a Quote: Send to (To)', 'arbee' ), array( 'wrapper' => array( 'width' => 34 ), 'instructions' => __( 'One or more addresses, comma separated.', 'arbee' ) ) ),
+				arbee_f( 'message', 'enquiry_log_note', __( 'Note', 'arbee' ), array( 'message' => __( 'Every enquiry is also saved under Dashboard → Enquiries, regardless of email delivery.', 'arbee' ) ) ),
+				arbee_f_textarea( 'enquiry_success_message', __( 'Thank-you message (shown on the page)', 'arbee' ), 2 ),
+				arbee_f(
+					'true_false',
+					'enquiry_confirm_enabled',
+					__( 'Also email the person who submitted the form', 'arbee' ),
+					array( 'ui' => 1, 'default_value' => 1 )
+				),
+				arbee_f_text( 'enquiry_confirm_subject', __( 'Confirmation email subject', 'arbee' ), array( 'instructions' => __( 'Leave empty for a sensible default. {site} is replaced with the site name.', 'arbee' ) ) ),
+				arbee_f_textarea( 'enquiry_confirm_message', __( 'Confirmation email message', 'arbee' ), 4, array( 'instructions' => __( 'Leave empty for a sensible default. {name} and {site} are replaced automatically.', 'arbee' ) ) ),
+
+				// ---- Email delivery (Brevo) ----
+				arbee_f_tab( __( 'Email delivery (Brevo)', 'arbee' ) ),
+				arbee_f(
+					'message',
+					'brevo_note',
+					__( 'About this', 'arbee' ),
+					array( 'message' => __( 'By default, WordPress sends mail with PHP\'s built-in mail(), which many hosts block or mark as spam. Turning this on routes all outgoing mail (enquiries, password resets, etc.) through Brevo\'s SMTP relay instead. You will need a free Brevo account — get the SMTP login and key from Brevo → Settings (gear icon) → SMTP & API → SMTP tab.', 'arbee' ) ),
+				),
+				arbee_f(
+					'true_false',
+					'brevo_enabled',
+					__( 'Send mail through Brevo', 'arbee' ),
+					array( 'ui' => 1 )
+				),
+				arbee_f_text( 'brevo_smtp_login', __( 'SMTP login', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'The login shown on the Brevo SMTP tab, e.g. 9a1b2c001@smtp-brevo.com', 'arbee' ) ) ),
+				arbee_f( 'password', 'brevo_smtp_key', __( 'SMTP key', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'The SMTP key (not your Brevo account password).', 'arbee' ) ) ),
+				arbee_f_text( 'brevo_smtp_host', __( 'SMTP host', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'default_value' => 'smtp-relay.brevo.com', 'placeholder' => 'smtp-relay.brevo.com' ) ),
+				arbee_f_text( 'brevo_smtp_port', __( 'SMTP port', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'default_value' => '587', 'placeholder' => '587' ) ),
 
 				// ---- SEO ----
 				arbee_f_tab( __( 'SEO', 'arbee' ) ),
 				arbee_f( 'message', 'seo_note', __( 'Note', 'arbee' ), array( 'message' => __( 'These defaults are used when a page has no SEO description/image of its own. If an SEO plugin (Yoast, Rank Math, AIOSEO, SEOPress) is active, the theme stops printing these tags.', 'arbee' ) ) ),
 				arbee_f_textarea( 'seo_default_description', __( 'Default meta description', 'arbee' ), 2 ),
 				arbee_f_text( 'seo_author', __( 'Meta author', 'arbee' ) ),
-				arbee_f_image( 'seo_default_og_image', __( 'Default social share image', 'arbee' ) ),
+				arbee_f_image( 'seo_default_og_image', __( 'Default social share image', 'arbee' ), array( 'instructions' => __( 'Recommended 1200×630px (standard social share size).', 'arbee' ) ) ),
 
 				// ---- 404 ----
 				arbee_f_tab( __( '404 page', 'arbee' ) ),
-				arbee_f_image( 'e404_image', __( 'Icon', 'arbee' ) ),
+				arbee_f_image( 'e404_image', __( 'Icon', 'arbee' ), array( 'instructions' => __( 'Square, recommended 300×300px.', 'arbee' ) ) ),
 				arbee_f_text( 'e404_title', __( 'Title', 'arbee' ) ),
 				arbee_f_textarea( 'e404_text', __( 'Text', 'arbee' ), 2 ),
 				arbee_f_link( 'e404_button', __( 'Button', 'arbee' ) ),
@@ -167,7 +176,7 @@ add_action(
 			'menuitem',
 			__( 'Menu item', 'arbee' ),
 			array(
-				arbee_f_image( 'menu_icon', __( 'Sub-menu icon', 'arbee' ), array( 'instructions' => __( 'Shown next to the label in the header drop-down.', 'arbee' ) ) ),
+				arbee_f_image( 'menu_icon', __( 'Sub-menu icon', 'arbee' ), array( 'instructions' => __( 'Shown next to the label in the header drop-down, landscape, recommended 160×100px.', 'arbee' ) ) ),
 			),
 			array(
 				array(
@@ -180,29 +189,20 @@ add_action(
 			)
 		);
 
-		// ---- Inner page banner + breadcrumb (all inner templates) ----
+		// ---- Inner page banner + breadcrumb (all inner templates, plus products) ----
 		$banner_location = array();
 		foreach ( array_keys( arbee_page_templates() ) as $template ) {
 			$banner_location[] = arbee_loc_template( $template )[0];
 		}
+		$banner_location[] = arbee_loc_post_type( 'arbee_product' )[0];
 		arbee_acf_group(
 			'banner',
 			__( 'Page banner & breadcrumb', 'arbee' ),
 			array(
-				arbee_f_image( 'banner_image', __( 'Banner image', 'arbee' ) ),
+				arbee_f_image( 'banner_image', __( 'Banner image', 'arbee' ), array( 'required' => 1, 'instructions' => __( 'Landscape, recommended 1920×680px.', 'arbee' ) ) ),
 				arbee_f_text( 'banner_title', __( 'Banner title', 'arbee' ), array( 'instructions' => __( 'Leave title and subtitle empty for a slim image-only banner (as on the Privacy page).', 'arbee' ) ) ),
 				arbee_f_textarea( 'banner_subtitle', __( 'Banner subtitle', 'arbee' ), 2 ),
-				arbee_f_repeater(
-					'breadcrumb_parents',
-					__( 'Breadcrumb: items between “Home” and this page', 'arbee' ),
-					array(
-						arbee_f_text( 'label', __( 'Label', 'arbee' ), array( 'wrapper' => array( 'width' => 40 ) ) ),
-						arbee_f_text( 'url', __( 'URL', 'arbee' ), array( 'wrapper' => array( 'width' => 60 ), 'instructions' => __( 'Optional', 'arbee' ) ) ),
-					),
-					array( 'layout' => 'table', 'button_label' => __( 'Add crumb', 'arbee' ) )
-				),
-				arbee_f_text( 'breadcrumb_home', __( 'Breadcrumb: home label', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ) ) ),
-				arbee_f_text( 'breadcrumb_label', __( 'Breadcrumb: this page label', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Defaults to the page title.', 'arbee' ) ) ),
+				arbee_f( 'message', 'breadcrumb_note', __( 'Breadcrumb', 'arbee' ), array( 'message' => __( 'The breadcrumb trail (Home → … → this page) is generated automatically from the primary menu structure and the page title — there is nothing to set here.', 'arbee' ) ) ),
 			),
 			$banner_location,
 			array( 'menu_order' => 0 )
@@ -214,7 +214,7 @@ add_action(
 			__( 'SEO', 'arbee' ),
 			array(
 				arbee_f_textarea( 'seo_description', __( 'Meta description', 'arbee' ), 2, array( 'maxlength' => 320 ) ),
-				arbee_f_image( 'seo_og_image', __( 'Social share image', 'arbee' ) ),
+				arbee_f_image( 'seo_og_image', __( 'Social share image', 'arbee' ), array( 'instructions' => __( 'Recommended 1200×630px (standard social share size).', 'arbee' ) ) ),
 			),
 			array(
 				array(
@@ -222,6 +222,13 @@ add_action(
 						'param'    => 'post_type',
 						'operator' => '==',
 						'value'    => 'page',
+					),
+				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'arbee_product',
 					),
 				),
 			),

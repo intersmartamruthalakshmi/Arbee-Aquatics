@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 
 $arbee_slides   = arbee_rows( 'banner_slides' );
-$arbee_products = arbee_rows( 'banner_products' );
+$arbee_products = arbee_products( 'hero' );
 ?>
 <div id="pageWrapper" class="homePage">
 
@@ -65,18 +65,23 @@ $arbee_products = arbee_rows( 'banner_products' );
 												<div class="rgSide">
 													<div class="productWrapper">
 														<?php foreach ( $arbee_products as $arbee_i => $arbee_p ) : ?>
+															<?php
+															$arbee_p_url     = arbee_product_url( $arbee_p->ID );
+															$arbee_p_image   = arbee_get( 'box_image', $arbee_p->ID );
+															$arbee_p_linktxt = arbee_get( 'hero_link_text', $arbee_p->ID );
+															?>
 															<div class="item">
-																<a class="prodBx"<?php echo arbee_link_attrs( arbee_v( $arbee_p, 'link' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>>
-																	<?php if ( arbee_v( $arbee_p, 'image' ) ) : ?>
+																<a class="prodBx"<?php echo $arbee_p_url ? ' href="' . esc_url( $arbee_p_url ) . '"' : ' href="javascript:void(0)"'; ?> aria-label="<?php echo esc_attr( $arbee_p->post_title ); ?>">
+																	<?php if ( $arbee_p_image ) : ?>
 																		<div class="bxImg">
-																			<?php echo arbee_image( arbee_v( $arbee_p, 'image' ), array( 'width' => 85, 'height' => 80, 'alt' => arbee_v( $arbee_p, 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+																			<?php echo arbee_image( $arbee_p_image, array( 'width' => 85, 'height' => 80, 'alt' => $arbee_p->post_title ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 																		</div>
 																	<?php endif; ?>
 																	<div class="bxCnt">
 																		<div class="index"><?php echo esc_html( arbee_index( $arbee_i ) ); ?></div>
-																		<div class="title"><?php echo arbee_text( arbee_v( $arbee_p, 'title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-																		<?php if ( arbee_has( arbee_v( $arbee_p, 'link_text' ) ) ) : ?>
-																			<div class="txt"><?php echo arbee_text( arbee_v( $arbee_p, 'link_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+																		<div class="title"><?php echo arbee_text( $arbee_p->post_title ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+																		<?php if ( arbee_has( $arbee_p_linktxt ) ) : ?>
+																			<div class="txt"><?php echo arbee_text( $arbee_p_linktxt ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 																		<?php endif; ?>
 																	</div>
 																</a>
@@ -99,13 +104,13 @@ $arbee_products = arbee_rows( 'banner_products' );
 	<?php arbee_part( 'sections/trusted' ); ?>
 
 	<?php
-	$arbee_snippets      = arbee_rows( 'snippet_items' );
+	$arbee_snippets      = arbee_products( 'snippet' );
 	$arbee_snippet_title = arbee_get( 'snippet_title' );
 	if ( empty( $arbee_snippet_title ) || 'Product Snippet' === $arbee_snippet_title ) {
 		$arbee_snippet_title = 'Product Snippet 2';
 	}
 	?>
-	<?php if ( $arbee_snippets || arbee_has( $arbee_snippet_title ) ) : ?>
+	<?php if ( arbee_section_enabled( 'snippet_enabled' ) && ( $arbee_snippets || arbee_has( $arbee_snippet_title ) ) ) : ?>
 		<section id="Snippet">
 			<div class="container">
 				<div class="tleWrap">
@@ -120,19 +125,27 @@ $arbee_products = arbee_rows( 'banner_products' );
 					<div class="swiper snippetSlider">
 						<div class="swiper-wrapper">
 							<?php foreach ( $arbee_snippets as $arbee_s ) : ?>
+								<?php
+								$arbee_s_url     = arbee_product_url( $arbee_s->ID );
+								$arbee_s_image   = arbee_get( 'photo', $arbee_s->ID );
+								$arbee_s_text    = arbee_get( 'snippet_text', $arbee_s->ID );
+								$arbee_s_btntext = arbee_get( 'snippet_button_text', $arbee_s->ID );
+								?>
 								<div class="swiper-slide">
 									<div class="snipbx">
 										<div class="bxImg">
-											<?php echo arbee_image( arbee_v( $arbee_s, 'image' ), array( 'width' => 850, 'height' => 550, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => arbee_v( $arbee_s, 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+											<?php echo arbee_image( $arbee_s_image, array( 'width' => 850, 'height' => 550, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => $arbee_s->post_title ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 										</div>
 										<div class="bxCnt">
-											<div class="title"><?php echo arbee_text( arbee_v( $arbee_s, 'title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+											<div class="title"><?php echo arbee_text( $arbee_s->post_title ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 											<div class="hideBx">
-												<div class="title"><?php echo arbee_text( arbee_v( $arbee_s, 'hover_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-												<?php if ( arbee_has( arbee_v( $arbee_s, 'text' ) ) ) : ?>
-													<div class="txt"><?php echo arbee_lines( arbee_v( $arbee_s, 'text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+												<div class="title"><?php echo arbee_text( $arbee_s->post_title ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+												<?php if ( arbee_has( $arbee_s_text ) ) : ?>
+													<div class="txt"><?php echo arbee_lines( $arbee_s_text ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 												<?php endif; ?>
-												<?php echo arbee_link( arbee_v( $arbee_s, 'link' ), 'expmorebth' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+												<?php if ( $arbee_s_url && arbee_has( $arbee_s_btntext ) ) : ?>
+													<a class="expmorebth" href="<?php echo esc_url( $arbee_s_url ); ?>"><?php echo arbee_text( $arbee_s_btntext ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
+												<?php endif; ?>
 											</div>
 										</div>
 									</div>
@@ -147,7 +160,7 @@ $arbee_products = arbee_rows( 'banner_products' );
 	<?php endif; ?>
 
 	<?php $arbee_why = arbee_rows( 'why_items' ); ?>
-	<?php if ( $arbee_why || arbee_has( arbee_get( 'why_title' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'why_enabled' ) && ( $arbee_why || arbee_has( arbee_get( 'why_title' ) ) ) ) : ?>
 		<section id="WhyArbee">
 			<div class="container">
 				<div class="dFlx">
@@ -194,7 +207,7 @@ $arbee_products = arbee_rows( 'banner_products' );
 	$arbee_members = arbee_rows( 'members_items' );
 	$arbee_mvideo  = arbee_file_url( arbee_get( 'members_video' ) );
 	?>
-	<?php if ( $arbee_members || arbee_has( arbee_get( 'members_title' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'members_enabled' ) && ( $arbee_members || arbee_has( arbee_get( 'members_title' ) ) ) ) : ?>
 		<section id="MemberShip">
 			<div class="container">
 				<div class="dFlx">
@@ -249,7 +262,7 @@ $arbee_products = arbee_rows( 'banner_products' );
 	<?php endif; ?>
 
 	<?php $arbee_groups = arbee_rows( 'globe_groups' ); ?>
-	<?php if ( $arbee_groups || arbee_has( arbee_get( 'globe_title' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'globe_enabled' ) && ( $arbee_groups || arbee_has( arbee_get( 'globe_title' ) ) ) ) : ?>
 		<section id="Globe" class="globerf_section">
 			<div class="container">
 				<div class="dFlx">
@@ -270,11 +283,9 @@ $arbee_products = arbee_rows( 'banner_products' );
 						</div>
 					</div>
 					<div class="center">
-						<?php if ( arbee_get( 'globe_image' ) ) : ?>
-							<div class="bxMap">
-								<?php echo arbee_image( arbee_get( 'globe_image' ), array( 'width' => 580, 'height' => 580, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'globe' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-							</div>
-						<?php endif; ?>
+						<div class="bxMap">
+							<?php echo arbee_image( arbee_get( 'globe_image' ), array( 'width' => 580, 'height' => 580, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'globe' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						</div>
 					</div>
 					<div class="rgSide">
 						<?php if ( $arbee_groups ) : ?>
@@ -328,7 +339,7 @@ $arbee_products = arbee_rows( 'banner_products' );
 	<?php endif; ?>
 
 	<?php $arbee_steps = arbee_rows( 'mfg_steps' ); ?>
-	<?php if ( $arbee_steps || arbee_has( arbee_get( 'mfg_title' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'mfg_enabled' ) && ( $arbee_steps || arbee_has( arbee_get( 'mfg_title' ) ) ) ) : ?>
 		<section id="Manufacturing">
 			<div class="overlayImg">
 				<img src="<?php echo esc_url( arbee_asset( 'images/objectgt.svg' ) ); ?>" width="900" height="700" loading="lazy" class="lazy" alt="">
@@ -371,13 +382,11 @@ $arbee_products = arbee_rows( 'banner_products' );
 	<?php endif; ?>
 
 	<?php $arbee_ocean = arbee_rows( 'ocean_items' ); ?>
-	<?php if ( $arbee_ocean || arbee_has( arbee_get( 'ocean_title' ) ) ) : ?>
+	<?php if ( arbee_section_enabled( 'ocean_enabled' ) && ( $arbee_ocean || arbee_has( arbee_get( 'ocean_title' ) ) ) ) : ?>
 		<section id="PlanetOcean">
-			<?php if ( arbee_get( 'ocean_image' ) ) : ?>
-				<div class="overlayImg">
-					<?php echo arbee_image( arbee_get( 'ocean_image' ), array( 'width' => 1920, 'height' => 700, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'Ocean' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-				</div>
-			<?php endif; ?>
+			<div class="overlayImg">
+				<?php echo arbee_image( arbee_get( 'ocean_image' ), array( 'width' => 1920, 'height' => 700, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'Ocean' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			</div>
 			<div class="container">
 				<div class="dFlx">
 					<div class="lSide">
@@ -414,7 +423,7 @@ $arbee_products = arbee_rows( 'banner_products' );
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'cta_title' ) ) || arbee_get( 'cta_image' ) ) : ?>
+	<?php if ( arbee_section_enabled( 'cta_enabled' ) && ( arbee_has( arbee_get( 'cta_title' ) ) || arbee_get( 'cta_image' ) ) ) : ?>
 		<section id="GetInTouch">
 			<div class="container">
 				<div class="getInTouchBx">
@@ -431,11 +440,9 @@ $arbee_products = arbee_rows( 'banner_products' );
 							</div>
 						</div>
 						<div class="rgSide">
-							<?php if ( arbee_get( 'cta_image' ) ) : ?>
-								<div class="imgBx">
-									<?php echo arbee_image( arbee_get( 'cta_image' ), array( 'width' => 700, 'height' => 450, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'GetInTouch' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-								</div>
-							<?php endif; ?>
+							<div class="imgBx">
+								<?php echo arbee_image( arbee_get( 'cta_image' ), array( 'width' => 700, 'height' => 450, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'GetInTouch' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+							</div>
 						</div>
 					</div>
 				</div>

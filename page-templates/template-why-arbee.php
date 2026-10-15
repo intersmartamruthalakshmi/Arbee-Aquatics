@@ -30,7 +30,7 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 
 	<?php arbee_part( 'sections/page-banner' ); ?>
 
-	<?php if ( arbee_has( arbee_get( 'fresh_title' ) ) || $arbee_fresh ) : ?>
+	<?php if ( arbee_section_enabled( 'fresh_enabled' ) && ( arbee_has( arbee_get( 'fresh_title' ) ) || $arbee_fresh ) ) : ?>
 		<section class="advantagesecbg">
 			<div class="container">
 				<div class="advantleftbg">
@@ -51,15 +51,13 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 						</ul>
 					<?php endif; ?>
 				</div>
-				<?php if ( arbee_get( 'fresh_image' ) ) : ?>
-					<div class="advantgightsec"><?php echo arbee_image( arbee_get( 'fresh_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="advantgightsec"><?php echo arbee_image( arbee_get( 'fresh_image' ), array( 'alt' => 'photo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div style="clear: both;"></div>
 			</div>
 		</section>
 	<?php endif; ?>
 
-	<?php if ( arbee_has( arbee_get( 'exp_title' ) ) || $arbee_certs ) : ?>
+	<?php if ( arbee_section_enabled( 'exp_enabled' ) && ( arbee_has( arbee_get( 'exp_title' ) ) || $arbee_certs ) ) : ?>
 		<section class="advantagesecbg decadbg">
 			<div class="container">
 				<div class="decadbgleft">
@@ -96,7 +94,8 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 
 	<section class="advantagesecbg">
 		<div class="container">
-			<?php if ( arbee_has( arbee_get( 'export_title' ) ) || $arbee_check ) : ?>
+			<?php if ( arbee_section_enabled( 'export_quality_enabled' ) ) : ?>
+			<?php if ( arbee_section_enabled( 'export_enabled' ) && ( arbee_has( arbee_get( 'export_title' ) ) || $arbee_check ) ) : ?>
 				<div class="exportgok">
 					<?php if ( arbee_has( arbee_get( 'export_title' ) ) ) : ?>
 						<h1 class="headstylecom"><?php echo arbee_lines( arbee_get( 'export_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
@@ -124,7 +123,7 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( arbee_has( arbee_get( 'quality_title' ) ) || $arbee_rows ) : ?>
+			<?php if ( arbee_section_enabled( 'quality_enabled' ) && ( arbee_has( arbee_get( 'quality_title' ) ) || $arbee_rows ) ) : ?>
 				<div class="exportlort">
 					<?php if ( arbee_has( arbee_get( 'quality_title' ) ) ) : ?>
 						<h2><?php echo arbee_text( arbee_get( 'quality_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
@@ -150,7 +149,8 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( $arbee_benefits ) : ?>
+			<?php endif; ?>
+			<?php if ( arbee_section_enabled( 'meal_enabled' ) && $arbee_benefits ) : ?>
 				<div class="protienhoplop">
 					<?php foreach ( array_chunk( $arbee_benefits, 2 ) as $arbee_pair ) : ?>
 						<div class="wrapprotin">
@@ -171,13 +171,13 @@ $arbee_check_img = arbee_asset( 'images/checkgt1.png' );
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( arbee_has( arbee_get( 'meal_title' ) ) ) : ?>
+			<?php if ( arbee_section_enabled( 'meal_enabled' ) && arbee_has( arbee_get( 'meal_title' ) ) ) : ?>
 				<div class="mealsetboht">
 					<h1 class="headstylecom"><?php echo arbee_lines( arbee_get( 'meal_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
 					<?php echo arbee_paras( arbee_get( 'meal_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( $arbee_logos ) : ?>
+			<?php if ( arbee_section_enabled( 'cert_enabled' ) && $arbee_logos ) : ?>
 				<div class="ceryfboxdh">
 					<div class="certpochgt">
 						<?php if ( arbee_has( arbee_get( 'cert_title' ) ) ) : ?>

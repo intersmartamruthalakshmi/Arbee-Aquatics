@@ -41,6 +41,7 @@ if ( arbee_has( arbee_v( $arbee_cooker, 'popup_title' ) ) || arbee_has( arbee_v(
 
 	<section class="advantagesecbg techprograpg">
 		<div class="container">
+			<?php if ( arbee_section_enabled( 'intro_enabled' ) ) : ?>
 			<div class="techleftbg">
 				<?php if ( arbee_has( arbee_get( 'intro_title' ) ) ) : ?>
 					<h1 class="headstylecom"><?php echo arbee_lines( arbee_get( 'intro_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
@@ -49,6 +50,8 @@ if ( arbee_has( arbee_v( $arbee_cooker, 'popup_title' ) ) || arbee_has( arbee_v(
 			<div class="techrightbg">
 				<?php echo arbee_paras( arbee_get( 'intro_text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</div>
+			<?php endif; ?>
+			<?php if ( arbee_section_enabled( 'diagram_enabled' ) ) : ?>
 			<div class="oilprocessbx">
 				<?php if ( arbee_has( arbee_get( 'process_title' ) ) ) : ?>
 					<h2><?php echo arbee_lines( arbee_get( 'process_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
@@ -99,6 +102,7 @@ if ( arbee_has( arbee_v( $arbee_cooker, 'popup_title' ) ) || arbee_has( arbee_v(
 				<?php // phpcs:enable ?>
 				<div style="clear: both;"></div>
 			</div>
+			<?php endif; ?>
 			<div style="clear: both;"></div>
 		</div>
 	</section>

@@ -16,9 +16,8 @@ $arbee_eyebrow   = arbee_get( 'trusted_eyebrow' );
 $arbee_heading   = arbee_get( 'trusted_heading' );
 $arbee_sub       = arbee_get( 'trusted_subheading' );
 $arbee_text      = arbee_get( 'trusted_text' );
-$arbee_button    = arbee_get( 'trusted_button' );
 
-if ( ! $arbee_video && ! $arbee_img1 && ! $arbee_img2 && ! $arbee_qualities && ! arbee_has( $arbee_heading ) && ! arbee_has( $arbee_text ) ) {
+if ( ! arbee_section_enabled( 'trusted_enabled' ) || ( ! $arbee_video && ! $arbee_img1 && ! $arbee_img2 && ! $arbee_qualities && ! arbee_has( $arbee_heading ) && ! arbee_has( $arbee_text ) ) ) {
 	return;
 }
 ?>
@@ -75,7 +74,6 @@ if ( ! $arbee_video && ! $arbee_img1 && ! $arbee_img2 && ! $arbee_qualities && !
 					<h4><?php echo arbee_lines( $arbee_sub ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h4>
 				<?php endif; ?>
 				<?php echo arbee_paras( $arbee_text, '' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-				<?php echo arbee_link( $arbee_button, 'expmorebth' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</div>
 		</div>
 	</div>

@@ -71,7 +71,6 @@ function arbee_page_templates() {
 	return array(
 		'page-templates/template-about.php'          => __( 'About Us', 'arbee' ),
 		'page-templates/template-why-arbee.php'      => __( 'Why Arbee', 'arbee' ),
-		'page-templates/template-fish-meal.php'      => __( 'Product: Fish Meal', 'arbee' ),
 		'page-templates/template-technology.php'     => __( 'Technology & Process', 'arbee' ),
 		'page-templates/template-sustainability.php' => __( 'Sustainability', 'arbee' ),
 		'page-templates/template-global-exports.php' => __( 'Global Exports', 'arbee' ),
