@@ -178,29 +178,32 @@ button.enqurfobtn:disabled,
     margin-top: 5px;
 }
 
-/* .contrbook/.covercontact (Name, Phone, Email, Topic) are FIXED-height
-   boxes (62px/52px, set via style.css), so an error message added below
-   the input has nowhere to go but to overflow that fixed box - landing
-   either inside its visible bounds or colliding with the next field's
-   label (which already floats ~29px into the 40px gap below). Rather
-   than try to detect the error state in CSS (:has() support can't be
-   assumed), just make these boxes auto-height everywhere, with a
-   min-height so a normal field (no error) still looks the same as
-   before - the box only grows on its own when content needs more room. */
-.contsoap .contrbook {
-    height: auto;
-    min-height: 62px;
+/* .contrbook/.covercontact (Name, Phone, Email, Topic) and .contrtextarea/
+   .covertextarea (Comments) are FIXED-height white "cards" with a gradient
+   border frame. Letting the error message grow that box (an earlier
+   attempt) made the error text read as part of the card itself - it was
+   now inside the same white background/border as the input. Instead,
+   take it out of the flow entirely and float it in the (already-white-
+   free) gap below the card, same as a typical floating-label form. */
+.contsoap .covercontact,
+.contsoap .covertextarea {
+    overflow: visible;
 }
-.contsoap .covercontact {
-    height: auto;
-    min-height: 62px;
-    padding-bottom: 10px;
+.contsoap .covercontact .help-block,
+.contsoap .covertextarea .help-block {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
 }
-@media only screen and (max-width: 767px) {
-    .contsoap .contrbook,
-    .contsoap .covercontact {
-        min-height: 52px;
-    }
+
+/* Reserve enough of the existing 40px gap for a (possibly 2-line) error
+   message so it doesn't collide with the next field's floating label,
+   which already sits ~29px into that gap. Toggled by forms.js with a
+   plain class rather than a :has() selector, which isn't universally
+   supported. */
+.contsoap .contrbook.has-error {
+    margin-bottom: 70px;
 }
 
 /* A breadcrumb item with nowhere to link (e.g. "Products", a menu grouping

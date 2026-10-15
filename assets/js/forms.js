@@ -21,6 +21,11 @@
     if ($help.length) {
       $help.text(message || $help.data("default") || "").toggleClass("d-none", !message);
     }
+    // Marks the outer row so CSS can reserve extra room for a wrapped error
+    // message without permanently widening the gap for every field - done
+    // with a class rather than a :has() selector, which isn't universally
+    // supported.
+    $field.closest(".contrbook, .contrtextarea").toggleClass("has-error", !!message);
   }
 
   // Validates a single field and immediately shows/clears its message —

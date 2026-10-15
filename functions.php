@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ARBEE_VERSION', '1.0.9' );
+define( 'ARBEE_VERSION', '1.1.0' );
 define( 'ARBEE_DIR', get_template_directory() );
 define( 'ARBEE_URI', get_template_directory_uri() );
 
