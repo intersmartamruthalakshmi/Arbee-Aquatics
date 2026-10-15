@@ -203,7 +203,9 @@ function arbee_handle_enquiry() {
 	}
 
 	$site        = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
-	$subject     = sprintf( '[%s] %s: %s', $site, $form_label, $reply_name );
+	$subject     = 'quote' === $form
+		? sprintf( '%s - %s', $form_label, $site )
+		: sprintf( '[%s] %s: %s', $site, $form_label, $reply_name );
 	$admin_table = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">';
 	foreach ( $lines as $label => $value ) {
 		$admin_table .= '<tr><td style="padding:6px 12px 6px 0; font-weight:bold; vertical-align:top; white-space:nowrap;">' . esc_html( $label ) . '</td><td style="padding:6px 0;">' . nl2br( esc_html( $value ) ) . '</td></tr>';
@@ -222,8 +224,7 @@ function arbee_handle_enquiry() {
 		$confirm_subject = (string) arbee_opt( 'enquiry_confirm_subject' );
 		$confirm_subject = arbee_has( $confirm_subject )
 			? $confirm_subject
-			/* translators: %s: site name */
-			: sprintf( __( 'We received your message - %s', 'arbee' ), $site );
+			: $site;
 
 		$confirm_message = (string) arbee_opt( 'enquiry_confirm_message' );
 		$confirm_message = arbee_has( $confirm_message )

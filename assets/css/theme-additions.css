@@ -168,6 +168,16 @@ button.enqurfobtn:disabled,
     margin-top: 8px;
 }
 
+/* .contrbook is a fixed-height box (62px/52px) with a 40px margin-bottom
+   gap to the next field, and that next field's floating label sits
+   ~11px above ITS OWN box - i.e. ~29px into that same 40px gap. The error
+   message below a field overflows the fixed-height box into that same
+   gap, so a two-line (or even one-line) error text collides with the
+   next field's label. Give the contact form's fields more breathing room. */
+.contsoap .contrbook {
+    margin-bottom: 58px;
+}
+
 /* A breadcrumb item with nowhere to link (e.g. "Products", a menu grouping
    with no archive page of its own) is plain text, not a link — give it the
    same look as the linked crumbs around it. */
