@@ -139,6 +139,13 @@ button.enqurfobtn:disabled,
 .contsoap .iti {
     display: block;
     width: 100%;
+    /* app.min.css's global, unscoped ".iti" rule puts its own border and a
+       fixed 28/30/43/53px height on every intl-tel-input instance site-wide
+       (it was written for a different widget and never scoped). The Request
+       a Quote modal happens to override it in its own CSS; the contact page
+       doesn't, so it showed as a stray extra border here - cancel it. */
+    border: 0;
+    height: auto;
 }
 
 /* style.css declares .contactcap twice — the first copy sets text-align:

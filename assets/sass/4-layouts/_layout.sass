@@ -422,10 +422,12 @@
                 height: 30px
         .iti__flag
             // border-radius: 50%
+            // Was forcing background-size:cover + a fixed background-position
+            // on every flag regardless of the selected country - that clobbers
+            // intl-tel-input's own per-country sprite offset and shows the
+            // wrong flag. Just size the box; let the plugin position its sprite.
             width: 14px
             height: 14px
-            background-size: cover !important
-            background-position: 0px 4px !important
             @media only screen and (min-width: 1551px)
                 width: 22px
                 height: 22px
