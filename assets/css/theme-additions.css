@@ -137,7 +137,8 @@ button.enqurfobtn:disabled,
    the input's own border/background (shared with Name/Email/etc.); this
    only makes the plugin's wrapper span fill the same single bordered row. */
 .contsoap .iti {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     /* app.min.css's global, unscoped ".iti" rule puts its own border and a
        fixed 28/30/43/53px height on every intl-tel-input instance site-wide
@@ -146,6 +147,15 @@ button.enqurfobtn:disabled,
        doesn't, so it showed as a stray extra border here - cancel it. */
     border: 0;
     height: auto;
+}
+/* That same global rule also forces the INPUT itself to height:100% of
+   the ".iti" wrapper - harmless while the wrapper had a real height, but
+   once "height:auto" above made the wrapper's height follow the input's
+   own content, the circular 100% reference left the input's text sitting
+   at the bottom of its box instead of vertically centered. */
+.contsoap .iti input.contact-phone-intl {
+    height: auto;
+    line-height: normal;
 }
 
 /* style.css declares .contactcap twice — the first copy sets text-align:
