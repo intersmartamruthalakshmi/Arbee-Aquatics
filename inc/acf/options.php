@@ -111,7 +111,7 @@ add_action(
 				// ---- Form delivery ----
 				arbee_f_tab( __( 'Form delivery', 'arbee' ) ),
 				arbee_f_text( 'mail_from_name', __( 'Default From name', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Used site-wide (password resets, etc.) and as the fallback below. Falls back to the site title.', 'arbee' ) ) ),
-				arbee_f( 'email', 'mail_from_email', __( 'Default From email', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Falls back to the site admin email. With Brevo SMTP below, this address must be a verified sender in your Brevo account.', 'arbee' ) ) ),
+				arbee_f( 'email', 'mail_from_email', __( 'Default From email', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Falls back to the site admin email. If an SMTP plugin (e.g. WP Mail SMTP) is active, its own From Email setting takes priority.', 'arbee' ) ) ),
 				arbee_f(
 					'message',
 					'form_delivery_note',
@@ -134,25 +134,6 @@ add_action(
 				),
 				arbee_f_text( 'enquiry_confirm_subject', __( 'Confirmation email subject', 'arbee' ), array( 'instructions' => __( 'Leave empty for a sensible default. {site} is replaced with the site name.', 'arbee' ) ) ),
 				arbee_f_textarea( 'enquiry_confirm_message', __( 'Confirmation email message', 'arbee' ), 4, array( 'instructions' => __( 'Leave empty for a sensible default. {name} and {site} are replaced automatically.', 'arbee' ) ) ),
-
-				// ---- Email delivery (Brevo) ----
-				arbee_f_tab( __( 'Email delivery (Brevo)', 'arbee' ) ),
-				arbee_f(
-					'message',
-					'brevo_note',
-					__( 'About this', 'arbee' ),
-					array( 'message' => __( 'By default, WordPress sends mail with PHP\'s built-in mail(), which many hosts block or mark as spam. Turning this on routes all outgoing mail (enquiries, password resets, etc.) through Brevo\'s SMTP relay instead. You will need a free Brevo account — get the SMTP login and key from Brevo → Settings (gear icon) → SMTP & API → SMTP tab.', 'arbee' ) ),
-				),
-				arbee_f(
-					'true_false',
-					'brevo_enabled',
-					__( 'Send mail through Brevo', 'arbee' ),
-					array( 'ui' => 1 )
-				),
-				arbee_f_text( 'brevo_smtp_login', __( 'SMTP login', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'The login shown on the Brevo SMTP tab, e.g. 9a1b2c001@smtp-brevo.com', 'arbee' ) ) ),
-				arbee_f( 'password', 'brevo_smtp_key', __( 'SMTP key', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'The SMTP key (not your Brevo account password).', 'arbee' ) ) ),
-				arbee_f_text( 'brevo_smtp_host', __( 'SMTP host', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'default_value' => 'smtp-relay.brevo.com', 'placeholder' => 'smtp-relay.brevo.com' ) ),
-				arbee_f_text( 'brevo_smtp_port', __( 'SMTP port', 'arbee' ), array( 'wrapper' => array( 'width' => 50 ), 'default_value' => '587', 'placeholder' => '587' ) ),
 
 				// ---- SEO ----
 				arbee_f_tab( __( 'SEO', 'arbee' ) ),

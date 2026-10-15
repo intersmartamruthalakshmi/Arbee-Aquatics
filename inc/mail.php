@@ -1,7 +1,11 @@
 <?php
 /**
- * Site-wide outgoing mail: custom From name/email, optional Brevo SMTP relay.
- * Settings live under Theme Settings → Form delivery / Email delivery (Brevo).
+ * Site-wide outgoing mail: custom From name/email.
+ * Settings live under Theme Settings → Form delivery.
+ * Transport itself (SMTP vs PHP mail()) is left to a dedicated plugin
+ * (e.g. WP Mail SMTP) rather than a theme-level relay - that way outgoing
+ * mail still attempts delivery via PHP mail() if no plugin is configured,
+ * instead of silently depending on theme settings nobody filled in.
  *
  * @package Arbee
  */
@@ -72,34 +76,5 @@ add_filter(
 	function ( $name ) {
 		$from = (string) arbee_opt( 'mail_from_name' );
 		return arbee_has( $from ) ? $from : $name;
-	}
-);
-
-/**
- * Routes outgoing mail through Brevo's SMTP relay when enabled in
- * Theme Settings → Email delivery (Brevo). Left off, WordPress keeps
- * using its default PHP mail() transport.
- */
-add_action(
-	'phpmailer_init',
-	function ( $phpmailer ) {
-		if ( ! arbee_opt( 'brevo_enabled' ) ) {
-			return;
-		}
-		$login = (string) arbee_opt( 'brevo_smtp_login' );
-		$key   = (string) arbee_opt( 'brevo_smtp_key' );
-		if ( '' === $login || '' === $key ) {
-			return;
-		}
-		$host = arbee_has( arbee_opt( 'brevo_smtp_host' ) ) ? (string) arbee_opt( 'brevo_smtp_host' ) : 'smtp-relay.brevo.com';
-		$port = arbee_has( arbee_opt( 'brevo_smtp_port' ) ) ? (int) arbee_opt( 'brevo_smtp_port' ) : 587;
-
-		$phpmailer->isSMTP();
-		$phpmailer->Host       = $host;
-		$phpmailer->Port       = $port;
-		$phpmailer->SMTPAuth   = true;
-		$phpmailer->Username   = $login;
-		$phpmailer->Password   = $key;
-		$phpmailer->SMTPSecure = 465 === $port ? 'ssl' : 'tls';
 	}
 );
