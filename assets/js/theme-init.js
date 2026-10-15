@@ -122,8 +122,15 @@ document.addEventListener("DOMContentLoaded", function () {
         theme: "select2-custom",
     });
 
-    // MOBILE CODE
+    // MOBILE CODE (Request a Quote modal: flag + dial-code only, no editable number here)
     $(".mobile_code").intlTelInput({
+        initialCountry: "in",
+        separateDialCode: true,
+        autoPlaceholder: "off"
+    });
+
+    // CONTACT PAGE PHONE: single field, flag + dial code shown inline with the number input.
+    $(".contact-phone-intl").intlTelInput({
         initialCountry: "in",
         separateDialCode: true,
         autoPlaceholder: "off"

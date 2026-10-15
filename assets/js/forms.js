@@ -92,7 +92,9 @@
   }
 
   function dialCode(form) {
-    const $code = $(form).find(".mobile_code");
+    // Request a Quote modal: separate flag/dial-code field.
+    // Contact page: the flag/dial-code is attached directly to the phone input itself.
+    const $code = $(form).find(".mobile_code, .contact-phone-intl");
     if ($code.length && $.fn.intlTelInput) {
       try {
         const data = $code.intlTelInput("getSelectedCountryData");

@@ -130,20 +130,15 @@ button.enqurfobtn:disabled,
     top: var(--wp-admin--admin-bar--height, 32px);
 }
 
-/* Contact form's country-code field now uses the intl-tel-input flag/dial-code
-   picker (same widget as the Request a Quote modal) in place of the old
-   admin-curated <select>. It gets its own full-width row (same treatment as
-   the Name/Email fields) rather than squeezed into the old select-sized
-   split column, which wasn't wide enough for a flag + dial code + input. */
+/* Contact form's phone field: intl-tel-input attaches its flag/dial-code
+   picker directly to the single phone input (same widget as the Request a
+   Quote modal, but inline here instead of a separate field) rather than the
+   old admin-curated <select> in its own box. .form-control already strips
+   the input's own border/background (shared with Name/Email/etc.); this
+   only makes the plugin's wrapper span fill the same single bordered row. */
 .contsoap .iti {
     display: block;
     width: 100%;
-}
-
-.contsoap input.mobile_code {
-    width: 100%;
-    border: 0;
-    background: transparent;
 }
 
 /* style.css declares .contactcap twice — the first copy sets text-align:

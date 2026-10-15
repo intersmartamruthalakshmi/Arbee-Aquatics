@@ -56,13 +56,8 @@ $arbee_items  = array_filter(
 							</div>
 						</div>
 						<div class="contrbook">
-							<div class="covercontact"> <label class="conspanfox" for="contact_mobile_code"><?php esc_html_e( 'Country code', 'arbee' ); ?></label>
-								<input type="text" placeholder="" class="form-control mobile_code" id="contact_mobile_code" name="country_code_display" autocomplete="off">
-							</div>
-						</div>
-						<div class="contrbook">
 							<div class="covercontact"> <label class="conspanfox" for="contact_phone"><?php echo arbee_text( arbee_get( 'form_label_phone' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></label>
-								<input type="tel" id="contact_phone" name="phone" class="form-control" placeholder="<?php echo esc_attr( arbee_get( 'form_ph_phone' ) ); ?>" required data-validate="required phone" autocomplete="tel-national">
+								<input type="tel" id="contact_phone" name="phone" class="form-control contact-phone-intl" placeholder="<?php echo esc_attr( arbee_get( 'form_ph_phone' ) ); ?>" required data-validate="required phone" autocomplete="tel-national">
 								<div class="help-block danger d-none">Invalid Input</div>
 							</div>
 						</div>
