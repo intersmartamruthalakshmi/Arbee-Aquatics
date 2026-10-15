@@ -224,7 +224,7 @@ function arbee_handle_enquiry() {
 		$confirm_subject = (string) arbee_opt( 'enquiry_confirm_subject' );
 		$confirm_subject = arbee_has( $confirm_subject )
 			? $confirm_subject
-			: $site;
+			: sprintf( '%s - %s', $site, $form_label );
 
 		$confirm_message = (string) arbee_opt( 'enquiry_confirm_message' );
 		$confirm_message = arbee_has( $confirm_message )
