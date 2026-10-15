@@ -172,9 +172,10 @@ button.enqurfobtn:disabled,
    gap to the next field, and that next field's floating label sits
    ~11px above ITS OWN box - i.e. ~29px into that same 40px gap. The error
    message below a field overflows the fixed-height box into that same
-   gap, so a two-line (or even one-line) error text collides with the
-   next field's label. Give the contact form's fields more breathing room. */
-.contsoap .contrbook {
+   gap, colliding with the next field's label - but only while an error
+   is actually showing, so only expand the gap then (matches the design
+   the rest of the time, when there's no error to make room for). */
+.contsoap .contrbook:has(.help-block:not(.d-none)) {
     margin-bottom: 58px;
 }
 
