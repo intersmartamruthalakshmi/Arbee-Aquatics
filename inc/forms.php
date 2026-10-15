@@ -202,10 +202,9 @@ function arbee_handle_enquiry() {
 		$headers[]  = 'From: "' . $from_label . '" <' . $from_email . '>';
 	}
 
-	$site        = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
-	$subject     = 'quote' === $form
-		? sprintf( '%s - %s', $form_label, $site )
-		: sprintf( '[%s] %s: %s', $site, $form_label, $reply_name );
+	$site           = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	$subject_label  = 'quote' === $form ? $form_label : __( 'Contact', 'arbee' );
+	$subject        = sprintf( '%s - %s', $subject_label, $site );
 	$admin_table = '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">';
 	foreach ( $lines as $label => $value ) {
 		$admin_table .= '<tr><td style="padding:6px 12px 6px 0; font-weight:bold; vertical-align:top; white-space:nowrap;">' . esc_html( $label ) . '</td><td style="padding:6px 0;">' . nl2br( esc_html( $value ) ) . '</td></tr>';
@@ -224,7 +223,7 @@ function arbee_handle_enquiry() {
 		$confirm_subject = (string) arbee_opt( 'enquiry_confirm_subject' );
 		$confirm_subject = arbee_has( $confirm_subject )
 			? $confirm_subject
-			: sprintf( '%s - %s', $site, $form_label );
+			: $site;
 
 		$confirm_message = (string) arbee_opt( 'enquiry_confirm_message' );
 		$confirm_message = arbee_has( $confirm_message )
