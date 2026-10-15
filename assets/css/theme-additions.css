@@ -178,21 +178,29 @@ button.enqurfobtn:disabled,
     margin-top: 5px;
 }
 
-/* .contrbook/.covercontact (Name, Phone) are fixed-height boxes (62px/52px)
-   with a 40px margin-bottom gap to the next field, and that next field's
-   floating label already sits ~11px above ITS OWN box - i.e. ~29px into
-   that same 40px gap. An error message overflows the fixed-height box
-   into that same gap, colliding with the next field's label. Rather than
-   pushing the next field further away (which reads as an oversized gap
-   even when the overflow itself is small), let the box grow to fit its
-   own content while an error is showing, so the next field only moves
-   down by exactly as much as the error message actually needs. */
-.contsoap .contrbook:has(.help-block:not(.d-none)) {
+/* .contrbook/.covercontact (Name, Phone, Email, Topic) are FIXED-height
+   boxes (62px/52px, set via style.css), so an error message added below
+   the input has nowhere to go but to overflow that fixed box - landing
+   either inside its visible bounds or colliding with the next field's
+   label (which already floats ~29px into the 40px gap below). Rather
+   than try to detect the error state in CSS (:has() support can't be
+   assumed), just make these boxes auto-height everywhere, with a
+   min-height so a normal field (no error) still looks the same as
+   before - the box only grows on its own when content needs more room. */
+.contsoap .contrbook {
     height: auto;
+    min-height: 62px;
 }
-.contsoap .contrbook:has(.help-block:not(.d-none)) .covercontact {
+.contsoap .covercontact {
     height: auto;
+    min-height: 62px;
     padding-bottom: 10px;
+}
+@media only screen and (max-width: 767px) {
+    .contsoap .contrbook,
+    .contsoap .covercontact {
+        min-height: 52px;
+    }
 }
 
 /* A breadcrumb item with nowhere to link (e.g. "Products", a menu grouping
