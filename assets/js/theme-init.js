@@ -129,22 +129,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // MOBILE CODE (Request a Quote modal: flag + dial-code only, no editable number here)
-    // utilsScript enables per-country number validation (isValidNumber) in forms.js.
-    const intlTelUtils = "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js";
-
+    // window.intlTelInputUtils (enqueued as a real dependency, see inc/enqueue.php)
+    // is already loaded by this point, so it's picked up immediately instead of
+    // intlTelInput's own lazy "utilsScript" option, which only starts fetching
+    // it after init and leaves a gap where forms.js's per-country phone check
+    // silently has nothing to call yet.
     $(".mobile_code").intlTelInput({
         initialCountry: "in",
         separateDialCode: true,
-        autoPlaceholder: "off",
-        utilsScript: intlTelUtils
+        autoPlaceholder: "off"
     });
 
     // CONTACT PAGE PHONE: single field, flag + dial code shown inline with the number input.
     $(".contact-phone-intl").intlTelInput({
         initialCountry: "in",
         separateDialCode: true,
-        autoPlaceholder: "off",
-        utilsScript: intlTelUtils
+        autoPlaceholder: "off"
     });
 
     // PRELOADER

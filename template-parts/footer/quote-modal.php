@@ -9,7 +9,6 @@
 defined( 'ABSPATH' ) || exit;
 
 $arbee_topics = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) arbee_opt( 'quote_topics' ) ) ) ) );
-$arbee_ph     = arbee_opt( 'quote_topic_placeholder' );
 ?>
 <div class="modal fade arbeeModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
@@ -76,9 +75,13 @@ $arbee_ph     = arbee_opt( 'quote_topic_placeholder' );
 										<label for="quote_topic"><?php echo arbee_text( arbee_opt( 'quote_label_topic' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></label>
 										<select class="form-control select2" id="quote_topic" name="topic" data-select2-id="select2" data-validate="required"
 											aria-label="<?php echo esc_attr( arbee_opt( 'quote_label_topic' ) ); ?>">
-											<?php if ( arbee_has( $arbee_ph ) ) : ?>
-												<option value="" selected disabled="disabled"><?php echo arbee_text( $arbee_ph ); // phpcs:ignore WordPress.Security.EscapeOutput ?></option>
-											<?php endif; ?>
+											<?php
+											// No separate disabled placeholder option here (unlike before): the
+											// real topic list already starts with "General Enquiry" - a second,
+											// disabled "General Enquiry" placeholder on top of that just showed
+											// the same label twice in the open dropdown. Matches the Contact
+											// form's dropdown, which has never had a placeholder option either.
+											?>
 											<?php foreach ( $arbee_topics as $arbee_topic ) : ?>
 												<option value="<?php echo esc_attr( $arbee_topic ); ?>"><?php echo esc_html( $arbee_topic ); ?></option>
 											<?php endforeach; ?>

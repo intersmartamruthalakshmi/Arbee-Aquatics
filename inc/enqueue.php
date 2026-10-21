@@ -66,8 +66,15 @@ add_action(
 		wp_enqueue_script( 'scrollreveal', 'https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.js', array(), null, true );
 		wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), null, true );
 		wp_enqueue_script( 'intl-tel-input', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js', array( 'jquery' ), null, true );
+		// Loaded as a real dependency instead of via intlTelInput's own lazy
+		// "utilsScript" option: that option only starts fetching it after
+		// init, so window.intlTelInputUtils can still be undefined for a
+		// moment after the form renders - during which forms.js silently
+		// skips the per-country phone check it depends on and falls back to
+		// the generic 7-15 digit check. Loading it up front removes that gap.
+		wp_enqueue_script( 'intl-tel-input-utils', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js', array( 'intl-tel-input' ), null, true );
 		wp_enqueue_script( 'lenis', 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.41/dist/lenis.min.js', array(), null, true );
-		wp_enqueue_script( 'arbee-init', $js . 'theme-init.js', array( 'jquery', 'bootstrap', 'scrollreveal', 'select2', 'intl-tel-input', 'lenis' ), $v, true );
+		wp_enqueue_script( 'arbee-init', $js . 'theme-init.js', array( 'jquery', 'bootstrap', 'scrollreveal', 'select2', 'intl-tel-input', 'intl-tel-input-utils', 'lenis' ), $v, true );
 		wp_enqueue_script( 'owl-carousel', $js . 'owl.carousel.min.js', array( 'jquery' ), $v, true );
 		wp_enqueue_script( 'arbee-custom', $js . 'custom.js', array( 'jquery', 'owl-carousel' ), $v, true );
 

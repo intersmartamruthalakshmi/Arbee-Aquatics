@@ -831,7 +831,6 @@ return array(
 		'quote_label_email'       => 'Email*',
 		'quote_ph_email'          => 'Enter your email address',
 		'quote_label_topic'       => 'What do you want to know about?*',
-		'quote_topic_placeholder' => 'General Enquiry',
 		'quote_topics'            => "General Enquiry\nNormal Enquiry",
 		'quote_label_comments'    => 'Comments',
 		'quote_ph_comments'       => 'Message',
