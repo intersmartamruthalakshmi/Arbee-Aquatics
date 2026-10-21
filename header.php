@@ -49,7 +49,7 @@ $arbee_quote_label = arbee_opt( 'header_quote_label' );
 					</a>
 				</div>
 				<div class="rgSide">
-					<nav class="navigationWrapper" id="navMenu" aria-label="<?php esc_attr_e( 'Main navigation', 'arbee' ); ?>">
+					<nav class="navigationWrapper" id="navMenu" data-lenis-prevent aria-label="<?php esc_attr_e( 'Main navigation', 'arbee' ); ?>">
 						<div class="mobileWrap sticky">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 								<?php echo arbee_image( $arbee_logo, array( 'width' => 150, 'height' => 150, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>

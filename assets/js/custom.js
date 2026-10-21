@@ -117,9 +117,15 @@ document.addEventListener("DOMContentLoaded", () => {
           const currentY = window.scrollY;
 
           header?.classList.toggle("sticky", currentY > 80);
+          // Never hide the header (and the mobile nav panel nested inside
+          // it) while that same nav panel is open - otherwise any scroll
+          // picked up while the visitor is still inside the open menu
+          // closes it out from under them.
           header?.classList.toggle(
             "hide",
-            currentY > lastScrollY && currentY > 120,
+            currentY > lastScrollY &&
+              currentY > 120 &&
+              !navMenu?.classList.contains("open"),
           );
 
           lastScrollY = currentY;

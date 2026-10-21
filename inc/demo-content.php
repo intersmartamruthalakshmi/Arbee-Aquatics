@@ -144,6 +144,24 @@ $privacy_body = <<<'HTML'
 <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at: <a href="mailto:digital@arbeeglobal.com">digital@arbeeglobal.com</a></p>
 HTML;
 
+$terms_body = <<<'HTML'
+<p>These Terms and Conditions govern your use of the Arbee website. By accessing or using this website, you agree to be bound by these terms. If you do not agree with any part of these terms, please do not use this website.</p>
+<h3>Use of This Website</h3>
+<p>The content on this website — including text, images, logos, and product information — is provided for general information about Arbee's products and services. You agree to use this website only for lawful purposes and in a way that does not infringe the rights of, or restrict, anyone else's use of it.</p>
+<h3>Intellectual Property</h3>
+<p>All trademarks, logos, product names, and content on this website are the property of Arbee or its licensors and are protected by applicable intellectual property laws. Nothing on this website should be construed as granting any licence or right to use any trademark without our prior written permission.</p>
+<h3>Product Information</h3>
+<p>We make reasonable efforts to ensure product information on this website is accurate and up to date. However, specifications, availability, and certifications are subject to change without notice. Please contact us directly to confirm current product details before placing an order.</p>
+<h3>Enquiries and Quotations</h3>
+<p>Submitting an enquiry or request for a quote through this website does not constitute a binding order. All orders are subject to separate written agreement and our standard terms of sale.</p>
+<h3>Limitation of Liability</h3>
+<p>Arbee will not be liable for any direct, indirect, or consequential loss arising from the use of, or inability to use, this website, to the fullest extent permitted by law.</p>
+<h3>Changes to These Terms</h3>
+<p>We may update these Terms and Conditions from time to time. Continued use of this website after changes are posted constitutes acceptance of the revised terms.</p>
+<h3>Contact Us</h3>
+<p>If you have any questions about these Terms and Conditions, please contact us at: <a href="mailto:digital@arbeeglobal.com">digital@arbeeglobal.com</a></p>
+HTML;
+
 return array(
 
 	/* ==================================================================
@@ -749,6 +767,26 @@ return array(
 				'legal_body'  => $privacy_body,
 			),
 		),
+
+		// ---------------- terms.php ----------------
+		'terms-conditions'  => array(
+			'title'    => 'Terms & Conditions',
+			'template' => 'page-templates/template-privacy.php',
+			'group'    => 'legal',
+			'order'    => 9,
+			'banner'   => array(
+				'banner_image'     => 'img:privacybg.jpg',
+				'banner_title'     => '',
+				'banner_subtitle'  => '',
+				'breadcrumb_home'  => 'Home',
+				'breadcrumb_label' => 'Terms & Conditions',
+			),
+			'fields'   => array(
+				'legal_title' => 'Terms & Conditions',
+				'legal_date'  => 'Effective Date: 01/03/2025, Saturday',
+				'legal_body'  => $terms_body,
+			),
+		),
 	),
 
 	/* ==================================================================
@@ -857,7 +895,7 @@ return array(
 			'name'  => 'Footer: Legal',
 			'items' => array(
 				array( 'title' => 'Privacy', 'page' => 'privacy-policy' ),
-				array( 'title' => 'Terms & Conditions', 'url' => '#' ),
+				array( 'title' => 'Terms & Conditions', 'page' => 'terms-conditions' ),
 			),
 		),
 	),

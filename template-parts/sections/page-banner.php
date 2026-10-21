@@ -39,8 +39,8 @@ $arbee_crumbs   = arbee_breadcrumbs();
 		<ul>
 			<?php foreach ( $arbee_crumbs as $arbee_crumb ) : ?>
 				<?php $arbee_crumb_url = arbee_v( $arbee_crumb, 'url' ); ?>
-				<?php if ( arbee_has( $arbee_crumb_url ) ) : ?>
-					<li><a href="<?php echo esc_url( $arbee_crumb_url ); ?>"<?php echo ! empty( $arbee_crumb['current'] ) ? ' aria-current="page"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
+				<?php if ( empty( $arbee_crumb['current'] ) && arbee_has( $arbee_crumb_url ) ) : ?>
+					<li><a href="<?php echo esc_url( $arbee_crumb_url ); ?>"><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></li>
 				<?php else : ?>
 					<?php // A crumb with nowhere to link (e.g. "Products", a menu grouping with no archive page) — a bare <a> with no href picks up an unstyled/invisible colour in this theme's CSS, so this stays plain text. ?>
 					<li><span<?php echo ! empty( $arbee_crumb['current'] ) ? ' aria-current="page"' : ''; ?>><?php echo arbee_text( arbee_v( $arbee_crumb, 'label' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></li>

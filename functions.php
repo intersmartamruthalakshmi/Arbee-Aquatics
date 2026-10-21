@@ -16,6 +16,7 @@ require ARBEE_DIR . '/inc/helpers.php';
 require ARBEE_DIR . '/inc/enqueue.php';
 require ARBEE_DIR . '/inc/menus.php';
 require ARBEE_DIR . '/inc/seo.php';
+require ARBEE_DIR . '/inc/security.php';
 require ARBEE_DIR . '/inc/mail.php';
 require ARBEE_DIR . '/inc/forms.php';
 require ARBEE_DIR . '/inc/acf/builder.php';

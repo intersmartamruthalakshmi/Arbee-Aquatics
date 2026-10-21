@@ -3,12 +3,10 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // COMMON AUTOPLAY PAUSE WHILE HOVER (index1.php)
-  document.querySelectorAll('.swiper').forEach(el => el.swiper && (
-    el.addEventListener('mouseenter', () => el.swiper.autoplay.stop()),
-    el.addEventListener('mouseleave', () => el.swiper.autoplay.start())
-  ));
-
+  // COMMON AUTOPLAY PAUSE WHILE HOVER (index1.php): handled natively via
+  // the `pauseOnMouseEnter` autoplay option below, applied after each
+  // slider's Swiper instance is created by init(). A manual listener here
+  // would run before any `.swiper` element has a `.swiper` instance.
   const autoplay = {
     delay: 2500,
     disableOnInteraction: false,

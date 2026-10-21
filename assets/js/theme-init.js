@@ -44,7 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // SCROLL REVEAL
-    const sr = ScrollReveal({
+    // Guarded like the WOW check above: if the CDN script is ever blocked,
+    // slow, or fails its integrity check, ScrollReveal() throws and used to
+    // take down every unrelated feature below it (footer accordion, select2,
+    // intl-tel-input, preloader fade-out) since none of them ran afterward.
+    const sr = ( typeof ScrollReveal !== "undefined" ) ? ScrollReveal({
         distance: '50px',
         duration: 1000,
         easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
@@ -53,40 +57,42 @@ document.addEventListener("DOMContentLoaded", function () {
         cleanup: true,
         reset: true,
         viewFactor: 0.10
-    });
+    }) : null;
 
-    sr.reveal('.reveal-up', {
-        origin: 'bottom'
-    });
-    sr.reveal('.reveal-down', {
-        origin: 'top'
-    });
-    sr.reveal('.reveal-left', {
-        origin: 'left'
-    });
-    sr.reveal('.reveal-right', {
-        origin: 'right'
-    });
-    sr.reveal('.reveal-stagger > *', {
-        origin: 'bottom',
-        interval: 150
-    });
-    sr.reveal('.reveal-in', {
-        distance: '0px',
-        opacity: 0,
-        scale: 1,
-    });
-    sr.reveal('.reveal-out', {
-        distance: '0px',
-        opacity: 1,
-        scale: 1,
-        afterReveal: function (el) {
-            setTimeout(() => {
-                el.style.transition = 'opacity 0.8s ease';
-                el.style.opacity = '0';
-            }, 1500);
-        }
-    });
+    if ( sr ) {
+        sr.reveal('.reveal-up', {
+            origin: 'bottom'
+        });
+        sr.reveal('.reveal-down', {
+            origin: 'top'
+        });
+        sr.reveal('.reveal-left', {
+            origin: 'left'
+        });
+        sr.reveal('.reveal-right', {
+            origin: 'right'
+        });
+        sr.reveal('.reveal-stagger > *', {
+            origin: 'bottom',
+            interval: 150
+        });
+        sr.reveal('.reveal-in', {
+            distance: '0px',
+            opacity: 0,
+            scale: 1,
+        });
+        sr.reveal('.reveal-out', {
+            distance: '0px',
+            opacity: 1,
+            scale: 1,
+            afterReveal: function (el) {
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.8s ease';
+                    el.style.opacity = '0';
+                }, 1500);
+            }
+        });
+    }
 
     // FOOTER
     function footerAccordionSetup() {
@@ -123,17 +129,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // MOBILE CODE (Request a Quote modal: flag + dial-code only, no editable number here)
+    // utilsScript enables per-country number validation (isValidNumber) in forms.js.
+    const intlTelUtils = "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js";
+
     $(".mobile_code").intlTelInput({
         initialCountry: "in",
         separateDialCode: true,
-        autoPlaceholder: "off"
+        autoPlaceholder: "off",
+        utilsScript: intlTelUtils
     });
 
     // CONTACT PAGE PHONE: single field, flag + dial code shown inline with the number input.
     $(".contact-phone-intl").intlTelInput({
         initialCountry: "in",
         separateDialCode: true,
-        autoPlaceholder: "off"
+        autoPlaceholder: "off",
+        utilsScript: intlTelUtils
     });
 
     // PRELOADER
@@ -148,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // LENIS
-    if (window.lenis) {
+    if (window.lenis && sr) {
         window.lenis.on('scroll', () => sr.sync());
     }
 

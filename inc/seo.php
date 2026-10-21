@@ -29,6 +29,15 @@ add_action(
 			echo '<link rel="icon" href="' . esc_url( arbee_asset( 'images/favicon.ico' ) ) . '">' . "\n";
 		}
 
+		// Keep non-production environments (dev/staging) out of search
+		// results. Anything other than the live domain set in Theme
+		// Settings → SEO is treated as non-production.
+		$arbee_live_host = wp_parse_url( (string) arbee_opt( 'seo_production_url' ), PHP_URL_HOST );
+		$arbee_this_host = wp_parse_url( home_url(), PHP_URL_HOST );
+		if ( ! $arbee_live_host || strtolower( (string) $arbee_live_host ) !== strtolower( (string) $arbee_this_host ) ) {
+			echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+		}
+
 		if ( arbee_seo_plugin_active() ) {
 			return;
 		}
@@ -39,6 +48,12 @@ add_action(
 			$description = arbee_opt( 'seo_default_description' );
 		}
 		$og_image = $post_id ? arbee_get( 'seo_og_image', $post_id ) : 0;
+		if ( ! $og_image && $post_id && 'arbee_product' === get_post_type( $post_id ) ) {
+			// Each product has its own photo already (used in the homepage
+			// snippet slider) - fall back to that instead of the sitewide
+			// default image, so every product doesn't share one OG image.
+			$og_image = arbee_get( 'photo', $post_id );
+		}
 		if ( ! $og_image ) {
 			$og_image = arbee_opt( 'seo_default_og_image' );
 		}
@@ -59,13 +74,24 @@ add_action(
 		if ( arbee_has( $description ) ) {
 			echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
 		}
+		$arbee_og_image_src = '';
 		if ( $og_image ) {
-			$src = wp_get_attachment_image_url( (int) $og_image, 'full' );
-			if ( $src ) {
-				echo '<meta property="og:image" content="' . esc_url( $src ) . '">' . "\n";
+			$arbee_og_image_src = wp_get_attachment_image_url( (int) $og_image, 'full' );
+			if ( $arbee_og_image_src ) {
+				echo '<meta property="og:image" content="' . esc_url( $arbee_og_image_src ) . '">' . "\n";
 			}
 		}
 		echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
+
+		// Twitter Cards - reuses the Open Graph title/description/image above.
+		echo '<meta name="twitter:card" content="' . ( $arbee_og_image_src ? 'summary_large_image' : 'summary' ) . '">' . "\n";
+		echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '">' . "\n";
+		if ( arbee_has( $description ) ) {
+			echo '<meta name="twitter:description" content="' . esc_attr( $description ) . '">' . "\n";
+		}
+		if ( $arbee_og_image_src ) {
+			echo '<meta name="twitter:image" content="' . esc_url( $arbee_og_image_src ) . '">' . "\n";
+		}
 	},
 	1
 );

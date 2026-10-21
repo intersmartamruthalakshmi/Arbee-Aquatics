@@ -28,7 +28,7 @@ $arbee_social = array_filter(
 <footer>
 	<div class="respcontainer">
 		<div class="footerlogosec">
-			<div class="logofoterhg"><?php echo arbee_image( arbee_opt( 'footer_logo' ), array( 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+			<div class="logofoterhg"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"><?php echo arbee_image( arbee_opt( 'footer_logo' ), array( 'alt' => 'logo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a></div>
 			<?php if ( arbee_has( arbee_opt( 'footer_about' ) ) ) : ?>
 				<p><?php echo arbee_lines( arbee_opt( 'footer_about' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 			<?php endif; ?>
@@ -46,7 +46,7 @@ $arbee_social = array_filter(
 			<?php arbee_footer_menu( 'footer_products', 'foterdragmenu' ); ?>
 			<?php if ( arbee_has( arbee_opt( 'footer_map_url' ) ) ) : ?>
 				<a href="<?php echo esc_url( arbee_opt( 'footer_map_url' ) ); ?>" class="foterrehtbtn" target="_blank" rel="noopener">
-					<span><img src="<?php echo esc_url( arbee_asset( 'images/map.png' ) ); ?>" alt=""></span>
+					<span><img src="<?php echo esc_url( arbee_asset( 'images/map.png' ) ); ?>" alt="<?php esc_attr_e( 'Google Map', 'arbee' ); ?>"></span>
 					<?php esc_html_e( 'GOOGLE MAP', 'arbee' ); ?>
 				</a>
 			<?php endif; ?>

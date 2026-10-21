@@ -14,6 +14,8 @@ $arbee_products = arbee_products( 'hero' );
 ?>
 <div id="pageWrapper" class="homePage">
 
+	<h1 class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) . ( arbee_has( get_bloginfo( 'description' ) ) ? ' - ' . get_bloginfo( 'description' ) : '' ) ); ?></h1>
+
 	<?php if ( $arbee_slides ) : ?>
 		<section id="MainBanner">
 			<div class="swiper bannerSlider">
@@ -172,7 +174,7 @@ $arbee_products = arbee_products( 'hero' );
 										<div class="arbeeBx">
 											<?php if ( arbee_v( $arbee_w, 'icon' ) ) : ?>
 												<div class="icon">
-													<?php echo arbee_image( arbee_v( $arbee_w, 'icon' ), array( 'width' => 40, 'height' => 40, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+													<?php echo arbee_image( arbee_v( $arbee_w, 'icon' ), array( 'width' => 40, 'height' => 40, 'alt' => arbee_v( $arbee_w, 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 												</div>
 											<?php endif; ?>
 											<div class="bxCnt">
@@ -361,7 +363,7 @@ $arbee_products = arbee_products( 'hero' );
 									<div class="manufactureBx">
 										<?php if ( arbee_v( $arbee_st, 'icon' ) ) : ?>
 											<div class="icon">
-												<?php echo arbee_image( arbee_v( $arbee_st, 'icon' ), array( 'width' => 70, 'height' => 70, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+												<?php echo arbee_image( arbee_v( $arbee_st, 'icon' ), array( 'width' => 70, 'height' => 70, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => arbee_v( $arbee_st, 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 											</div>
 										<?php endif; ?>
 										<div class="index"><?php echo esc_html( arbee_index( $arbee_i ) ); ?></div>
@@ -408,7 +410,7 @@ $arbee_products = arbee_products( 'hero' );
 										<div class="oceanBx">
 											<?php if ( arbee_v( $arbee_o, 'icon' ) ) : ?>
 												<div class="icon">
-													<?php echo arbee_image( arbee_v( $arbee_o, 'icon' ), array( 'width' => 80, 'height' => 80, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+													<?php echo arbee_image( arbee_v( $arbee_o, 'icon' ), array( 'width' => 80, 'height' => 80, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => arbee_v( $arbee_o, 'text' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 												</div>
 											<?php endif; ?>
 											<div class="txt"><?php echo arbee_lines( arbee_v( $arbee_o, 'text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>

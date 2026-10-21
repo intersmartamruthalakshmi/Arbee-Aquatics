@@ -141,6 +141,7 @@ add_action(
 				arbee_f_textarea( 'seo_default_description', __( 'Default meta description', 'arbee' ), 2 ),
 				arbee_f_text( 'seo_author', __( 'Meta author', 'arbee' ) ),
 				arbee_f_image( 'seo_default_og_image', __( 'Default social share image', 'arbee' ), array( 'instructions' => __( 'Recommended 1200×630px (standard social share size).', 'arbee' ) ) ),
+				arbee_f_text( 'seo_production_url', __( 'Live production URL', 'arbee' ), array( 'instructions' => __( 'e.g. https://arbeeaquatic.com - any other host (staging, dev) automatically gets a noindex, nofollow tag.', 'arbee' ) ) ),
 
 				// ---- 404 ----
 				arbee_f_tab( __( '404 page', 'arbee' ) ),

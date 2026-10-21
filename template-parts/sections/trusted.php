@@ -50,7 +50,7 @@ if ( ! arbee_section_enabled( 'trusted_enabled' ) || ( ! $arbee_video && ! $arbe
 										<div class="qualityBx">
 											<?php if ( arbee_v( $arbee_q, 'icon' ) ) : ?>
 												<div class="icon">
-													<?php echo arbee_image( arbee_v( $arbee_q, 'icon' ), array( 'width' => 70, 'height' => 70, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+													<?php echo arbee_image( arbee_v( $arbee_q, 'icon' ), array( 'width' => 70, 'height' => 70, 'loading' => 'lazy', 'class' => 'lazy', 'alt' => arbee_v( $arbee_q, 'text' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 												</div>
 											<?php endif; ?>
 											<div class="txt"><?php echo arbee_text( arbee_v( $arbee_q, 'text' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>

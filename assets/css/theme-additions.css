@@ -206,6 +206,60 @@ button.enqurfobtn:disabled,
     margin-bottom: 70px;
 }
 
+/* .help-block.danger/.success (assets/sass/1-base/_base.sass) use pure
+   red/green - compiled into app.min.css, which isn't rebuilt from the .sass
+   source in this repo, so the override has to live here instead. Pure red
+   on white reads as harsh; swap both for the same muted tones already used
+   for field borders above. */
+.help-block.danger {
+    color: #dc3545 !important;
+}
+.help-block.success {
+    color: #198754 !important;
+}
+
+/* Technology & Process diagram: every circle other than the permanently
+   highlighted "Raw fish" one only showed a 1px border-colour change on
+   hover (#0000001f -> #0089cf) - too subtle to read as a hover state. */
+.techniclab li a:hover {
+    border-color: #0089cf;
+    box-shadow: 0 0 0 2px rgba(0, 137, 207, 0.25);
+}
+
+/* Technology & Process diagram, "Raw fish" node (.blubgsec): style.css already
+   sets its <a> and <h6> text to white for contrast against the blue
+   background, but the generic "h1,h2,h3,h4,h5,h6{color:$black}" base rule
+   (assets/sass/1-base/_base.sass) targets the <h3> title directly, so it
+   wins over the inherited white and the title stays black-on-blue. */
+.techniclab li.blubgsec h3,
+.techniclab li.blubgsec h4 {
+    color: #ffffff;
+}
+
+/* The mobile nav panel (#navMenu, z-index:1 inside #Header's own z-index:10
+   stacking context) sits BELOW the fixed "Request a Quote / Call / Mail"
+   buttons (assets/css/style.css, z-index:999) in the page's overall stacking
+   order. With the hamburger menu open, those buttons visually float on top
+   of the open menu's links, overlapping them and making the underlying
+   text hard to read/tap. Raise the header above them, but still under
+   Bootstrap's modal layer (z-index 1050+) so the Request-a-Quote modal
+   still wins. */
+#Header {
+    z-index: 1000;
+}
+
+/* Select2 dropdown arrow (.select2-container--select2-custom, app.min.css):
+   two separate rules both fire when the dropdown opens - one rotates the
+   .select2-selection__arrow WRAPPER 180deg via [aria-expanded="true"], the
+   other rotates the visible chevron drawn on that same wrapper's ::after
+   180deg via .select2-container--open. Rotating the wrapper AND the icon
+   drawn inside it by 180deg each cancels out to a net 360deg, so the arrow
+   never visually points upward when open. Cancel the (invisible either way)
+   wrapper rotation and keep only the ::after chevron's. */
+.select2-container--select2-custom .select2-selection--single[aria-expanded="true"] .select2-selection__arrow {
+    transform: none;
+}
+
 /* A breadcrumb item with nowhere to link (e.g. "Products", a menu grouping
    with no archive page of its own) is plain text, not a link — give it the
    same look as the linked crumbs around it. */

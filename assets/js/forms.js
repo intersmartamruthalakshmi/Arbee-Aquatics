@@ -61,6 +61,15 @@
         message = "Phone number cannot exceed 15 digits.";
       } else if (!PHONE_DIGITS_RE.test(digits)) {
         message = "Only numbers are allowed.";
+      } else {
+        // Precise, country-specific length/format check via the selected
+        // dial code (intl-tel-input's utils.js, loaded in theme-init.js).
+        const data = phoneCountryData($el.closest("form"));
+        if (data && data.iso2 && window.intlTelInputUtils && typeof window.intlTelInputUtils.isValidNumber === "function") {
+          if (!window.intlTelInputUtils.isValidNumber(digits, data.iso2)) {
+            message = "Please enter a valid phone number for the selected country.";
+          }
+        }
       }
     } else if (value && rules.includes("textarea")) {
       if (value.length < 3) {
@@ -96,16 +105,21 @@
     $status.removeClass("success danger d-none").addClass(type).text(message);
   }
 
-  function dialCode(form) {
-    // Request a Quote modal: separate flag/dial-code field.
-    // Contact page: the flag/dial-code is attached directly to the phone input itself.
+  // Request a Quote modal: separate flag/dial-code field.
+  // Contact page: the flag/dial-code is attached directly to the phone input itself.
+  function phoneCountryData(form) {
     const $code = $(form).find(".mobile_code, .contact-phone-intl");
     if ($code.length && $.fn.intlTelInput) {
       try {
-        const data = $code.intlTelInput("getSelectedCountryData");
-        if (data && data.dialCode) return "+" + data.dialCode;
+        return $code.intlTelInput("getSelectedCountryData") || null;
       } catch (e) { /* plugin not initialised */ }
     }
+    return null;
+  }
+
+  function dialCode(form) {
+    const data = phoneCountryData(form);
+    if (data && data.dialCode) return "+" + data.dialCode;
     return String($(form).find('[name="country_code"]').val() || "");
   }
 

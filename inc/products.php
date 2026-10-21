@@ -61,6 +61,29 @@ add_action(
 );
 
 /**
+ * The product rewrite rules above are built once per request from whatever
+ * products are already published, so a brand-new product has no rule yet
+ * and 404s on the frontend until the rewrite cache is rebuilt. Flushing on
+ * every publish/update/trash keeps the two in sync without needing an
+ * editor to manually resave Settings → Permalinks.
+ */
+add_action(
+	'save_post_arbee_product',
+	function ( $post_id, $post ) {
+		if ( 'publish' === $post->post_status ) {
+			flush_rewrite_rules();
+		}
+	},
+	10,
+	2
+);
+add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
+	if ( 'arbee_product' === $post->post_type && ( 'publish' === $new_status || 'publish' === $old_status ) ) {
+		flush_rewrite_rules();
+	}
+}, 10, 3 );
+
+/**
  * Permalink for a product: its own slug at the site root.
  */
 add_filter(
