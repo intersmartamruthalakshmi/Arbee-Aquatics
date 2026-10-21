@@ -832,7 +832,7 @@ return array(
 		'quote_ph_email'          => 'Enter your email address',
 		'quote_label_topic'       => 'What do you want to know about?*',
 		'quote_topic_placeholder' => 'General Enquiry',
-		'quote_topics'            => "Demo1\nDemo2\nDemo3",
+		'quote_topics'            => "General Enquiry\nNormal Enquiry",
 		'quote_label_comments'    => 'Comments',
 		'quote_ph_comments'       => 'Message',
 		'quote_submit'            => 'SUBMIT',

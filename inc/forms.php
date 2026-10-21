@@ -220,22 +220,22 @@ function arbee_handle_enquiry() {
 	// Also confirm receipt to the person who submitted the form, unless turned off.
 	$confirm_enabled = arbee_opt( 'enquiry_confirm_enabled' );
 	if ( null === $confirm_enabled || $confirm_enabled ) {
-		$confirm_subject = (string) arbee_opt( 'enquiry_confirm_subject' );
-		$confirm_subject = arbee_has( $confirm_subject )
-			? $confirm_subject
-			: $site;
+		// Same subject as the admin notification above - not a separately
+		// configurable value, so the two mails are always in sync.
+		$confirm_subject = $subject;
 
 		$confirm_message = (string) arbee_opt( 'enquiry_confirm_message' );
 		$confirm_message = arbee_has( $confirm_message )
 			? $confirm_message
 			: __( "Hi {name},\n\nThanks for reaching out to {site}. We've received your enquiry and will get back to you shortly.\n\nThis is an automated confirmation - no reply is needed.", 'arbee' );
 
-		$replacements    = array(
-			'{name}' => $data['full_name'],
-			'{site}' => $site,
+		$confirm_message = strtr(
+			$confirm_message,
+			array(
+				'{name}' => $data['full_name'],
+				'{site}' => $site,
+			)
 		);
-		$confirm_subject = strtr( $confirm_subject, $replacements );
-		$confirm_message = strtr( $confirm_message, $replacements );
 		$confirm_html    = arbee_email_template( __( 'Thank you for contacting us', 'arbee' ), nl2br( esc_html( $confirm_message ) ) );
 		$confirm_headers = array( 'Content-Type: text/html; charset=UTF-8' );
 		if ( '' !== $from_email && is_email( $from_email ) ) {

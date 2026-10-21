@@ -132,8 +132,7 @@ add_action(
 					__( 'Also email the person who submitted the form', 'arbee' ),
 					array( 'ui' => 1, 'default_value' => 1 )
 				),
-				arbee_f_text( 'enquiry_confirm_subject', __( 'Confirmation email subject', 'arbee' ), array( 'instructions' => __( 'Leave empty for a sensible default. {site} is replaced with the site name.', 'arbee' ) ) ),
-				arbee_f_textarea( 'enquiry_confirm_message', __( 'Confirmation email message', 'arbee' ), 4, array( 'instructions' => __( 'Leave empty for a sensible default. {name} and {site} are replaced automatically.', 'arbee' ) ) ),
+				arbee_f_textarea( 'enquiry_confirm_message', __( 'Confirmation email message', 'arbee' ), 4, array( 'instructions' => __( 'Leave empty for a sensible default. {name} and {site} are replaced automatically. The subject line always matches the admin notification email.', 'arbee' ) ) ),
 
 				// ---- SEO ----
 				arbee_f_tab( __( 'SEO', 'arbee' ) ),
