@@ -21,7 +21,7 @@ $arbee_text  = arbee_opt( 'e404_text' );
 	<section id="Error" class="advantagesecbg">
 		<div class="container">
 			<div class="content">
-				<div class="imgBx"><?php echo arbee_image( arbee_opt( 'e404_image' ), array( 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+				<div class="imgBx"><?php echo arbee_image( arbee_opt( 'e404_image' ), array( 'alt' => arbee_has( $arbee_title ) ? $arbee_title : __( 'Page not found', 'arbee' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<div class="txtWrapper">
 					<h1 class="title"><?php echo arbee_text( arbee_has( $arbee_title ) ? $arbee_title : __( 'Page not found', 'arbee' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
 					<?php if ( arbee_has( $arbee_text ) ) : ?>

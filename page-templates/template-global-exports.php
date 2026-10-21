@@ -77,7 +77,7 @@ $arbee_shield  = arbee_asset( 'images/shields5.png' );
 							<?php $arbee_list = is_array( arbee_v( $arbee_reg, 'countries' ) ) ? arbee_v( $arbee_reg, 'countries' ) : array(); ?>
 							<div class="marketsetbox">
 								<?php if ( arbee_v( $arbee_reg, 'map' ) ) : ?>
-									<div class="mapmarket"><?php echo arbee_image( arbee_v( $arbee_reg, 'map' ), array( 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
+									<div class="mapmarket"><?php echo arbee_image( arbee_v( $arbee_reg, 'map' ), array( 'alt' => arbee_v( $arbee_reg, 'name' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 								<?php endif; ?>
 								<h2><?php echo arbee_text( arbee_v( $arbee_reg, 'name' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
 								<?php if ( $arbee_list ) : ?>

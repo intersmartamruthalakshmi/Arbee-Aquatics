@@ -35,7 +35,12 @@ $arbee_products = arbee_products( 'hero' );
 											Your browser does not support the video tag.
 										</video>
 									<?php elseif ( arbee_v( $arbee_slide, 'poster' ) ) : ?>
-										<?php echo arbee_image( arbee_v( $arbee_slide, 'poster' ), array( 'width' => 1920, 'height' => 940, 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+										<?php
+										$arbee_slide_alt = arbee_has( arbee_v( $arbee_slide, 'title' ) )
+											? str_replace( array( "\r\n", "\r", "\n" ), ' ', (string) arbee_v( $arbee_slide, 'title' ) )
+											: get_bloginfo( 'name' );
+										echo arbee_image( arbee_v( $arbee_slide, 'poster' ), array( 'width' => 1920, 'height' => 940, 'alt' => $arbee_slide_alt ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+										?>
 									<?php endif; ?>
 								</div>
 								<div class="container">
@@ -323,7 +328,7 @@ $arbee_products = arbee_products( 'hero' );
 												<?php if ( $arbee_list ) : ?>
 													<ul class="kodgaprop">
 														<?php foreach ( $arbee_list as $arbee_c ) : ?>
-															<li><a><?php echo arbee_text( arbee_v( $arbee_c, 'name' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php if ( arbee_v( $arbee_c, 'flag' ) ) : ?><span><?php echo arbee_image( arbee_v( $arbee_c, 'flag' ), array( 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span><?php endif; ?></a>
+															<li><a><?php echo arbee_text( arbee_v( $arbee_c, 'name' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php if ( arbee_v( $arbee_c, 'flag' ) ) : ?><span><?php echo arbee_image( arbee_v( $arbee_c, 'flag' ), array( 'alt' => arbee_v( $arbee_c, 'name' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span><?php endif; ?></a>
 															</li>
 														<?php endforeach; ?>
 													</ul>

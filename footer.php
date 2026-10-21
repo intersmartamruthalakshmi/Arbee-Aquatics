@@ -61,13 +61,13 @@ $arbee_social = array_filter(
 				<?php endif; ?>
 				<?php if ( arbee_has( arbee_opt( 'hq_phone_number' ) ) ) : ?>
 					<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', (string) arbee_opt( 'hq_phone_number' ) ) ); ?>" class="mailbprot">
-						<span><img src="<?php echo esc_url( arbee_asset( 'images/phonebg.png' ) ); ?>" alt=""></span>
+						<span><img src="<?php echo esc_url( arbee_asset( 'images/phonebg.png' ) ); ?>" alt="<?php esc_attr_e( 'Phone', 'arbee' ); ?>"></span>
 						<?php echo arbee_text( arbee_opt( 'hq_phone_number' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</a> <br>
 				<?php endif; ?>
 				<?php if ( is_email( arbee_opt( 'hq_email_address' ) ) ) : ?>
 					<a href="<?php echo esc_url( 'mailto:' . antispambot( arbee_opt( 'hq_email_address' ) ) ); ?>" class="mailbprot">
-						<span><img src="<?php echo esc_url( arbee_asset( 'images/emailbg.png' ) ); ?>" alt=""></span>
+						<span><img src="<?php echo esc_url( arbee_asset( 'images/emailbg.png' ) ); ?>" alt="<?php esc_attr_e( 'Email', 'arbee' ); ?>"></span>
 						<?php echo esc_html( antispambot( arbee_opt( 'hq_email_address' ) ) ); ?>
 					</a>
 				<?php endif; ?>

@@ -61,27 +61,41 @@ add_action(
 );
 
 /**
- * The product rewrite rules above are built once per request from whatever
- * products are already published, so a brand-new product has no rule yet
- * and 404s on the frontend until the rewrite cache is rebuilt. Flushing on
- * every publish/update/trash keeps the two in sync without needing an
- * editor to manually resave Settings → Permalinks.
+ * The product rewrite rules above are built once per request, early on
+ * 'init', from whatever products were ALREADY published when that request
+ * started. A brand-new product is only saved/published later in that same
+ * request (inside this 'transition_post_status' callback, which always
+ * fires - even publish-to-publish - since wp_insert_post() calls it
+ * unconditionally) - by then 'init' has already run and missed it.
+ *
+ * Simply calling flush_rewrite_rules() here does NOT fix that: a flush
+ * just persists whatever rules are currently sitting in memory, and those
+ * still don't include the new product (its rule was never added this
+ * request). The result was that a brand-new product kept 404ing until some
+ * UNRELATED later save happened to run 'init' with it already published.
+ *
+ * So the rule for this exact post is added explicitly, right here, before
+ * flushing - guaranteeing the rule that gets persisted actually includes it.
  */
 add_action(
-	'save_post_arbee_product',
-	function ( $post_id, $post ) {
-		if ( 'publish' === $post->post_status ) {
+	'transition_post_status',
+	function ( $new_status, $old_status, $post ) {
+		if ( 'arbee_product' !== $post->post_type ) {
+			return;
+		}
+		if ( 'publish' === $new_status ) {
+			$arbee_slug = get_post_field( 'post_name', $post->ID );
+			if ( $arbee_slug ) {
+				add_rewrite_rule( '^' . preg_quote( $arbee_slug, '#' ) . '/?$', 'index.php?post_type=arbee_product&p=' . (int) $post->ID, 'top' );
+			}
+		}
+		if ( 'publish' === $new_status || 'publish' === $old_status ) {
 			flush_rewrite_rules();
 		}
 	},
 	10,
-	2
+	3
 );
-add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
-	if ( 'arbee_product' === $post->post_type && ( 'publish' === $new_status || 'publish' === $old_status ) ) {
-		flush_rewrite_rules();
-	}
-}, 10, 3 );
 
 /**
  * Permalink for a product: its own slug at the site root.
