@@ -35,21 +35,25 @@ $arbee_social = array_filter(
 		</div>
 		<div class="footermenuhopk">
 			<?php if ( arbee_has( arbee_opt( 'footer_company_title' ) ) ) : ?>
-				<h2><?php echo arbee_text( arbee_opt( 'footer_company_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
+				<h2 class="footer-acc-header" role="button" tabindex="0" aria-expanded="false"><?php echo arbee_text( arbee_opt( 'footer_company_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span class="acc-icon" aria-hidden="true"></span></h2>
 			<?php endif; ?>
-			<?php arbee_footer_menu( 'footer_company', 'foterdragmenu' ); ?>
+			<div class="footer-acc-body">
+				<?php arbee_footer_menu( 'footer_company', 'foterdragmenu' ); ?>
+			</div>
 		</div>
 		<div class="footermenuhopk">
 			<?php if ( arbee_has( arbee_opt( 'footer_products_title' ) ) ) : ?>
-				<h2><?php echo arbee_text( arbee_opt( 'footer_products_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
+				<h2 class="footer-acc-header" role="button" tabindex="0" aria-expanded="false"><?php echo arbee_text( arbee_opt( 'footer_products_title' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <span class="acc-icon" aria-hidden="true"></span></h2>
 			<?php endif; ?>
-			<?php arbee_footer_menu( 'footer_products', 'foterdragmenu' ); ?>
-			<?php if ( arbee_has( arbee_opt( 'footer_map_url' ) ) ) : ?>
-				<a href="<?php echo esc_url( arbee_opt( 'footer_map_url' ) ); ?>" class="foterrehtbtn" target="_blank" rel="noopener">
-					<span><img src="<?php echo esc_url( arbee_asset( 'images/map.png' ) ); ?>" alt="<?php esc_attr_e( 'Google Map', 'arbee' ); ?>"></span>
-					<?php esc_html_e( 'GOOGLE MAP', 'arbee' ); ?>
-				</a>
-			<?php endif; ?>
+			<div class="footer-acc-body">
+				<?php arbee_footer_menu( 'footer_products', 'foterdragmenu' ); ?>
+				<?php if ( arbee_has( arbee_opt( 'footer_map_url' ) ) ) : ?>
+					<a href="<?php echo esc_url( arbee_opt( 'footer_map_url' ) ); ?>" class="foterrehtbtn" target="_blank" rel="noopener">
+						<span><img src="<?php echo esc_url( arbee_asset( 'images/map.png' ) ); ?>" alt="<?php esc_attr_e( 'Google Map', 'arbee' ); ?>"></span>
+						<?php esc_html_e( 'GOOGLE MAP', 'arbee' ); ?>
+					</a>
+				<?php endif; ?>
+			</div>
 		</div>
 		<div class="headquatbogt">
 			<div class="ropboxtokhap">

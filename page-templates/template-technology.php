@@ -13,9 +13,9 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 
 /**
- * One diagram node: <li class="…"><a><span><img></span><h3>…</h3><h4>…</h4><h6>NN</h6></a>[extra]</li>
+ * One diagram node: <li class="…"><a><span><img></span><h3>…</h3><h4>…</h4><h6>NN</h6></a>[popup box]</li>
  */
-$arbee_node = function ( $name, $class = '', $extra = '' ) {
+$arbee_node = function ( $name, $class = '' ) {
 	$node = arbee_get( $name );
 	if ( ! arbee_has( arbee_v( $node, 'title' ) ) ) {
 		return '';
@@ -25,15 +25,13 @@ $arbee_node = function ( $name, $class = '', $extra = '' ) {
 	$html .= '<h3>' . arbee_lines( arbee_v( $node, 'title' ) ) . '</h3>';
 	$html .= arbee_has( arbee_v( $node, 'subtitle' ) ) ? '<h4>' . arbee_text( arbee_v( $node, 'subtitle' ) ) . '</h4>' : '';
 	$html .= arbee_has( arbee_v( $node, 'number' ) ) ? '<h6>' . arbee_text( arbee_v( $node, 'number' ) ) . '</h6>' : '';
-	$html .= '</a>' . $extra . '</li>';
+	$html .= '</a>';
+	if ( arbee_has( arbee_v( $node, 'popup_title' ) ) || arbee_has( arbee_v( $node, 'popup_text' ) ) ) {
+		$html .= '<div class="cookerbox"><h5>' . arbee_text( arbee_v( $node, 'popup_title' ) ) . '</h5><p>' . arbee_lines( arbee_v( $node, 'popup_text' ) ) . '</p></div>';
+	}
+	$html .= '</li>';
 	return $html;
 };
-
-$arbee_cooker = arbee_get( 'cooker' );
-$arbee_popup  = '';
-if ( arbee_has( arbee_v( $arbee_cooker, 'popup_title' ) ) || arbee_has( arbee_v( $arbee_cooker, 'popup_text' ) ) ) {
-	$arbee_popup = '<div class="cookerbox"><h5>' . arbee_text( arbee_v( $arbee_cooker, 'popup_title' ) ) . '</h5><p>' . arbee_lines( arbee_v( $arbee_cooker, 'popup_text' ) ) . '</p></div>';
-}
 ?>
 <div id="pageWrapper" class="fishmealPage">
 
@@ -60,7 +58,7 @@ if ( arbee_has( arbee_v( $arbee_cooker, 'popup_title' ) ) || arbee_has( arbee_v(
 				<ul class="techniclab">
 					<?php echo $arbee_node( 'raw_fish', 'blubgsec' ); ?>
 					<?php echo $arbee_node( 'metal_detector' ); ?>
-					<?php echo $arbee_node( 'cooker', 'coopopfg', $arbee_popup ); ?>
+					<?php echo $arbee_node( 'cooker', 'coopopfg' ); ?>
 				</ul>
 				<div style="clear: both;"></div>
 				<ul class="techniclab">

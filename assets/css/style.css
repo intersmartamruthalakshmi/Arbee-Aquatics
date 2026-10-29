@@ -3124,16 +3124,15 @@ footer h2 {
   width: 100%;
   height: auto;
 }
+.certipacketbx .owl-stage-outer {
+  touch-action: pan-y;
+}
 .certipacketbx ul {
   width: 100%;
   text-align: center;
   margin: 0;
   position: relative;
   list-style: none;
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
   padding: 0;
 }
 .certipacketbx li {
@@ -3159,6 +3158,7 @@ footer h2 {
   bottom: 43%;
   z-index: 100;
   width: 100%;
+  pointer-events: none;
 }
 .certipacketbx .owl-carousel .owl-nav button.owl-prev {
   background-image: url("../images/packright.svg");
@@ -3166,6 +3166,7 @@ footer h2 {
   height: 20px;
   float: left;
   margin-left: 0;
+  pointer-events: auto;
   opacity: 1 !important;
   transition: all 0.3s;
   background-position: center;
@@ -3177,6 +3178,7 @@ footer h2 {
   height: 20px;
   float: right;
   margin-right: 0;
+  pointer-events: auto;
   opacity: 1 !important;
   transition: all 0.3s;
   background-position: center;
@@ -3238,7 +3240,7 @@ footer h2 {
   height: 200px;
   position: relative;
   text-decoration: none;
-  border: 1px solid #000000; 
+  border: 1px solid #000000;
   border-radius: 100%;
   display: inline-flex;
   flex-direction: column;
@@ -3300,21 +3302,38 @@ footer h2 {
   font-family: "Poppins-SemiBold";
   text-align: center;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0;
   margin-bottom: 0;
   margin-top: 10px;
   line-height: 20px;
 }
+@media (min-width: 576) {
+  .methodlab li h4 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1551) {
+  .methodlab li h4 {
+    font-size: 20px;
+  }
+}
 .methodlab li h4 {
   font-family: "Poppins-Light";
   text-align: center;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 0;
   margin-bottom: 0;
   margin-top: 5px;
 }
+
+@media (min-width: 1551) {
+  .methodlab li h4 {
+    font-size: 16px;
+  }
+}
+
 .dotproceed {
   width: 1210px;
   height: 170px;
@@ -3651,8 +3670,24 @@ footer h2 {
   display: inline-flex;
   gap: 82px;
   position: relative;
-  z-index: 1;
+  z-index: auto;
   background-color: #ffffff;
+}
+.techniclab:hover,
+.techniclab:focus-within,
+.techniclab:has(li:hover),
+.techniclab:has(li.active),
+.techniclab.has-active,
+.leftoilbox:hover,
+.leftoilbox:focus-within,
+.leftoilbox:has(li:hover),
+.leftoilbox:has(li.active),
+.rightoilbox:hover,
+.rightoilbox:focus-within,
+.rightoilbox:has(li:hover),
+.rightoilbox:has(li.active) {
+  z-index: 99999 !important;
+  position: relative;
 }
 .techniclab li {
   width: auto;
@@ -3662,6 +3697,12 @@ footer h2 {
   list-style: none;
   display: inline-block;
   position: relative;
+  z-index: 2;
+  transition: z-index 0.2s;
+}
+.techniclab li:hover,
+.techniclab li.active {
+  z-index: 99999 !important;
 }
 .techniclab li a {
   width: 200px;
@@ -3724,8 +3765,28 @@ footer h2 {
   transition: all 0.5s;
 }
 .techniclab li a:hover,
-.techniclab li a:hover::before {
-  border-color: #0089cf;
+.techniclab li a:hover::before,
+.techniclab li.active a,
+.techniclab li.active a::before {
+  border-color: #0089cf !important;
+}
+.techniclab li:hover > a,
+.techniclab li.active > a {
+  background-color: #0089cf !important;
+  border-color: #0089cf !important;
+  color: #ffffff !important;
+}
+.techniclab li:hover > a h3,
+.techniclab li:hover > a h4,
+.techniclab li:hover > a h6,
+.techniclab li.active > a h3,
+.techniclab li.active > a h4,
+.techniclab li.active > a h6 {
+  color: #ffffff !important;
+}
+.techniclab li:hover > a span img,
+.techniclab li.active > a span img {
+  filter: brightness(0) invert(1) !important;
 }
 .techniclab li.blubgsec a::before {
   border-color: #0089cf;
@@ -3777,26 +3838,44 @@ footer h2 {
   margin-top: 15px;
 }
 .cookerbox {
-  width: 422px;
+  display: none;
+  width: 360px;
   height: auto;
-  padding: 25px 25px 25px;
+  padding: 18px 20px;
   position: absolute;
-  right: -455px;
+  right: -390px;
   top: -14px;
-  z-index: 1;
-  background: linear-gradient(
+  z-index: 999999 !important;
+  background: #ffffff !important;
+  background-image: linear-gradient(
     180deg,
-    rgba(166, 206, 57, 0.1) 0%,
-    rgba(0, 137, 207, 0.1) 100%
-  );
+    rgba(166, 206, 57, 0.15) 0%,
+    rgba(0, 137, 207, 0.15) 100%
+  ) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 137, 207, 0.18);
+  border-radius: 6px;
+}
+.techniclab li:hover > .cookerbox,
+.techniclab li.active > .cookerbox {
+  display: block !important;
+}
+.rightoilbox .cookerbox {
+  right: auto;
+  left: -390px;
+}
+.rightoilbox .cookerbox:before {
+  left: auto;
+  right: -10px;
+  border-right: none;
+  border-left: 10px solid #ffffff;
 }
 .cookerbox:before {
   content: "";
-  border-right: 10px solid;
+  border-right: 10px solid #ffffff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right-color: rgba(166, 206, 57, 0.15);
-  top: 100px;
+  top: 80px;
   left: -10px;
   position: absolute;
   z-index: 2;
@@ -3804,20 +3883,21 @@ footer h2 {
 .cookerbox h5 {
   font-family: "Poppins-SemiBold";
   text-align: left;
-  font-weight: normal;
-  font-size: 25px;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 24px;
   letter-spacing: 0;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #000000;
 }
 .cookerbox p {
   text-align: left;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 34px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
   letter-spacing: 0;
   margin-bottom: 0;
-  color: #000000;
+  color: #333333;
 }
 .leftoilbox {
   width: 50%;
@@ -4521,7 +4601,18 @@ footer h2 {
   margin-bottom: 0;
   background-color: transparent;
   border: 0;
-  padding: 16px 20px;
+  padding: 25px 20px;
+}
+
+@media (max-width: 576px) {
+  .contsoap .form-control {
+    padding: 20px 20px !important;
+  }
+}
+
+.contsoap .form-control::placeholder {
+  line-height: 1.5;
+  opacity: 1;
 }
 .contsoap .form-select {
   padding: 16px 20px;

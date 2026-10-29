@@ -122,6 +122,87 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // FOOTER ACCORDION (below 576px)
+    function updateFooterAccordion() {
+        if ($(window).width() >= 576) {
+            $(".footer-acc-body").removeAttr("style");
+            $(".footer-acc-header")
+                .removeClass("active")
+                .attr("aria-expanded", "true")
+                .attr("tabindex", "-1");
+        } else {
+            $(".footer-acc-header").attr("tabindex", "0");
+            $(".footer-acc-header").each(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).attr("aria-expanded", "true");
+                } else {
+                    $(this).attr("aria-expanded", "false");
+                }
+            });
+        }
+    }
+    updateFooterAccordion();
+    $(window).on("resize", function () {
+        updateFooterAccordion();
+    });
+
+    $(document).on("click", ".footer-acc-header", function (e) {
+        if ($(window).width() < 576) {
+            e.preventDefault();
+            var $header = $(this);
+            var $body = $header.siblings(".footer-acc-body");
+            var isOpen = $header.hasClass("active");
+
+            // Close other accordions
+            $(".footer-acc-header").not($header).removeClass("active").attr("aria-expanded", "false");
+            $(".footer-acc-body").not($body).stop(true, false).slideUp(300);
+
+            if (isOpen) {
+                $header.removeClass("active").attr("aria-expanded", "false");
+                $body.stop(true, false).slideUp(300);
+            } else {
+                $header.addClass("active").attr("aria-expanded", "true");
+                $body.stop(true, false).slideDown(300);
+            }
+        }
+    });
+
+    // Keyboard accessibility
+    $(document).on("keydown", ".footer-acc-header", function (e) {
+        if ($(window).width() < 576 && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            $(this).trigger("click");
+        }
+    });
+
+    // TECHNOLOGY PAGE (cookerbox toggle on click)
+    var techItems = document.querySelectorAll('.techniclab li:not(.dummybox)');
+    techItems.forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            if (e.target.closest('.cookerbox')) return;
+            var isActive = this.classList.contains('active');
+            techItems.forEach(function(i) {
+                i.classList.remove('active');
+                var pUl = i.closest('.techniclab');
+                if (pUl) pUl.classList.remove('has-active');
+            });
+            if (!isActive) {
+                this.classList.add('active');
+                var pUl = this.closest('.techniclab');
+                if (pUl) pUl.classList.add('has-active');
+            }
+        });
+    });
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.techniclab li')) {
+            techItems.forEach(function(i) {
+                i.classList.remove('active');
+                var pUl = i.closest('.techniclab');
+                if (pUl) pUl.classList.remove('has-active');
+            });
+        }
+    });
+
     $(".select2").select2({
         minimumResultsForSearch: Infinity,
         closeOnSelect: true,

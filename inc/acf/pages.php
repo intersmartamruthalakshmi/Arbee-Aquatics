@@ -418,7 +418,7 @@ add_action(
 		/* ================================================================
 		 * TECHNOLOGY â€” technology.php
 		 * ============================================================== */
-		$node = function ( $name, $label, $extra_fields = array() ) {
+		$node = function ( $name, $label, $extra_fields = array(), $popup = array() ) {
 			return arbee_f_group(
 				$name,
 				$label,
@@ -427,6 +427,8 @@ add_action(
 						arbee_f_image( 'icon', __( 'Icon', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ), 'instructions' => __( 'Square icon, recommended 60×60px.', 'arbee' ) ) ),
 						arbee_f_textarea( 'title', __( 'Title', 'arbee' ), 2, array( 'wrapper' => array( 'width' => 50 ), 'instructions' => __( 'Press Enter for a line break.', 'arbee' ) ) ),
 						arbee_f_text( 'number', __( 'Step number', 'arbee' ), array( 'wrapper' => array( 'width' => 25 ) ) ),
+						arbee_f_text( 'popup_title', __( 'Info box title', 'arbee' ), array( 'default_value' => arbee_v( $popup, 'title' ) ) ),
+						arbee_f_textarea( 'popup_text', __( 'Info box text', 'arbee' ), 3, array( 'default_value' => arbee_v( $popup, 'text' ) ) ),
 					),
 					$extra_fields
 				)
@@ -445,16 +447,25 @@ add_action(
 				arbee_f_heading( 'process_title', __( 'Process diagram title', 'arbee' ) ),
 				arbee_f( 'message', 'diagram_note', __( 'About the diagram', 'arbee' ), array( 'message' => __( 'The diagram layout is fixed: each box below is one position in the flow chart. You can change icons, labels and numbers; clearing a title hides that box.', 'arbee' ) ) ),
 				$node( 'raw_fish', __( '1 Â· Raw fish', 'arbee' ), array( arbee_f_text( 'subtitle', __( 'Subtitle', 'arbee' ) ) ) ),
-				$node( 'metal_detector', __( '2 Â· Metal detector', 'arbee' ) ),
 				$node(
-					'cooker',
-					__( '3 Â· Cooker', 'arbee' ),
+					'metal_detector',
+					__( '2 Â· Metal detector', 'arbee' ),
+					array(),
 					array(
-						arbee_f_text( 'popup_title', __( 'Info box title', 'arbee' ) ),
-						arbee_f_textarea( 'popup_text', __( 'Info box text', 'arbee' ), 3 ),
+						'title' => __( 'Metal Detector', 'arbee' ),
+						'text'  => __( 'All incoming fish pass through an industrial-grade metal detector to eliminate foreign metallic objects, ensuring safety and compliance before processing begins.', 'arbee' ),
 					)
 				),
-				$node( 'press', __( '4 Â· Mechanical press', 'arbee' ) ),
+				$node( 'cooker', __( '3 Â· Cooker', 'arbee' ) ),
+				$node(
+					'press',
+					__( '4 Â· Mechanical press', 'arbee' ),
+					array(),
+					array(
+						'title' => __( 'Mechanical Press', 'arbee' ),
+						'text'  => __( 'The cooked fish mass is fed into a twin-screw press that mechanically squeezes out the press liquid (oil + water), separating it from the solid press cake.', 'arbee' ),
+					)
+				),
 				$node( 'press_liquid', __( 'Oil line Â· Press liquid', 'arbee' ) ),
 				$node( 'decanter', __( 'Oil line Â· Decanter', 'arbee' ) ),
 				$node( 'oil_separator', __( 'Oil line Â· Oil separator', 'arbee' ) ),

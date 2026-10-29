@@ -247,24 +247,53 @@
 	right: -52px;
 }
 .cookerbox h5 {
-	font-size: 20px;
+	font-size: 17px !important;
+	line-height: 22px !important;
+	margin-bottom: 6px !important;
 }
 .techniclab li h6 {
 	font-size: 16px;
 }
 .cookerbox p {
-	font-size: 12px;
-	line-height: 22px;
+	font-size: 13px !important;
+	line-height: 20px !important;
+	color: #333333 !important;
 }
 .cookerbox {
-	width: 249px;
+	display: none;
+	width: 250px;
+	padding: 15px 16px;
 	position: absolute;
-	right: -265px;
+	right: -270px;
 	top: -14px;
+	z-index: 999999 !important;
+	background: #ffffff !important;
+	background-image: linear-gradient(
+		180deg,
+		rgba(166, 206, 57, 0.15) 0%,
+		rgba(0, 137, 207, 0.15) 100%
+	) !important;
+	/* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16); */
+	/* border-radius: 6px; */
+}
+.rightoilbox .cookerbox {
+	right: auto;
+	left: -270px;
+}
+.rightoilbox .cookerbox:before {
+	left: auto;
+	right: -10px;
+	border-right: none;
+	border-left: 10px solid #ffffff;
 }
 .cookerbox:before {
-	top: 82px;
+	border-right-color: #ffffff;
+	top: 75px;
 	left: -10px;
+}
+.techniclab li:hover > .cookerbox,
+.techniclab li.active > .cookerbox {
+	display: block !important;
 }
 .techniclab li.dryerbox a::after, .techniclab li.oilboxgt a::after, .techniclab li.fishboxgt a::after {
 	left: -52px;
@@ -1299,29 +1328,67 @@ footer {
 	transform: rotate(90deg);
 }
 .cookerbox {
-	width: 100%;
-	position: relative;
-	display: block;
-	top: inherit;
-	right: inherit;
-	margin-top: 30px;
+	display: none;
+	width: 290px;
+	max-width: 90vw;
+	position: absolute;
+	top: calc(100% + 15px);
+	left: 50%;
+	right: auto;
+	transform: translateX(-50%);
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 14px 16px;
 	text-align: center;
-	margin-bottom: 20px;
+	z-index: 999999 !important;
+	background: #ffffff !important;
+	background-image: linear-gradient(
+		180deg,
+		rgba(166, 206, 57, 0.15) 0%,
+		rgba(0, 137, 207, 0.15) 100%
+	) !important;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 137, 207, 0.2);
+	border-radius: 8px;
 }
 .cookerbox h5 {
-	text-align: center;
+	font-size: 16px !important;
+	line-height: 20px !important;
+	margin-bottom: 6px !important;
+	text-align: center !important;
+	font-weight: 600 !important;
 }
 .cookerbox p {
-	text-align: center;
+	font-size: 12.5px !important;
+	line-height: 19px !important;
+	color: #333333 !important;
+	text-align: center !important;
 }
 .cookerbox:before {
 	border-top: 0;
-	border-bottom: 10px solid;
+	border-bottom: 10px solid #ffffff;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-bottom-color: rgba(166, 206, 57, 0.15);
 	top: -10px;
-	left: 48%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.rightoilbox .cookerbox {
+	left: 50%;
+	right: auto;
+	transform: translateX(-50%);
+}
+.rightoilbox .cookerbox:before {
+	left: 50%;
+	right: auto;
+	transform: translateX(-50%);
+	border-bottom: 10px solid #ffffff;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+}
+.techniclab li:hover > .cookerbox,
+.techniclab li.active > .cookerbox {
+	display: block !important;
 }
 .techniclab li.decanbox, .techniclab li.coolerbox {
 	order: 2;
@@ -1960,4 +2027,126 @@ footer {
 .globalkopd {
 	align-items: flex-start;
 }
+}
+
+/* FOOTER ACCORDION (Desktop defaults - No changes above 576px) */
+.footer-acc-header .acc-icon {
+	display: none;
+}
+.footer-acc-body {
+	display: block;
+}
+@media only screen and (min-width: 576px) {
+	.footer-acc-header {
+		cursor: default !important;
+		pointer-events: none !important;
+	}
+	.footer-acc-header .acc-icon {
+		display: none !important;
+	}
+	.footer-acc-body {
+		display: block !important;
+	}
+}
+
+/* FOOTER ACCORDION & LAYOUT FIX (below 576px) */
+@media only screen and (max-width: 575.98px) {
+	.footerlogosec {
+		width: 100% !important;
+		float: none !important;
+		clear: both !important;
+		padding-right: 0 !important;
+		margin-bottom: 25px !important;
+		display: block !important;
+	}
+	.footermenuhopk {
+		width: 100% !important;
+		float: none !important;
+		clear: both !important;
+		padding-right: 0 !important;
+		margin-bottom: 0 !important;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+		display: block !important;
+	}
+	.footermenuhopk:first-of-type,
+	.footermenuhopk:nth-of-type(1) {
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+	}
+	.footermenuhopk .footer-acc-header {
+		display: flex !important;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0 !important;
+		padding: 14px 0 !important;
+		cursor: pointer !important;
+		pointer-events: auto !important;
+		user-select: none;
+		-webkit-tap-highlight-color: transparent;
+		font-size: 16px !important;
+		letter-spacing: 2px;
+		color: #a6ce39 !important;
+	}
+	.footermenuhopk .footer-acc-header:focus-visible {
+		outline: 2px solid #a6ce39;
+		outline-offset: 2px;
+	}
+	.footermenuhopk .footer-acc-header .acc-icon {
+		position: relative;
+		width: 14px;
+		height: 14px;
+		display: inline-block !important;
+		flex-shrink: 0;
+		margin-left: 10px;
+	}
+	.footermenuhopk .footer-acc-header .acc-icon::before,
+	.footermenuhopk .footer-acc-header .acc-icon::after {
+		content: '';
+		position: absolute;
+		background-color: #a6ce39;
+		border-radius: 1px;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+	.footermenuhopk .footer-acc-header .acc-icon::before {
+		top: 6px;
+		left: 0;
+		width: 14px;
+		height: 2px;
+	}
+	.footermenuhopk .footer-acc-header .acc-icon::after {
+		top: 0;
+		left: 6px;
+		width: 2px;
+		height: 14px;
+	}
+	.footermenuhopk .footer-acc-header.active .acc-icon::after {
+		transform: rotate(90deg);
+		opacity: 0;
+	}
+	.footermenuhopk .footer-acc-body {
+		display: none;
+		padding: 10px 0 16px;
+	}
+	.footermenuhopk .footer-acc-body .foterdragmenu li {
+		margin: 0 0 10px;
+	}
+	.footermenuhopk .footer-acc-body .foterdragmenu li a {
+		font-size: 15px;
+		line-height: 26px;
+	}
+	.footermenuhopk .footer-acc-body .foterrehtbtn {
+		margin-top: 15px;
+		margin-bottom: 5px;
+	}
+	.headquatbogt {
+		width: 100% !important;
+		float: none !important;
+		clear: both !important;
+		margin-top: 25px !important;
+		display: block !important;
+	}
+	.ropboxtokhap {
+		float: none !important;
+		display: block !important;
+		width: 100% !important;
+	}
 }
